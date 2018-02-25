@@ -9,20 +9,38 @@
 	  	</head>
 	<body>
 
-
-		<!-- Flash message -->
-		<% flash.each do | message_type, message | %>
-			<div id="flash" class="flash-<%= message_type %>" ><%= message %></div>
-		<% end %>
-		<!-- Flash message End -->
+		<!-- Navigation -->
+		<%= render partial: 'layouts/navigation' %>
+		<!-- Navigation -->
 
 
+		<!-- Container -->
+		<div class="container">
+
+
+			<!-- flash messages -->
+	      	<% if flash.any? %>
+	            <div class="row">
+	                <div class="col-md-7">
+	                    <% flash.each do |msg_type, msg| %>
+	                        <div class="alert alert-success">
+	                            <button type="button" class="close" aria-label="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+	                            <%= content_tag :div, msg, :id => "flash_#{msg_type}"  %>
+	                        </div>
+	                    <% end %>
+	                </div>
+	            </div>
+	        <% end %>
+			<!-- Flash message End -->
 
 
 
-	  	<!-- Yield -->
-	  	<%= yield %>
-	  	<!-- Yield End -->
+		  	<!-- Yield -->
+		  	<%= yield %>
+		  	<!-- Yield End -->
 
+
+	  	</div>
+	  	<!-- Container End -->
 	</body>
 </html>
