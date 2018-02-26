@@ -24,4 +24,11 @@ class Admins::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+
+  # redirect to a specific page after signing in
+  def after_sign_in_path_for(resource)
+      admin_profile_path(current_admin.admin_profile) unless current_admin.admin_profile.nil?
+      new_admin_profile_path
+  end
 end

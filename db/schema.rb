@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226012537) do
+ActiveRecord::Schema.define(version: 20180226044032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_profiles", force: :cascade do |t|
+    t.bigint "admin_id"
+    t.string "image"
+    t.string "sex"
+    t.datetime "birth_date"
+    t.string "address"
+    t.string "city"
+    t.string "zip_code"
+    t.string "civil_status"
+    t.string "mobile"
+    t.string "company"
+    t.string "department"
+    t.string "employee_category"
+    t.string "job_title"
+    t.string "manager"
+    t.boolean "enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_admin_profiles_on_admin_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false

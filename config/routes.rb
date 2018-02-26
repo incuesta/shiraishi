@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 	  
 
+  resources :admin_profiles
 	# Devise Admin Account
   	devise_for :admins, path: 'admins', controllers: 
   	{

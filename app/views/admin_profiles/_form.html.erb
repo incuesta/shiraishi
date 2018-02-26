@@ -1,0 +1,83 @@
+
+
+<!-- Form Wrapper -->
+<div class="form-wrapper">
+
+    <%= form_with(model: admin_profile, local: true) do |form| %>
+      <% if admin_profile.errors.any? %>
+          <%= render_errors_for(admin_profile) %>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :image %>
+        <%= form.text_field :image, id: :admin_profile_image, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :sex %>
+        <%= form.select :sex, ["male", "female"], {}, id: :admin_profile_sex, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :birth_date %>
+        <%= form.datetime_select :birth_date, id: :admin_profile_birth_date, start_year: 100.years.ago.year, end_year: 18.years.ago.year %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :address %>
+        <%= form.text_field :address, id: :admin_profile_address, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :city %>
+        <%= form.text_field :city, id: :admin_profile_city, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :zip_code %>
+        <%= form.text_field :zip_code, id: :admin_profile_zip_code, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :civil_status %>
+        <%= form.text_field :civil_status, id: :admin_profile_civil_status, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :mobile %>
+        <%= form.text_field :mobile, id: :admin_profile_mobile, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :company %>
+        <%= form.text_field :company, id: :admin_profile_company, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :department %>
+        <%= form.text_field :department, id: :admin_profile_department, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :employee_category %>
+        <%= form.text_field :employee_category, id: :admin_profile_employee_category, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :job_title %>
+        <%= form.text_field :job_title, id: :admin_profile_job_title, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :manager %>
+        <%= form.text_field :manager, id: :admin_profile_manager, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: 'btn btn-primary btn-lg' %>
+      </div>
+    <% end %>
+
+
+</div>
+<!-- End of Form Wrapper -->

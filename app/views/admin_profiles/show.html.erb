@@ -1,0 +1,140 @@
+<p id="notice"><%= notice %></tr>
+
+
+<% admin = @admin_profile.admin %>
+
+<!-- Div Row -->
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      
+      <div class="panel panel-default">
+
+          <div class="panel-heading">
+              <div class="panel-title">
+                  <strong><%= admin.user_name.capitalize %></strong>
+                  
+                  <div class="pull-right">
+                    <%= link_to 'Update Profile', edit_admin_profile_path(@admin_profile) %> |
+                    <%= link_to 'Update Registration', edit_admin_registration_path(admin) %> |
+                    <%= link_to 'Back', admin_profiles_path %>
+                  </div>
+              </div>
+          </div>
+
+
+              <div class="row">
+
+                <!-- Image Div -->
+                <div class="col-md-6">
+                    <div class="row" style="margin: 25px;">
+                        <div class="col-md-12">
+                            <div>
+                                <%= image_tag "user_icon_1.png", alt: admin.user_name.upcase, class: "center-block", size:"200x200" %>
+                            
+                                  <p class="text-center h3"><%= admin.full_name %></p>
+                                  <p class="text-center h5"><%= admin.email %></p>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Div End -->
+
+
+                <div class="col-md-6">
+
+                  <table class="table">
+                      <tr>
+                        <td><strong>Last name:</strong></td>
+                        <td><%= admin.last_name %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>First name:</strong></td>
+                        <td><%= admin.first_name %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Middle name:</strong></td>
+                        <td><%= admin.first_name %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Email:</strong></td>
+                        <td><%= admin.email %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Sex:</strong></td>
+                        <td><%= @admin_profile.sex %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Birth date:</strong></td>
+                        <td><%= @admin_profile.birth_date %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Address:</strong></td>
+                        <td><%= @admin_profile.address %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>City:</strong></td>
+                        <td><%= @admin_profile.city %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Zip code:</strong></td>
+                        <td><%= @admin_profile.zip_code %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Civil status:</strong></td>
+                        <td><%= @admin_profile.civil_status %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Mobile:</strong></td>
+                        <td><%= @admin_profile.mobile %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Company:</strong></td>
+                        <td><%= @admin_profile.company %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Department:</strong></td>
+                        <td><%= @admin_profile.department %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Employee category:</strong></td>
+                        <td><%= @admin_profile.employee_category %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Job title:</strong></td>
+                        <td><%= @admin_profile.job_title %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Manager:</strong></td>
+                        <td><%= @admin_profile.manager %></td>
+                      </tr>
+
+                      
+                  </table>
+                  <!-- Table End -->
+
+                </div>
+                <!-- div col md 6 end -->
+              </div>
+      </div>
+      <!-- Panel Default End -->
+
+    </div>
+    <!-- End of col-md-offset-2 -->
+</div>
+<!-- Div Row End -->
