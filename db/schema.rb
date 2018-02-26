@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226003056) do
+ActiveRecord::Schema.define(version: 20180226012537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,15 @@ ActiveRecord::Schema.define(version: 20180226003056) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_name"
+    t.string "timezone", default: "Singapore"
+    t.boolean "enabled", default: true
+    t.string "last_name"
+    t.string "first_name"
+    t.string "middle_name"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+    t.index ["user_name"], name: "index_admins_on_user_name", unique: true
   end
 
   create_table "articles", force: :cascade do |t|
