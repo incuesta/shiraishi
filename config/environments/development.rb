@@ -26,10 +26,30 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
 
+
+  # ActionMailer Config
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: Figaro.env.host }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = 
+  {
+
+    user_name: Figaro.env.gmail,
+    password: Figaro.env.gmail_pw,
+    domain: Figaro.env.host,
+    address: 'smtp.gmail.com',
+    port: '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+  # ActionMailer Config End
+
+
+
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

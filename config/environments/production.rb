@@ -60,7 +60,32 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "shiraishi_#{Rails.env}"
+
+
+
+
+  # ActionMailer Config
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false #####
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: Figaro.env.host }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = 
+  {
+
+    user_name: Figaro.env.gmail,
+    password: Figaro.env.gmail_pw,
+    domain: Figaro.env.host,
+    address: 'smtp.gmail.com',
+    port: '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+  # ActionMailer Config End
+
+
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
