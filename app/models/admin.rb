@@ -9,13 +9,21 @@ class Admin < ApplicationRecord
     	has_one :admin_profile, dependent: :destroy
 
 
+      # Validation
+      validates :user_name, presence: true, uniqueness: true
+      validates :last_name, presence: true
+      validates :first_name, presence: true
+      validates :middle_name, presence: true
+      
+
+
     	# Used to Enable or disable an Account
     	def active_for_authentication?
   			super && self.enabled?
-		end
+		  end
 
 
-		def full_name
-			"#{last_name} #{first_name} #{middle_name}"
-		end
+  		def full_name
+  			"#{last_name} #{first_name} #{middle_name}"
+  		end
 end

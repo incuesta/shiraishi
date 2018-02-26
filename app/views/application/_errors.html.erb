@@ -1,15 +1,15 @@
-<% if object && object.errors.any? %>
+<% if shiraishi && shiraishi.errors.any? %>
 	<div class="row">
 
 		<div id="error_explanation col-md-10">
 			
-			<div class="panel panel-warning">
-				<div class="panel-heading">
+			<div class="panel panel-info">
+				<div class="panel-body">
           
-			          <h2><%= pluralize(object.errors.count, "error") %> prohibited this <%= object.class %> from being saved:</h2>
+			          <div class="h4"><%= pluralize(shiraishi.errors.count, "error") %> prohibited this <%= shiraishi.class %> from being saved:</div>
 
 			          <ul>
-			            <% object.errors.full_messages.each do |message| %>
+			            <% shiraishi.errors.full_messages.each do |message| %>
 			              <li><%= message %></li>
 			            <% end %>
 			          </ul>
