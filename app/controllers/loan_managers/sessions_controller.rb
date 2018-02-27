@@ -24,4 +24,10 @@ class LoanManagers::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  # redirect to a specific page after signing in
+  def after_sign_in_path_for(resource)
+      loan_manager_profile_path(current_loan_manager.loan_manager_profile) unless current_loan_manager.loan_manager_profile.nil?
+      new_loan_manager_profile_path
+  end
 end

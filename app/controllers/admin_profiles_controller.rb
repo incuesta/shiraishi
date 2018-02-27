@@ -20,7 +20,7 @@ class AdminProfilesController < ApplicationController
   # GET /admin_profiles/new
   def new
     # If you use build it will delete your profile because of 1:1 relationship
-    @admin_profile = current_admin.admin_profile || AdminProfile.new
+    @admin_profile = AdminProfile.new
     
     # Redirect to update if there's already a Profile made.
     redirect_to edit_admin_profile_path(@admin_profile) if current_admin.admin_profile

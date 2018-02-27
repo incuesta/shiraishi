@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 	  
+  
+
     # Devise Acountant Account
     devise_for :accountants, path: 'accountants', controllers:
     {
@@ -12,6 +14,11 @@ Rails.application.routes.draw do
       # Not including omniauth because it's not enabled in the accountants Model
       # ,omniauth_callbacks: 'accountants/omniauth_callbacks'
     }
+
+
+
+    # Profle - Loan Manager
+    resources :loan_manager_profiles
 
 
 
@@ -30,11 +37,12 @@ Rails.application.routes.draw do
 
 
 
+    # Profile - Admin
   	resources :admin_profiles
 
 
 
-	# Devise Admin Account
+    # Devise Admin Account
   	devise_for :admins, path: 'admins', controllers: 
   	{
   		registrations: 	'admins/registrations',
@@ -50,20 +58,20 @@ Rails.application.routes.draw do
 
 
 
-	# Article
+    # Article
   	resources :articles
 	
 
 
-	# Static Pages
-	get 'pages/services'
-	get 'pages/articles'
-	get 'pages/organization'
-	get 'pages/about'
-	get 'pages/contacts'
-	get 'pages/help'
+  	# Static Pages
+  	get 'pages/services'
+  	get 'pages/articles'
+  	get 'pages/organization'
+  	get 'pages/about'
+  	get 'pages/contacts'
+  	get 'pages/help'
 
 
-	# Root
-	root 'pages#home'
+	 # Root
+	 root 'pages#home'
 end
