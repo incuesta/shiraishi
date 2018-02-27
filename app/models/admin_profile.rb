@@ -4,6 +4,13 @@ class AdminProfile < ApplicationRecord
 		belongs_to :admin
 
 
+
+		# CarrierWave Uploader
+		mount_uploader :image, ImageUploader
+
+
+
+		# Validation
 		validates :address, presence: true
 		validates :city, presence: true
 		validates :zip_code, presence: true, length: { minimum: 4, maximum: 4 }, format: { with: /\A[+-]?\d+\z/ }
@@ -13,4 +20,6 @@ class AdminProfile < ApplicationRecord
 		validates :employee_category, presence: true
 		validates :job_title, presence: true
 		validates :manager, presence: true
+
+
 end

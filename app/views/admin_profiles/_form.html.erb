@@ -3,14 +3,15 @@
 <!-- Form Wrapper -->
 <div class="form-wrapper">
 
-    <%= form_with(model: admin_profile, local: true) do |form| %>
+    <%= form_with(model: admin_profile, local: true, html: {multipart: true}) do |form| %>
       <% if admin_profile.errors.any? %>
           <%= render_errors_for(admin_profile) %>
       <% end %>
 
       <div class="form-group">
         <%= form.label :image %>
-        <%= form.text_field :image, id: :admin_profile_image, class: "form-control" %>
+        <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: :admin_profile_image %>
+        <span><%= File.basename(admin_profile.image.url) if admin_profile.image.present? %></span>
       </div>
 
       <div class="form-group">

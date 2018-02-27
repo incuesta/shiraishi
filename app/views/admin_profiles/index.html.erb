@@ -33,7 +33,7 @@
             <% admin = admin_profile.admin %>
             <tr>
               <td><%= admin.user_name %></td>
-              <td><%= admin_profile.image %></td>
+              <td><%= image_tag admin_profile.image.img_32.url, alt: "#{admin.user_name}.jpg" %></td>
               <td><%= admin.email %></td>
               <td><%= admin.last_name %></td>
               <td><%= admin.first_name %></td>

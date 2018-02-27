@@ -29,7 +29,11 @@
                     <div class="row" style="margin: 25px;">
                         <div class="col-md-12">
                             <div>
-                                <%= image_tag "user_icon_1.png", alt: admin.user_name.upcase, class: "center-block", size:"200x200" %>
+                                <!-- Show this if no profile Image -->
+                                <%= image_tag "user_icon_1.png", alt: "#{admin.user_name}.jpg", class: "center-block", size:"200x200" unless @admin_profile.image.present? %>
+
+                                <!-- Show this if there's a profile Image -->
+                                <%= image_tag @admin_profile.image.img_200.url, alt: "#{admin.user_name}.jpg", class: "center-block" if @admin_profile.image.present? %>
                             
                                   <p class="text-center h3"><%= admin.full_name %></p>
                                   <p class="text-center h5"><%= admin.email %></p>

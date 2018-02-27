@@ -85,8 +85,8 @@ class AdminProfilesController < ApplicationController
 
 
       # require same Admin
-      if @admin_profile.admin != current_admin
-        redirect_to root_path, notice: "You can't see another's profile"
+      if @admin_profile.admin != current_admin && action_name != "show"
+        redirect_to root_path, notice: "You're not allowed to do that..."
       end
     end
 
