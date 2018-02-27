@@ -55,12 +55,22 @@
             <ul class="nav navbar-nav navbar-right">
 
               <!-- Admin Logout -->
-              <li><%= link_to("Admin sign out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} ) if current_admin %></li>
+              <li>
+                <% if admin_signed_in? %>
+                    <%= link_to("Admin sign out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                  
+                <% elsif loan_manager_signed_in? %>
+                    <%= link_to("Manager sign out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                <% else %>
+                <% end %>
+
+              </li>
               <!-- Admin Logout End -->
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <li><%= link_to "Loan Manager Sign in", new_loan_manager_session_path %></li>
                   <li><a href="#">Action</a></li>
                   <li><a href="#">Another action</a></li>
                   <li><a href="#">Something else here</a></li>

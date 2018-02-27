@@ -1,7 +1,25 @@
 Rails.application.routes.draw do
 	  
 
-  resources :admin_profiles
+	# Devise LoanManager Account
+  	devise_for :loan_managers, path:'loan_managers', controllers:
+  	{
+  		registrations: 	'loan_managers/registrations',
+  		sessions: 		'loan_managers/sessions',
+  		confirmations: 	'loan_managers/confirmations',
+  		passwords: 		'loan_managers/passwords',
+  		unlocks: 		'loan_managers/unlocks'
+
+  		# Not including omniauth because it's not enabled in the Admin Model
+  		# ,omniauth_callbacks: 'loan_managers/omniauth_callbacks'
+  	}
+
+
+
+  	resources :admin_profiles
+
+
+
 	# Devise Admin Account
   	devise_for :admins, path: 'admins', controllers: 
   	{
