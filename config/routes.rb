@@ -1,7 +1,21 @@
 Rails.application.routes.draw do
 	  
+    # Devise Acountant Account
+    devise_for :accountants, path: 'accountants', controllers:
+    {
+      registrations:  'accountants/registrations',
+      sessions:     'accountants/sessions',
+      confirmations:  'accountants/confirmations',
+      passwords:    'accountants/passwords',
+      unlocks:    'accountants/unlocks'
 
-	# Devise LoanManager Account
+      # Not including omniauth because it's not enabled in the accountants Model
+      # ,omniauth_callbacks: 'accountants/omniauth_callbacks'
+    }
+
+
+
+    # Devise LoanManager Account
   	devise_for :loan_managers, path:'loan_managers', controllers:
   	{
   		registrations: 	'loan_managers/registrations',
@@ -10,7 +24,7 @@ Rails.application.routes.draw do
   		passwords: 		'loan_managers/passwords',
   		unlocks: 		'loan_managers/unlocks'
 
-  		# Not including omniauth because it's not enabled in the Admin Model
+  		# Not including omniauth because it's not enabled in the LoanManager Model
   		# ,omniauth_callbacks: 'loan_managers/omniauth_callbacks'
   	}
 
