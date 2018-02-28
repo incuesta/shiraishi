@@ -1,79 +1,144 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></tr>
 
-<p>
-  <strong>Loan manager:</strong>
-  <%= @loan_manager_profile.loan_manager %>
-</p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @loan_manager_profile.image %>
-</p>
+<% loan_manager = @loan_manager_profile.loan_manager %>
 
-<p>
-  <strong>Sex:</strong>
-  <%= @loan_manager_profile.sex %>
-</p>
+<!-- Div Row -->
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      
+      <div class="panel panel-default">
 
-<p>
-  <strong>Birth date:</strong>
-  <%= @loan_manager_profile.birth_date %>
-</p>
+          <div class="panel-heading">
+              <div class="panel-title">
+                  <strong><%= loan_manager.user_name.capitalize %></strong>
+                  
+                  <div class="pull-right">
+                    <%= link_to 'Update Profile', edit_loan_manager_profile_path(@loan_manager_profile) %> |
+                    <%= link_to 'Update Registration', edit_loan_manager_registration_path(loan_manager) %> |
+                    <%= link_to 'Back', loan_manager_profiles_path %>
+                  </div>
+              </div>
+          </div>
 
-<p>
-  <strong>Address:</strong>
-  <%= @loan_manager_profile.address %>
-</p>
 
-<p>
-  <strong>City:</strong>
-  <%= @loan_manager_profile.city %>
-</p>
+              <div class="row">
 
-<p>
-  <strong>Zip code:</strong>
-  <%= @loan_manager_profile.zip_code %>
-</p>
+                <!-- Image Div -->
+                <div class="col-md-6">
+                    <div class="row" style="margin: 25px;">
+                        <div class="col-md-12">
+                            <div>
+                                <!-- Show this if no profile Image -->
+                                <%= image_tag "user_icon_1.png", alt: "#{loan_manager.user_name}.jpg", class: "center-block", size:"200x200" unless @loan_manager_profile.image.present? %>
 
-<p>
-  <strong>Civil status:</strong>
-  <%= @loan_manager_profile.civil_status %>
-</p>
+                                <!-- Show this if there's a profile Image -->
+                                <%= image_tag @loan_manager_profile.image.img_200.url, alt: "#{loan_manager.user_name}.jpg", class: "center-block" if @loan_manager_profile.image.present? %>
+                            
+                                  <p class="text-center h3"><%= loan_manager.full_name %></p>
+                                  <p class="text-center h5"><%= loan_manager.email %></p>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Div End -->
 
-<p>
-  <strong>Mobile:</strong>
-  <%= @loan_manager_profile.mobile %>
-</p>
 
-<p>
-  <strong>Company:</strong>
-  <%= @loan_manager_profile.company %>
-</p>
+                <div class="col-md-6">
 
-<p>
-  <strong>Department:</strong>
-  <%= @loan_manager_profile.department %>
-</p>
+                  <table class="table">
+                      <tr>
+                        <td><strong>Last name:</strong></td>
+                        <td><%= loan_manager.last_name %></td>
+                      </tr>
 
-<p>
-  <strong>Employee category:</strong>
-  <%= @loan_manager_profile.employee_category %>
-</p>
+                      <tr>
+                        <td><strong>First name:</strong></td>
+                        <td><%= loan_manager.first_name %></td>
+                      </tr>
 
-<p>
-  <strong>Job title:</strong>
-  <%= @loan_manager_profile.job_title %>
-</p>
+                      <tr>
+                        <td><strong>Middle name:</strong></td>
+                        <td><%= loan_manager.first_name %></td>
+                      </tr>
 
-<p>
-  <strong>Manager:</strong>
-  <%= @loan_manager_profile.manager %>
-</p>
+                      <tr>
+                        <td><strong>Email:</strong></td>
+                        <td><%= loan_manager.email %></td>
+                      </tr>
 
-<p>
-  <strong>Enabled:</strong>
-  <%= @loan_manager_profile.enabled %>
-</p>
+                      <tr>
+                        <td><strong>Sex:</strong></td>
+                        <td><%= @loan_manager_profile.sex %></td>
+                      </tr>
 
-<%= link_to 'Edit', edit_loan_manager_profile_path(@loan_manager_profile) %> |
-<%= link_to 'Back', loan_manager_profiles_path %>
+                      <tr>
+                        <td><strong>Birth date:</strong></td>
+                        <td><%= @loan_manager_profile.birth_date %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Address:</strong></td>
+                        <td><%= @loan_manager_profile.address %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>City:</strong></td>
+                        <td><%= @loan_manager_profile.city %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Zip code:</strong></td>
+                        <td><%= @loan_manager_profile.zip_code %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Civil status:</strong></td>
+                        <td><%= @loan_manager_profile.civil_status %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Mobile:</strong></td>
+                        <td><%= @loan_manager_profile.mobile %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Company:</strong></td>
+                        <td><%= @loan_manager_profile.company %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Department:</strong></td>
+                        <td><%= @loan_manager_profile.department %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Employee category:</strong></td>
+                        <td><%= @loan_manager_profile.employee_category %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Job title:</strong></td>
+                        <td><%= @loan_manager_profile.job_title %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Manager:</strong></td>
+                        <td><%= @loan_manager_profile.manager %></td>
+                      </tr>
+
+                      
+                  </table>
+                  <!-- Table End -->
+
+                </div>
+                <!-- div col md 6 end -->
+              </div>
+      </div>
+      <!-- Panel Default End -->
+
+    </div>
+    <!-- End of col-md-offset-2 -->
+</div>
+<!-- Div Row End -->

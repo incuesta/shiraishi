@@ -3,6 +3,8 @@ class AdminProfilesController < ApplicationController
   before_action :set_admin_profile, only: [:show, :edit, :update, :destroy]
 
 
+
+
   # GET /admin_profiles
   # GET /admin_profiles.json
   def index
@@ -23,7 +25,7 @@ class AdminProfilesController < ApplicationController
     @admin_profile = AdminProfile.new
     
     # Redirect to update if there's already a Profile made.
-    redirect_to edit_admin_profile_path(@admin_profile) if current_admin.admin_profile
+    redirect_to edit_admin_profile_path(current_admin.admin_profile) if current_admin.admin_profile
 
   end
 

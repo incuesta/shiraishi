@@ -2,8 +2,78 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+
+
+
 .col-centered
 {
     float: none;
     margin: 15px auto 15px;
 }
+
+
+
+
+
+
+/*Override Panel-Heading Styling for BS*/
+/*.panel > .panel-heading 
+{
+    background-image: none;
+    background-color: black;
+    color: white;
+}
+*/
+
+
+
+
+/*Override BS Navbar-Default Styling*/
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus 
+{
+	color: #fff;  /*Sets the text hover color on navbar*/
+    background-color: #000;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus 
+{
+	color: white; /*BACKGROUND color for active*/
+	background-color: #030033;
+}
+
+.navbar-default 
+{
+    background-color: #355667;
+    border-color: #355667;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus 
+{
+    color: #262626;
+   	text-decoration: none;
+
+    /*This is green*/
+  	background-color: #5FB65E;  /*change color of links in drop down here*/
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus 
+{
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+}
+
+
+.navbar-default .navbar-nav > li > a 
+{
+ 	color: white; /*Change active text color here*/
+}
+/*Override BS Navbar-Default Styling End*/
+
+
+
+
+

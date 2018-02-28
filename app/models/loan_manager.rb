@@ -6,4 +6,9 @@ class LoanManager < ApplicationRecord
 
 
         has_one :loan_manager_profile
+  
+
+  		def full_name
+  			"#{last_name.capitalize} #{first_name.capitalize} #{middle_name.capitalize}"
+  		end
 end

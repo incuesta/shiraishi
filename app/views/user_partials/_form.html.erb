@@ -1,0 +1,86 @@
+
+<!-- Shiraishi will represent Objects, kekekeke -->
+
+
+<!-- Form Wrapper -->
+<div class="form-wrapper">
+
+    <%= form_with(model: shiraishi, local: true, html: {multipart: true}) do |form| %>
+      <% if shiraishi.errors.any? %>
+          <%= render_errors_for(shiraishi) %>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :image %>
+        <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: "#{shiraishi.class.to_s.underscore}_image" %>
+        <span><%= File.basename(shiraishi.image.url) if shiraishi.image.present? %></span>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :sex %>
+        <%= form.select :sex, ["male", "female"], {}, id: "#{shiraishi.class.to_s.underscore}_sex", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :birth_date %>
+        <%= form.datetime_select :birth_date, id: "#{shiraishi.class.to_s.underscore}_birth_date", selected: 18.years.ago, end_year: 100.years.ago.year, start_year: 18.years.ago.year %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :address %>
+        <%= form.text_field :address, id: "#{shiraishi.class.to_s.underscore}_address", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :city %>
+        <%= form.text_field :city, id: "#{shiraishi.class.to_s.underscore}_city", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :zip_code %>
+        <%= form.text_field :zip_code, id: "#{shiraishi.class.to_s.underscore}_zip_code", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :civil_status %>
+        <%= form.select :civil_status, ["single", "married"], {}, id: "#{shiraishi.class.to_s.underscore}_civil_status", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :mobile %>
+        <%= form.text_field :mobile, id: "#{shiraishi.class.to_s.underscore}_mobile", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :company %>
+        <%= form.text_field :company, id: "#{shiraishi.class.to_s.underscore}_company", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :department %>
+        <%= form.text_field :department, id: "#{shiraishi.class.to_s.underscore}_department", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :employee_category %>
+        <%= form.select :employee_category, ["sites", "trainer", "employee", "consultant", "executive", "manager"], {}, id: "#{shiraishi.class.to_s.underscore}_employee_category", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :job_title %>
+        <%= form.text_field :job_title, id: "#{shiraishi.class.to_s.underscore}_job_title", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :manager %>
+        <%= form.text_field :manager, id: "#{shiraishi.class.to_s.underscore}_manager", class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: 'btn btn-success btn-lg' %>
+      </div>
+    <% end %>
+
+
+</div>
+<!-- End of Form Wrapper -->

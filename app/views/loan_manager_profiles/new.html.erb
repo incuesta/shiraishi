@@ -1,5 +1,28 @@
-<h1>Loan Manager Profile</h1>
+<div class="row">
 
-<%= render 'form', loan_manager_profile: @loan_manager_profile %>
 
-<%= link_to 'Back', loan_manager_profiles_path %>
+	<!-- The Left side containing the Form -->
+	<div class="col-md-6">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<span class="h4" >Complete your Profile</span>
+
+					<div class="pull-right">
+						<%= link_to 'Back', loan_manager_profiles_path %>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-10 col-centered ">
+					<%= render partial: 'user_partials/form', locals: { shiraishi: @loan_manager_profile } %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- The Left side containing the Form -->
+
+</div>
