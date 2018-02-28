@@ -1,0 +1,92 @@
+<%= form_with(model: client_profile, local: true) do |form| %>
+  <% if client_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(client_profile.errors.count, "error") %> prohibited this client_profile from being saved:</h2>
+
+      <ul>
+      <% client_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image, id: :client_profile_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sex %>
+    <%= form.text_field :sex, id: :client_profile_sex %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birth_date %>
+    <%= form.datetime_select :birth_date, id: :client_profile_birth_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :client_profile_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :client_profile_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip_code %>
+    <%= form.text_field :zip_code, id: :client_profile_zip_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :civil_status %>
+    <%= form.text_field :civil_status, id: :client_profile_civil_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mobile %>
+    <%= form.text_field :mobile, id: :client_profile_mobile %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telephone %>
+    <%= form.text_field :telephone, id: :client_profile_telephone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company %>
+    <%= form.text_field :company, id: :client_profile_company %>
+  </div>
+
+  <div class="field">
+    <%= form.label :department %>
+    <%= form.text_field :department, id: :client_profile_department %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employee_category %>
+    <%= form.text_field :employee_category, id: :client_profile_employee_category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job_title %>
+    <%= form.text_field :job_title, id: :client_profile_job_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :manager %>
+    <%= form.text_field :manager, id: :client_profile_manager %>
+  </div>
+
+  <div class="field">
+    <%= form.label :enabled %>
+    <%= form.check_box :enabled, id: :client_profile_enabled %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

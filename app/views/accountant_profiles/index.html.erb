@@ -1,55 +1,53 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Accountant Profiles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Accountant</th>
-      <th>Image</th>
-      <th>Sex</th>
-      <th>Birth date</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>Zip code</th>
-      <th>Civil status</th>
-      <th>Mobile</th>
-      <th>Company</th>
-      <th>Department</th>
-      <th>Employee category</th>
-      <th>Job title</th>
-      <th>Manager</th>
-      <th>Enabled</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @accountant_profiles.each do |accountant_profile| %>
-      <tr>
-        <td><%= accountant_profile.accountant %></td>
-        <td><%= accountant_profile.image %></td>
-        <td><%= accountant_profile.sex %></td>
-        <td><%= accountant_profile.birth_date %></td>
-        <td><%= accountant_profile.address %></td>
-        <td><%= accountant_profile.city %></td>
-        <td><%= accountant_profile.zip_code %></td>
-        <td><%= accountant_profile.civil_status %></td>
-        <td><%= accountant_profile.mobile %></td>
-        <td><%= accountant_profile.company %></td>
-        <td><%= accountant_profile.department %></td>
-        <td><%= accountant_profile.employee_category %></td>
-        <td><%= accountant_profile.job_title %></td>
-        <td><%= accountant_profile.manager %></td>
-        <td><%= accountant_profile.enabled %></td>
-        <td><%= link_to 'Show', accountant_profile %></td>
-        <td><%= link_to 'Edit', edit_accountant_profile_path(accountant_profile) %></td>
-        <td><%= link_to 'Destroy', accountant_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!-- Panel Table -->
+<div class="panel panel-default">
+
+  <div class="panel-heading">Accountant Profiles</div>
+
+  <!-- <div class="panel-body">
+      <p>Some things to say</p>
+  </div>
+ -->
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User name</th>
+          <th>Image</th>
+          <th>Email</th>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Mobile</th>
+
+          <!-- For the Action -->
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @accountant_profiles.each do |accountant_profile| %>
+            <% accountant = accountant_profile.accountant %>
+            <tr>
+              <td><%= accountant.user_name %></td>
+              <td><%= image_tag accountant_profile.image.img_32.url, alt: "#{accountant.user_name}.jpg" %></td>
+              <td><%= accountant.email %></td>
+              <td><%= accountant.last_name %></td>
+              <td><%= accountant.first_name %></td>
+              <td><%= accountant_profile.mobile %></td>
+             
+              <td><%= link_to 'Show', accountant_profile %></td>
+              <td><%= link_to 'Edit', edit_accountant_profile_path(accountant_profile) %></td>
+              <td><%= link_to 'Destroy', accountant_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+</div>
+<!-- Table Panel End -->
 
 <br>
 
-<%= link_to 'New Accountant Profile', new_accountant_profile_path %>
+

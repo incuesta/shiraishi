@@ -17,15 +17,28 @@
 
 
 
-/*Override Panel-Heading Styling for BS*/
-/*.panel > .panel-heading 
+/*Override Panel-Heading Styling*/
+.panel-default > .panel-heading-custom 
 {
-    background-image: none;
-    background-color: black;
-    color: white;
-}
-*/
+    background: #4e7f97; 
+    color: #fff; 
 
+    /*or*/
+
+    /*background-image: none;
+    background-color: black;
+    color: white;*/
+}
+
+
+
+
+/*Style a Well kekeke*/
+.well.well-custom
+{
+    background-color: #355667;
+    color: #fff;
+}
 
 
 

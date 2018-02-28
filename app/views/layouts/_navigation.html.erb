@@ -46,9 +46,9 @@
                   <li><%= link_to "Loan Manager Sign in", new_loan_manager_session_path %></li>
                   <li><%= link_to "Loan Manager Profiles", loan_manager_profiles_path %></li>
                   <li><%= link_to "Accountant Sign in", new_accountant_session_path %></li>
-                  <li><%= link_to "Accountant Profiles", "#" %></li>
-                  <li><%= link_to "Member Sign in", "#" %></li>
-                  <li><%= link_to "Member Profiles", "#" %></li>
+                  <li><%= link_to "Accountant Profiles", accountant_profiles_path %></li>
+                  <li><%= link_to "Member Sign in", new_client_session_path %></li>
+                  <li><%= link_to "Member Profiles", client_profiles_path %></li>
                   <li><a href="#">Action</a></li>
                   <li><a href="#">Another action</a></li>
                   <li><a href="#">Something else here</a></li>
@@ -85,6 +85,8 @@
                     <%= link_to("Loan Manager sign out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
                 <% elsif accountant_signed_in? %>
                     <%= link_to("Accountant sign out", destroy_accountant_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                <% elsif client_signed_in? %>
+                    <%= link_to("Sign out", destroy_client_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
                
                 <% else %>
                 <% end %>

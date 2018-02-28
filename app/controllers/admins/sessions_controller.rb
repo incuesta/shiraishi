@@ -28,7 +28,11 @@ class Admins::SessionsController < Devise::SessionsController
 
   # redirect to a specific page after signing in
   def after_sign_in_path_for(resource)
-      admin_profile_path(current_admin.admin_profile) unless current_admin.admin_profile.nil?
-      new_admin_profile_path
+      # Create a Profile First
+      if current_admin.admin_profile
+        admin_profile_path(current_admin.admin_profile)
+      else
+        new_admin_profile_path
+      end
   end
 end

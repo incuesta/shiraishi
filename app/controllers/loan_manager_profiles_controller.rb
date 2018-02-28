@@ -89,13 +89,13 @@ class LoanManagerProfilesController < ApplicationController
 
             if current_admin
                   @loan_manager_profile = LoanManagerProfile.find(params[:id])
+            else
+                # Loan Managers can only edit their own
+                @loan_manager_profile = LoanManagerProfile.where(id: params[:id], loan_manager: current_loan_manager).first
+
+                # Redirect if @loan_manager_profile is nil
+                redirect_to new_loan_manager_profile_path, notice: "Not allowed..." unless @loan_manager_profile
             end
-
-            # Loan Managers can only edit their own
-            @loan_manager_profile = LoanManagerProfile.where(id: params[:id], loan_manager: current_loan_manager).first
-
-            # Redirect if @loan_manager_profile is nil
-            redirect_to new_loan_manager_profile_path, notice: "Create a Profile to do that..." unless @loan_manager_profile
         end
 
         # Never trust parameters from the scary internet, only allow the white list through.

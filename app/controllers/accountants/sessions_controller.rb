@@ -27,7 +27,11 @@ class Accountants::SessionsController < Devise::SessionsController
 
 
   def after_sign_in_path_for(resource)
-      accountant_profile_path(current_accountant.accountant_profile) unless current_accountant.accountant_profile.nil?
-      new_accountant_profile_path
+      # Create a Profile first
+      if current_accountant.accountant_profile
+        accountant_profile_path(current_accountant.accountant_profile)
+      else
+        new_accountant_profile_path
+      end
   end
 end

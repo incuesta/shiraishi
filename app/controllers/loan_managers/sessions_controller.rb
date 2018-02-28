@@ -27,7 +27,11 @@ class LoanManagers::SessionsController < Devise::SessionsController
 
   # redirect to a specific page after signing in
   def after_sign_in_path_for(resource)
-      loan_manager_profile_path(current_loan_manager.loan_manager_profile) unless current_loan_manager.loan_manager_profile.nil?
-      new_loan_manager_profile_path
+      # Create a profile first
+      if current_loan_manager.loan_manager_profile
+        loan_manager_profile_path(current_loan_manager.loan_manager_profile)
+      else
+        new_loan_manager_profile_path
+      end
   end
 end

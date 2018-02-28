@@ -1,0 +1,32 @@
+
+
+<div class="row">
+
+	<!-- The Left side containing the Form -->
+	<div class="col-md-5">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<span class="h4" >Client Profile</span>
+
+					<div class="pull-right">
+						<%= link_to 'Show', @client_profile %> |
+						<%= link_to 'Back', client_profiles_path %>
+					</div>
+				</div>
+
+				<br />
+				<hr />
+
+				<div class="panel-body">
+					<%= render 'user_partials/form_for_client', shiraishi: @client_profile %>
+				</div>
+			</div>
+			<!-- Panel Heading End -->
+		</div>
+
+	</div>
+	<!-- The Left Side End -->
+
+</div>

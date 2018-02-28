@@ -1,6 +1,24 @@
 Rails.application.routes.draw do
 	  
+    # Profile - Client
+    resources :client_profiles
     
+    # Devise Client Account
+    devise_for :clients, path: 'clients', controllers:
+    {
+      registrations:  'clients/registrations',
+      sessions:     'clients/sessions',
+      confirmations:  'clients/confirmations',
+      passwords:    'clients/passwords',
+      unlocks:    'clients/unlocks'
+
+      # Not including omniauth because it's not enabled in the clients Model
+      # ,omniauth_callbacks: 'clients/omniauth_callbacks'
+    }
+
+
+
+
 
     # Profile - Accountant
     resources :accountant_profiles

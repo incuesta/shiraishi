@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	  	<head>
-		    <title>Cuesta</title>
+		    <title><%= "#{controller_name} #{action_name}" if controller_name.present? %></title>
 		    <%= csrf_meta_tags %>
 
 		    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>

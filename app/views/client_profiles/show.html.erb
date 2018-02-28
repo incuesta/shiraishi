@@ -1,0 +1,149 @@
+
+
+<% client = @client_profile.client %>
+
+<!-- Div Row -->
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      
+      <div class="panel panel-default">
+
+          <div class="panel-heading">
+              <div class="panel-title">
+                  <strong><%= client.user_name.capitalize %></strong>
+                  
+                  <div class="pull-right">
+                    <%= link_to 'Update Profile', edit_client_profile_path(@client_profile) %> |
+                    <%= link_to 'Update Registration', edit_client_registration_path(client) %> |
+                    <%= link_to 'Back', client_profiles_path %>
+                  </div>
+              </div>
+          </div>
+
+
+              <div class="row">
+
+                <!-- Image Div -->
+                <div class="col-md-6">
+                    <div class="row" style="margin: 25px;">
+                        <div class="col-md-12">
+                            <div>
+                                <!-- Show this if no profile Image -->
+                                <%= image_tag "user_icon_1.png", alt: "#{client.user_name}.jpg", class: "center-block", size:"200x200" unless @client_profile.image.present? %>
+
+                                <!-- Show this if there's a profile Image -->
+                                <%= image_tag @client_profile.image.img_200.url, alt: "#{client.user_name}.jpg", class: "center-block" if @client_profile.image.present? %>
+                            
+                                  <p class="text-center h3"><%= client.full_name %></p>
+                                  <p class="text-center h5"><%= client.email %></p>
+                                  <p class="text-center h5"><%= "(#{client.class.name.underscore.humanize})" %></p>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Div End -->
+
+
+                <div class="col-md-6">
+
+                  <table class="table">
+                      <tr>
+                        <td><strong>Last name:</strong></td>
+                        <td><%= client.last_name %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>First name:</strong></td>
+                        <td><%= client.first_name %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Middle name:</strong></td>
+                        <td><%= client.first_name %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Email:</strong></td>
+                        <td><%= client.email %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Sex:</strong></td>
+                        <td><%= @client_profile.sex %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Birth date:</strong></td>
+                        <td><%= @client_profile.birth_date %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Address:</strong></td>
+                        <td><%= @client_profile.address %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>City:</strong></td>
+                        <td><%= @client_profile.city %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Zip code:</strong></td>
+                        <td><%= @client_profile.zip_code %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Civil status:</strong></td>
+                        <td><%= @client_profile.civil_status %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Mobile:</strong></td>
+                        <td><%= @client_profile.mobile %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Telephone:</strong></td>
+                        <td><%= @client_profile.telephone %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Company:</strong></td>
+                        <td><%= @client_profile.company %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Department:</strong></td>
+                        <td><%= @client_profile.department %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Employee category:</strong></td>
+                        <td><%= @client_profile.employee_category %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Job title:</strong></td>
+                        <td><%= @client_profile.job_title %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Manager:</strong></td>
+                        <td><%= @client_profile.manager %></td>
+                      </tr>
+
+                      
+                  </table>
+                  <!-- Table End -->
+
+                </div>
+                <!-- div col md 6 end -->
+              </div>
+      </div>
+      <!-- Panel Default End -->
+
+    </div>
+    <!-- End of col-md-offset-2 -->
+</div>
+<!-- Div Row End -->

@@ -1,54 +1,82 @@
-<h2>Admin Sign up</h2>
+<!-- Class Row Start -->
+<div class="row">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="col-md-5">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h5>Register an Admin</h5>
+                </div>
+                
+                <br />
+                <hr />
+                
+
+                <div class="panel-body">
+
+                      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                        <%= devise_error_messages! %>
+
+                        <!-- Extra Fields -->
+                        <div class="field form-group">
+                          <%= f.label :user_name %><br />
+                          <%= f.text_field :user_name, autofocus: true, class: "form-control" %>
+                        </div>
+
+                        <div class="field form-group">
+                          <%= f.label :last_name %><br />
+                          <%= f.text_field :last_name, class: "form-control" %>
+                        </div>
+
+                        <div class="field form-group">
+                          <%= f.label :first_name %><br />
+                          <%= f.text_field :first_name, class: "form-control" %>
+                        </div>
+
+                        <div class="field form-group">
+                          <%= f.label :middle_name %><br />
+                          <%= f.text_field :middle_name, class: "form-control" %>
+                        </div>
+                        <!-- Extra Fields End -->
+
+                        
+
+                        <div class="field form-group">
+                          <%= f.label :email %><br />
+                          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+                        </div>
+
+                        <div class="field form-group">
+                          <%= f.label :password %>
+                          <% if @minimum_password_length %>
+                          <em>(<%= @minimum_password_length %> characters minimum)</em>
+                          <% end %><br />
+                          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                        </div>
+
+                        <div class="field form-group">
+                          <%= f.label :password_confirmation %><br />
+                          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                        </div>
+
+                        <div class="actions form-group">
+                          <%= f.submit "Sign up", class: "btn btn-lg btn-success" %>
+                        </div>
+                      <% end %>
+
+                      <%= render "admins/shared/links" %>
+
+                  </div>
+                <!-- End Panel Body -->
+            </div>
+            <!-- Panel Heading End -->
+        </div>
+        <!-- Panel End -->
+    </div>
+    <!-- Col md End -->
+</div>
+<!-- Class Row End -->
 
 
-  <!-- Extra Fields -->
-  <div class="field">
-    <%= f.label :user_name %><br />
-    <%= f.text_field :user_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :middle_name %><br />
-    <%= f.text_field :middle_name %>
-  </div>
-  <!-- Extra Fields End -->
-
-  
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "admins/shared/links" %>

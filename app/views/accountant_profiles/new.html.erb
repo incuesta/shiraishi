@@ -2,24 +2,23 @@
 
 
 	<!-- The Left side containing the Form -->
-	<div class="col-md-6">
+	<div class="col-md-5">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="panel-title">
 					<span class="h4" >Complete your Profile</span>
-
-					<div class="pull-right">
-						<%= link_to 'Back', accountant_profiles_path %>
-					</div>
 				</div>
-			</div>
+				<br />
+				<hr />
+			
 
-			<div class="row">
-				<div class="col-md-10 col-centered ">
+				<div class="panel-body">
 					<%= render partial: 'user_partials/form', locals: { shiraishi: @accountant_profile } %>
 				</div>
+
 			</div>
+			<!-- Panel Heading End -->
 		</div>
 
 	</div>

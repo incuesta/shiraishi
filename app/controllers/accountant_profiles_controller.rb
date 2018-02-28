@@ -12,6 +12,10 @@ class AccountantProfilesController < ApplicationController
     def show
     end
 
+
+
+
+
     # GET /accountant_profiles/new
     def new
         @accountant_profile = AccountantProfile.new
@@ -23,10 +27,6 @@ class AccountantProfilesController < ApplicationController
             # If you're an Admin you don't need to create a Loan Manager profile instead register a Loan Manager
             redirect_to new_accountant_registration_path, notice: "Register a #{current_controller} Manager:"
         end
-    end
-
-    # GET /accountant_profiles/1/edit
-    def edit
     end
 
     # POST /accountant_profiles
@@ -45,6 +45,14 @@ class AccountantProfilesController < ApplicationController
         end
     end
 
+
+
+
+
+    # GET /accountant_profiles/1/edit
+    def edit
+    end
+
     # PATCH/PUT /accountant_profiles/1
     # PATCH/PUT /accountant_profiles/1.json
     def update
@@ -59,6 +67,10 @@ class AccountantProfilesController < ApplicationController
         end
     end
 
+
+
+
+
     # DELETE /accountant_profiles/1
     # DELETE /accountant_profiles/1.json
     def destroy
@@ -69,6 +81,10 @@ class AccountantProfilesController < ApplicationController
         end
     end
 
+
+
+
+
     private
         
 
@@ -76,14 +92,17 @@ class AccountantProfilesController < ApplicationController
         def set_accountant_profile
             
             if current_admin
-                  @accountant_profile = AccountantProfile.find(params[:id])
+                @accountant_profile = AccountantProfile.find(params[:id])
+            else
+
+                # Client can only edit their own
+                @accountant_profile = AccountantProfile.where(id: params[:id], accountant: current_accountant).first
+
+                # Redirect if @client_profile is nil
+                redirect_to new_accountant_profile_path, notice: "Not allowed..." unless @accountant_profile
+
             end
 
-            # Loan Managers can only edit their own
-            @accountant_profile = AccountantProfile.where(id: params[:id], accountant: current_accountant).first
-
-            # Redirect if @loan_manager_profile is nil
-            redirect_to new_accountant_profile_path, notice: "Create a Profile to do that..." unless @accountant_profile
         end
 
 
