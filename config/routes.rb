@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 	  
-  
+    
+
+    # Profile - Accountant
+    resources :accountant_profiles
 
     # Devise Acountant Account
     devise_for :accountants, path: 'accountants', controllers:
@@ -17,10 +20,9 @@ Rails.application.routes.draw do
 
 
 
+
     # Profle - Loan Manager
     resources :loan_manager_profiles
-
-
 
     # Devise LoanManager Account
   	devise_for :loan_managers, path:'loan_managers', controllers:
@@ -37,10 +39,9 @@ Rails.application.routes.draw do
 
 
 
+
     # Profile - Admin
   	resources :admin_profiles
-
-
 
     # Devise Admin Account
   	devise_for :admins, path: 'admins', controllers: 

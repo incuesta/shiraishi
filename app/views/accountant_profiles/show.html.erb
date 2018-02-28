@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></tr>
 
 
-<% loan_manager = @loan_manager_profile.loan_manager %>
+
+<% accountant = @accountant_profile.accountant %>
 
 <!-- Div Row -->
 <div class="row">
@@ -11,12 +11,12 @@
 
           <div class="panel-heading">
               <div class="panel-title">
-                  <strong><%= loan_manager.user_name.capitalize %></strong>
+                  <strong><%= accountant.user_name.capitalize %></strong>
                   
                   <div class="pull-right">
-                    <%= link_to 'Update Profile', edit_loan_manager_profile_path(@loan_manager_profile) %> |
-                    <%= link_to 'Update Registration', edit_loan_manager_registration_path(loan_manager) %> |
-                    <%= link_to 'Back', loan_manager_profiles_path %>
+                    <%= link_to 'Update Profile', edit_accountant_profile_path(@accountant_profile) %> |
+                    <%= link_to 'Update Registration', edit_accountant_registration_path(accountant) %> |
+                    <%= link_to 'Back', accountant_profiles_path %>
                   </div>
               </div>
           </div>
@@ -30,14 +30,14 @@
                         <div class="col-md-12">
                             <div>
                                 <!-- Show this if no profile Image -->
-                                <%= image_tag "user_icon_1.png", alt: "#{loan_manager.user_name}.jpg", class: "center-block", size:"200x200" unless @loan_manager_profile.image.present? %>
+                                <%= image_tag "user_icon_1.png", alt: "#{accountant.user_name}.jpg", class: "center-block", size:"200x200" unless @accountant_profile.image.present? %>
 
                                 <!-- Show this if there's a profile Image -->
-                                <%= image_tag @loan_manager_profile.image.img_200.url, alt: "#{loan_manager.user_name}.jpg", class: "center-block" if @loan_manager_profile.image.present? %>
+                                <%= image_tag @accountant_profile.image.img_200.url, alt: "#{accountant.user_name}.jpg", class: "center-block" if @accountant_profile.image.present? %>
                             
-                                  <p class="text-center h3"><%= loan_manager.full_name %></p>
-                                  <p class="text-center h5"><%= loan_manager.email %></p>
-                                  <p class="text-center h5"><%= "(#{loan_manager.class.name.underscore.humanize})" %></p>
+                                  <p class="text-center h3"><%= accountant.full_name %></p>
+                                  <p class="text-center h5"><%= accountant.email %></p>
+                                  <p class="text-center h5"><%= "(#{accountant.class.name.underscore.humanize})" %></p>
                               
                             </div>
                         </div>
@@ -51,82 +51,82 @@
                   <table class="table">
                       <tr>
                         <td><strong>Last name:</strong></td>
-                        <td><%= loan_manager.last_name %></td>
+                        <td><%= accountant.last_name %></td>
                       </tr>
 
                       <tr>
                         <td><strong>First name:</strong></td>
-                        <td><%= loan_manager.first_name %></td>
+                        <td><%= accountant.first_name %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Middle name:</strong></td>
-                        <td><%= loan_manager.first_name %></td>
+                        <td><%= accountant.first_name %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Email:</strong></td>
-                        <td><%= loan_manager.email %></td>
+                        <td><%= accountant.email %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Sex:</strong></td>
-                        <td><%= @loan_manager_profile.sex %></td>
+                        <td><%= @accountant_profile.sex %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Birth date:</strong></td>
-                        <td><%= @loan_manager_profile.birth_date %></td>
+                        <td><%= @accountant_profile.birth_date %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Address:</strong></td>
-                        <td><%= @loan_manager_profile.address %></td>
+                        <td><%= @accountant_profile.address %></td>
                       </tr>
 
                       <tr>
                         <td><strong>City:</strong></td>
-                        <td><%= @loan_manager_profile.city %></td>
+                        <td><%= @accountant_profile.city %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Zip code:</strong></td>
-                        <td><%= @loan_manager_profile.zip_code %></td>
+                        <td><%= @accountant_profile.zip_code %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Civil status:</strong></td>
-                        <td><%= @loan_manager_profile.civil_status %></td>
+                        <td><%= @accountant_profile.civil_status %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Mobile:</strong></td>
-                        <td><%= @loan_manager_profile.mobile %></td>
+                        <td><%= @accountant_profile.mobile %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Company:</strong></td>
-                        <td><%= @loan_manager_profile.company %></td>
+                        <td><%= @accountant_profile.company %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Department:</strong></td>
-                        <td><%= @loan_manager_profile.department %></td>
+                        <td><%= @accountant_profile.department %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Employee category:</strong></td>
-                        <td><%= @loan_manager_profile.employee_category %></td>
+                        <td><%= @accountant_profile.employee_category %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Job title:</strong></td>
-                        <td><%= @loan_manager_profile.job_title %></td>
+                        <td><%= @accountant_profile.job_title %></td>
                       </tr>
 
                       <tr>
                         <td><strong>Manager:</strong></td>
-                        <td><%= @loan_manager_profile.manager %></td>
+                        <td><%= @accountant_profile.manager %></td>
                       </tr>
 
                       

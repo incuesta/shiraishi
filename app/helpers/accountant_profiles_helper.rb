@@ -1,0 +1,2 @@
+module AccountantProfilesHelper
+end

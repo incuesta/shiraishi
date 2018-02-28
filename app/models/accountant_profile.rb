@@ -1,10 +1,12 @@
-class LoanManagerProfile < ApplicationRecord
-  	belongs_to :loan_manager
-
-  	mount_uploader :image, ImageUploader
+class AccountantProfile < ApplicationRecord
+  	belongs_to :accountant
 
 
-  	# Validation
+  	# CarrierWave Uploader
+	mount_uploader :image, ImageUploader
+
+
+	# Validation
 	validates :address, presence: true
 	validates :city, presence: true
 	validates :zip_code, presence: true, length: { minimum: 4, maximum: 4 }, format: { with: /\A[+-]?\d+\z/ }
@@ -14,6 +16,4 @@ class LoanManagerProfile < ApplicationRecord
 	validates :employee_category, presence: true
 	validates :job_title, presence: true
 	validates :manager, presence: true
-
-	
 end

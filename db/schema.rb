@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227135212) do
+ActiveRecord::Schema.define(version: 20180228081333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accountant_profiles", force: :cascade do |t|
+    t.bigint "accountant_id"
+    t.string "image"
+    t.string "sex"
+    t.datetime "birth_date"
+    t.string "address"
+    t.string "city"
+    t.string "zip_code"
+    t.string "civil_status"
+    t.string "mobile"
+    t.string "company"
+    t.string "department"
+    t.string "employee_category"
+    t.string "job_title"
+    t.string "manager"
+    t.boolean "enabled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["accountant_id"], name: "index_accountant_profiles_on_accountant_id"
+  end
 
   create_table "accountants", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,8 +56,15 @@ ActiveRecord::Schema.define(version: 20180227135212) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_name"
+    t.string "timezone", default: "Singapore"
+    t.boolean "enabled", default: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "middle_name"
     t.index ["email"], name: "index_accountants_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accountants_on_reset_password_token", unique: true
+    t.index ["user_name"], name: "index_accountants_on_user_name", unique: true
   end
 
   create_table "admin_profiles", force: :cascade do |t|
@@ -149,5 +177,6 @@ ActiveRecord::Schema.define(version: 20180227135212) do
     t.index ["reset_password_token"], name: "index_loan_managers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accountant_profiles", "accountants"
   add_foreign_key "loan_manager_profiles", "loan_managers"
 end

@@ -1,0 +1,30 @@
+
+
+<div class="row">
+
+	<!-- The Left side containing the Form -->
+	<div class="col-md-6">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<span class="h4" >Accountant Profile</span>
+
+					<div class="pull-right">
+						<%= link_to 'Show', @accountant_profile %> |
+						<%= link_to 'Back', accountant_profiles_path %>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-10 col-centered ">
+					<%= render 'user_partials/form', shiraishi: @accountant_profile %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- The Left Side End -->
+
+</div>

@@ -76,18 +76,21 @@
             <!-- Right Links & Dropdown -->
             <ul class="nav navbar-nav navbar-right">
 
-              <!-- Admin Logout -->
+              <!-- User Logout -->
               <li>
                 <% if admin_signed_in? %>
                     <%= link_to("Admin sign out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
                   
                 <% elsif loan_manager_signed_in? %>
-                    <%= link_to("Manager sign out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                    <%= link_to("Loan Manager sign out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                <% elsif accountant_signed_in? %>
+                    <%= link_to("Accountant sign out", destroy_accountant_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+               
                 <% else %>
                 <% end %>
 
               </li>
-              <!-- Admin Logout End -->
+              <!-- User Logout End -->
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
