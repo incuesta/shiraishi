@@ -44,10 +44,12 @@ gem 'jquery-rails'
 
 
 gem 'figaro'
+# Pry for Debugging via Console
+gem 'pry'
 
 
 gem 'devise'
-
+gem 'pundit'
 
 
 # For Image Handling

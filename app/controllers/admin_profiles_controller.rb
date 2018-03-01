@@ -1,8 +1,8 @@
 class AdminProfilesController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_admin_profile, only: [:show, :edit, :update, :destroy]
-
-
+  
+  
 
 
   # GET /admin_profiles
@@ -14,6 +14,7 @@ class AdminProfilesController < ApplicationController
   # GET /admin_profiles/1
   # GET /admin_profiles/1.json
   def show
+
   end
 
 
@@ -90,10 +91,10 @@ class AdminProfilesController < ApplicationController
       @admin_profile = AdminProfile.where(id: params[:id]).first
 
 
-      # require same Admin
-      if @admin_profile.admin != current_admin && action_name != "show"
-        redirect_to root_path, notice: "You're not allowed to do that..."
-      end
+      # # require same Admin
+      # if @admin_profile.admin != current_admin && action_name != "show"
+      #   redirect_to root_path, notice: "You're not allowed to do that..."
+      # end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

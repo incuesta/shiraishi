@@ -1,15 +1,18 @@
 class LoanManagerProfilesController < ApplicationController
+    
     before_action :set_loan_manager_profile, only: [:show, :edit, :update, :destroy]
 
     # GET /loan_manager_profiles
     # GET /loan_manager_profiles.json
     def index
         @loan_manager_profiles = LoanManagerProfile.all
+        authorize LoanManagerProfile
     end
 
     # GET /loan_manager_profiles/1
     # GET /loan_manager_profiles/1.json
     def show
+        authorize @loan_manager_profile
     end
 
 
@@ -19,6 +22,8 @@ class LoanManagerProfilesController < ApplicationController
     def new
         # If you use build it will delete your profile because of 1:1 relationship
         @loan_manager_profile = LoanManagerProfile.new
+
+        authorize @loan_manager_profile
 
         # Redirect to update if there's already a Profile made.
         if current_loan_manager && current_loan_manager.loan_manager_profile
@@ -33,6 +38,8 @@ class LoanManagerProfilesController < ApplicationController
     # POST /loan_manager_profiles.json
     def create
         @loan_manager_profile = current_loan_manager.build_loan_manager_profile(loan_manager_profile_params)
+
+        authorize @loan_manager_profile
 
         respond_to do |format|
             if @loan_manager_profile.save
@@ -50,11 +57,14 @@ class LoanManagerProfilesController < ApplicationController
 
     # GET /loan_manager_profiles/1/edit
     def edit
+        authorize @loan_manager_profile
     end
 
     # PATCH/PUT /loan_manager_profiles/1
     # PATCH/PUT /loan_manager_profiles/1.json
     def update
+        authorize @loan_manager_profile
+
         respond_to do |format|
             if @loan_manager_profile.update(loan_manager_profile_params)
                 format.html { redirect_to @loan_manager_profile, notice: 'Loan manager profile was successfully updated.' }
@@ -72,6 +82,8 @@ class LoanManagerProfilesController < ApplicationController
     # DELETE /loan_manager_profiles/1
     # DELETE /loan_manager_profiles/1.json
     def destroy
+        authorize @loan_manager_profile
+
         @loan_manager_profile.destroy
         respond_to do |format|
             format.html { redirect_to loan_manager_profiles_url, notice: 'Loan manager profile was successfully destroyed.' }
@@ -87,15 +99,17 @@ class LoanManagerProfilesController < ApplicationController
         # Use callbacks to share common setup or constraints between actions.
         def set_loan_manager_profile
 
-            if current_admin
-                  @loan_manager_profile = LoanManagerProfile.find(params[:id])
-            else
-                # Loan Managers can only edit their own
-                @loan_manager_profile = LoanManagerProfile.where(id: params[:id], loan_manager: current_loan_manager).first
+            @loan_manager_profile = LoanManagerProfile.find(params[:id])
 
-                # Redirect if @loan_manager_profile is nil
-                redirect_to new_loan_manager_profile_path, notice: "Not allowed..." unless @loan_manager_profile
-            end
+            # if current_admin
+            #       @loan_manager_profile = LoanManagerProfile.find(params[:id])
+            # else
+            #     # Loan Managers can only edit their own
+            #     @loan_manager_profile = LoanManagerProfile.where(id: params[:id], loan_manager: current_loan_manager).first
+
+            #     # Redirect if @loan_manager_profile is nil
+            #     redirect_to new_loan_manager_profile_path, notice: "Not allowed..." unless @loan_manager_profile
+            # end
         end
 
         # Never trust parameters from the scary internet, only allow the white list through.
