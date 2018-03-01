@@ -10,9 +10,10 @@ class Clients::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    resource.create_golden_key!
+  end
 
   # GET /resource/edit
   # def edit

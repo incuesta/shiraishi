@@ -8,6 +8,8 @@ class Client < ApplicationRecord
 
 	has_one :client_profile, dependent: :destroy
 
+    has_one :golden_key, dependent: :destroy # the Model to Enable or disable an Account
+
 
 
 	# Validation
@@ -20,5 +22,11 @@ class Client < ApplicationRecord
 
     def full_name
     	"#{last_name.capitalize} #{first_name.capitalize} #{middle_name.capitalize}"
+    end
+
+
+
+    def active_for_authentication?
+        super && self.golden_key.enabled?
     end
 end

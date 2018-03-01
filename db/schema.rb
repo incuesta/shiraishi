@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228102403) do
+ActiveRecord::Schema.define(version: 20180301114623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,6 +181,14 @@ ActiveRecord::Schema.define(version: 20180228102403) do
     t.index ["user_name"], name: "index_clients_on_user_name", unique: true
   end
 
+  create_table "golden_keys", force: :cascade do |t|
+    t.bigint "client_id"
+    t.boolean "enabled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_golden_keys_on_client_id"
+  end
+
   create_table "loan_manager_profiles", force: :cascade do |t|
     t.bigint "loan_manager_id"
     t.string "image"
@@ -234,5 +242,6 @@ ActiveRecord::Schema.define(version: 20180228102403) do
 
   add_foreign_key "accountant_profiles", "accountants"
   add_foreign_key "client_profiles", "clients"
+  add_foreign_key "golden_keys", "clients"
   add_foreign_key "loan_manager_profiles", "loan_managers"
 end
