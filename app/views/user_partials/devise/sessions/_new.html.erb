@@ -8,7 +8,7 @@
 
             <div class="panel-heading">
                 <div class="panel-title">
-                    <h4>Member sign in</h4>
+                    <h4><%= "#{resource_name.to_s.humanize} sign in" %></h4>
                 </div>
             
 
@@ -37,7 +37,7 @@
                           </div>
                         <% end %>
 
-                        <%= render "clients/shared/links" %>
+                        <%= render "#{resource.class.name.underscore}s/shared/links" %>
                 </div>
                 <!-- End Panel Body -->
           </div>

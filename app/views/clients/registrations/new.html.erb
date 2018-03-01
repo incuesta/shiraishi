@@ -1,15 +1,20 @@
+
+
 <!-- Class Row Start -->
 <div class="row">
 
-    <div class="col-md-5">
+    <div class="col-md-5 col-centered">
 
         <div class="panel panel-default">
 
             <div class="panel-heading">
                 <div class="panel-title">
-                    <h5>Member sign up</h5>
+                    <h4>Member registration</h4>
                 </div>
-            
+                
+                <br />
+                <hr />
+                
 
                 <div class="panel-body">
 
@@ -63,7 +68,7 @@
                         </div>
                       <% end %>
 
-                      <%= render "clients/shared/links" %>
+                      <%= render "#{resource.class.name.underscore}s/shared/links" %>
 
                   </div>
                 <!-- End Panel Body -->

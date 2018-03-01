@@ -1,0 +1,1 @@
+These Devise Partials are only for non Client Accounts
