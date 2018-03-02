@@ -15,10 +15,12 @@ class LoanTypesController < ApplicationController
   # GET /loan_types/new
   def new
     @loan_type = LoanType.new
+    @loan_docs = LoanDoc.all
   end
 
   # GET /loan_types/1/edit
   def edit
+    @loan_docs = LoanDoc.all
   end
 
   # POST /loan_types
@@ -69,6 +71,6 @@ class LoanTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_type_params
-      params.require(:loan_type).permit(:name, :code, :interest_mode, :rate, :repayment_method)
+      params.require(:loan_type).permit(:name, :code, :interest_mode, :rate, :repayment_method, :duration, :minimum, :maximum, loan_doc_ids: [])
     end
 end

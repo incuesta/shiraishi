@@ -17,18 +17,42 @@
 
 <p>
   <strong>Rate:</strong>
-  <%= @loan_type.rate %>
+  <%= number_to_percentage(@loan_type.rate * 100, precision: 0) %>
 </p>
 
 <p>
   <strong>Duration:</strong>
-  <%= @loan_type.duration %>
+  <%= @loan_type.duration %> months
 </p>
+
+
+<p>
+  <strong>Minimum:</strong>
+  <%= number_to_currency(@loan_type.minimum, unit: "Php ") %>
+</p>
+
+<p>
+  <strong>Maximum:</strong>
+  <%= number_to_currency(@loan_type.maximum, unit: "Php ") %>
+</p>
+
+
 
 <p>
   <strong>Repayment method:</strong>
   <%= @loan_type.repayment_method %>
 </p>
+
+
+<p>
+  <strong>Loan Docs:</strong>
+</p>
+<ul>
+  <% @loan_type.loan_docs.each do |loan_doc| %>
+      <li><%= loan_doc.name %></li>
+  <% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_loan_type_path(@loan_type) %> |
 <%= link_to 'Back', loan_types_path %>

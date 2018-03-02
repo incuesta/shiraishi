@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loan_type: one
+  loan_doc: one
+  submitted: false
+
+two:
+  loan_type: two
+  loan_doc: two
+  submitted: false

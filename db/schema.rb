@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302103735) do
+ActiveRecord::Schema.define(version: 20180302134424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -268,6 +268,16 @@ ActiveRecord::Schema.define(version: 20180302103735) do
     t.index ["reset_password_token"], name: "index_loan_managers_on_reset_password_token", unique: true
   end
 
+  create_table "loan_type_loan_docs", force: :cascade do |t|
+    t.bigint "loan_type_id"
+    t.bigint "loan_doc_id"
+    t.boolean "compulsory", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_doc_id"], name: "index_loan_type_loan_docs_on_loan_doc_id"
+    t.index ["loan_type_id"], name: "index_loan_type_loan_docs_on_loan_type_id"
+  end
+
   create_table "loan_types", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -277,6 +287,8 @@ ActiveRecord::Schema.define(version: 20180302103735) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "duration", default: 12
+    t.decimal "minimum", precision: 11, scale: 2
+    t.decimal "maximum", precision: 11, scale: 2
   end
 
   create_table "loans", force: :cascade do |t|
@@ -304,6 +316,8 @@ ActiveRecord::Schema.define(version: 20180302103735) do
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "golden_keys", "clients"
   add_foreign_key "loan_manager_profiles", "loan_managers"
+  add_foreign_key "loan_type_loan_docs", "loan_docs"
+  add_foreign_key "loan_type_loan_docs", "loan_types"
   add_foreign_key "loans", "clients"
   add_foreign_key "loans", "loan_types"
 end

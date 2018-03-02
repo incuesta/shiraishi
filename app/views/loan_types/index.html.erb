@@ -21,7 +21,7 @@
         <td><%= loan_type.name %></td>
         <td><%= loan_type.code %></td>
         <td><%= loan_type.interest_mode %></td>
-        <td><%= loan_type.rate %></td>
+        <td><%= number_to_percentage(loan_type.rate * 100, precision: 0) %></td>
         <td><%= loan_type.duration %></td>
         <td><%= loan_type.repayment_method %></td>
         <td><%= link_to 'Show', loan_type %></td>

@@ -38,8 +38,27 @@
   </div>
 
   <div class="field">
+    <%= form.label :minimum %>
+    <%= form.text_field :minimum, id: :loan_type_minimum %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :maximum %>
+    <%= form.text_field :maximum, id: :loan_type_maximum %>
+  </div>
+
+
+  <div class="field">
     <%= form.label :repayment_method %>
     <%= form.text_field :repayment_method, id: :loan_type_repayment_method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :loan_doc_ids %>
+    <%= form.collection_check_boxes :loan_doc_ids, @loan_docs, :id, :name do | cb | %>
+        <% cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
+    <% end %>
   </div>
 
   <div class="actions">
