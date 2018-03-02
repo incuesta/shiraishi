@@ -1,0 +1,84 @@
+<h1>Clients::AccountActivations#index</h1>
+<p>Find me in app/views/clients/account_activations/index.html.erb</p>
+
+
+
+
+<!-- Panel Table -->
+<div class="panel panel-default">
+
+  <div class="panel-heading">Client Account Activation / Deactivation</div>
+
+  <!-- <div class="panel-body">
+      <p>Some things to say</p>
+  </div>
+ -->
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Enabled?</th>
+          <th>User name</th>
+          <th>Email</th>
+          <th>Last Name</th>
+          <th>First Name</th> 
+          <th>Middle Name</th>
+          <th>Date signed up</th>
+
+          <!-- For the Action -->
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @clients.each do |client| %>
+            <tr>
+              <td><%= check_box_tag 'Enabled', client.golden_key.id, client.golden_key.enabled, class: "golden_key-check" %></td>
+
+              <td><%= client.user_name %></td>
+              <td><%= client.email %></td>
+              <td><%= client.last_name %></td>
+              <td><%= client.first_name %></td>
+              <td><%= client.middle_name %></td>
+              <th><%= client.created_at %></th>
+             
+
+              <% if profile = client.client_profile %>
+                <td><%= link_to 'Show', client_profile_path(profile) %></td>
+                <td><%= link_to 'Edit', edit_client_profile_path(profile)  %></td>
+                <td><%= link_to 'Destroy', client_profile_path(profile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              
+              <% else %>
+                <td colspan="3">No profile</td>
+              <% end %>
+
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+</div>
+<!-- Table Panel End -->
+
+<br>
+
+
+<script>
+
+$(".golden_key-check").bind('change', function(){
+  
+
+  bool = this.checked ? 1 : 0;
+    $.ajax({
+      url: "account_activations/"+ this.value,
+      type: 'PATCH',
+      data: {"is_enabled": bool}
+    });
+
+
+});
+</script>
+
+
+
+

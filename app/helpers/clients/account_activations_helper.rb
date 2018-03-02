@@ -1,0 +1,2 @@
+module Clients::AccountActivationsHelper
+end
