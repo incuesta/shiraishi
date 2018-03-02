@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 	  
-    # Loan Types
+    # LoanDoc
+    resources :loan_docs
+
+
+
+    # LoanType
     resources :loan_types
 
 

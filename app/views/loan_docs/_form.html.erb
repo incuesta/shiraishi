@@ -1,0 +1,27 @@
+<%= form_with(model: loan_doc, local: true) do |form| %>
+  <% if loan_doc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(loan_doc.errors.count, "error") %> prohibited this loan_doc from being saved:</h2>
+
+      <ul>
+      <% loan_doc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :loan_doc_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :compulsory %>
+    <%= form.check_box :compulsory, id: :loan_doc_compulsory %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
