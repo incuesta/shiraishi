@@ -166,6 +166,15 @@
                   </div>
                   <!-- Row For Right End -->
 
+
+                  <h4>Required Documents</h4>
+                  <ul>
+
+                    <% @loan.loan_type.loan_docs.each do |loan_doc| %>
+                        <li><%= loan_doc.name %></li>
+                    <% end %>
+                  </ul>
+
                 </div>
                 <!-- div col md 6 end -->
               </div>
