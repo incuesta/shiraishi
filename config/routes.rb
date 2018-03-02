@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 	  
+    # ClientDoc
+    resources :client_docs
+
+
+
+
+    # LoanInstallment
+    resources :loan_installments
+
+
+
+
     # LoanDoc
     resources :loan_docs
 

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  installment_no: 1
+  client: MyString
+  from: 2018-03-02 17:41:03
+  to: 2018-03-02 17:41:03
+  principal_amount: 9.99
+  interest_amount: MyString
+  decimal: MyString
+  emi_installment: 9.99
+  state: MyString
+  notes: MyText
+
+two:
+  installment_no: 1
+  client: MyString
+  from: 2018-03-02 17:41:03
+  to: 2018-03-02 17:41:03
+  principal_amount: 9.99
+  interest_amount: MyString
+  decimal: MyString
+  emi_installment: 9.99
+  state: MyString
+  notes: MyText

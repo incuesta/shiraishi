@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Loan Installments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Installment no</th>
+      <th>Client</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Principal amount</th>
+      <th>Interest amount</th>
+      <th>Decimal</th>
+      <th>Emi installment</th>
+      <th>State</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan_installments.each do |loan_installment| %>
+      <tr>
+        <td><%= loan_installment.installment_no %></td>
+        <td><%= loan_installment.client %></td>
+        <td><%= loan_installment.from %></td>
+        <td><%= loan_installment.to %></td>
+        <td><%= loan_installment.principal_amount %></td>
+        <td><%= loan_installment.interest_amount %></td>
+        <td><%= loan_installment.decimal %></td>
+        <td><%= loan_installment.emi_installment %></td>
+        <td><%= loan_installment.state %></td>
+        <td><%= loan_installment.notes %></td>
+        <td><%= link_to 'Show', loan_installment %></td>
+        <td><%= link_to 'Edit', edit_loan_installment_path(loan_installment) %></td>
+        <td><%= link_to 'Destroy', loan_installment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loan Installment', new_loan_installment_path %>

@@ -1,0 +1,67 @@
+<%= form_with(model: loan_installment, local: true) do |form| %>
+  <% if loan_installment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(loan_installment.errors.count, "error") %> prohibited this loan_installment from being saved:</h2>
+
+      <ul>
+      <% loan_installment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :installment_no %>
+    <%= form.number_field :installment_no, id: :loan_installment_installment_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :client %>
+    <%= form.text_field :client, id: :loan_installment_client %>
+  </div>
+
+  <div class="field">
+    <%= form.label :from %>
+    <%= form.datetime_select :from, id: :loan_installment_from %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to %>
+    <%= form.datetime_select :to, id: :loan_installment_to %>
+  </div>
+
+  <div class="field">
+    <%= form.label :principal_amount %>
+    <%= form.text_field :principal_amount, id: :loan_installment_principal_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :interest_amount %>
+    <%= form.text_field :interest_amount, id: :loan_installment_interest_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decimal %>
+    <%= form.text_field :decimal, id: :loan_installment_decimal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :emi_installment %>
+    <%= form.text_field :emi_installment, id: :loan_installment_emi_installment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :loan_installment_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :loan_installment_notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

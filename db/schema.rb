@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302085040) do
+ActiveRecord::Schema.define(version: 20180302094909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,6 +196,20 @@ ActiveRecord::Schema.define(version: 20180302085040) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "loan_installments", force: :cascade do |t|
+    t.integer "installment_no"
+    t.string "client"
+    t.datetime "from"
+    t.datetime "to"
+    t.decimal "principal_amount", precision: 11, scale: 2
+    t.decimal "interest_amount", precision: 11, scale: 2
+    t.decimal "emi_installment", precision: 11, scale: 2
+    t.string "state", default: "unpaid"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "loan_manager_profiles", force: :cascade do |t|
     t.bigint "loan_manager_id"
     t.string "image"
@@ -263,11 +277,11 @@ ActiveRecord::Schema.define(version: 20180302085040) do
     t.datetime "approved_date"
     t.datetime "disbursement_date"
     t.string "status", default: "draft"
-    t.decimal "principal_amount", precision: 8, scale: 2
+    t.decimal "principal_amount", precision: 11, scale: 2
     t.datetime "from"
     t.datetime "to"
-    t.decimal "net_loan", precision: 8, scale: 2
-    t.decimal "net_interest", precision: 8, scale: 2
+    t.decimal "net_loan", precision: 11, scale: 2
+    t.decimal "net_interest", precision: 11, scale: 2
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

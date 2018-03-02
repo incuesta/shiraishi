@@ -1,0 +1,2 @@
+module LoanInstallmentsHelper
+end

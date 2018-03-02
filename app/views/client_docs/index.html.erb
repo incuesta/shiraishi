@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Client Docs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Submitted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_docs.each do |client_doc| %>
+      <tr>
+        <td><%= client_doc.name %></td>
+        <td><%= client_doc.submitted %></td>
+        <td><%= link_to 'Show', client_doc %></td>
+        <td><%= link_to 'Edit', edit_client_doc_path(client_doc) %></td>
+        <td><%= link_to 'Destroy', client_doc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Client Doc', new_client_doc_path %>

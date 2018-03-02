@@ -1,0 +1,2 @@
+class LoanInstallment < ApplicationRecord
+end

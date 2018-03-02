@@ -1,0 +1,2 @@
+class ClientDoc < ApplicationRecord
+end

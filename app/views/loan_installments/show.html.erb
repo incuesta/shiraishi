@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Installment no:</strong>
+  <%= @loan_installment.installment_no %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @loan_installment.client %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @loan_installment.from %>
+</p>
+
+<p>
+  <strong>To:</strong>
+  <%= @loan_installment.to %>
+</p>
+
+<p>
+  <strong>Principal amount:</strong>
+  <%= @loan_installment.principal_amount %>
+</p>
+
+<p>
+  <strong>Interest amount:</strong>
+  <%= @loan_installment.interest_amount %>
+</p>
+
+<p>
+  <strong>Decimal:</strong>
+  <%= @loan_installment.decimal %>
+</p>
+
+<p>
+  <strong>Emi installment:</strong>
+  <%= @loan_installment.emi_installment %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @loan_installment.state %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @loan_installment.notes %>
+</p>
+
+<%= link_to 'Edit', edit_loan_installment_path(@loan_installment) %> |
+<%= link_to 'Back', loan_installments_path %>

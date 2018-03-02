@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client_doc.name %>
+</p>
+
+<p>
+  <strong>Submitted:</strong>
+  <%= @client_doc.submitted %>
+</p>
+
+<%= link_to 'Edit', edit_client_doc_path(@client_doc) %> |
+<%= link_to 'Back', client_docs_path %>
