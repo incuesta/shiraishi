@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
 	  
+    # Loan Model
+    resources :loans
+
+
+
+    # For Activation of Client Accounts
     namespace :clients do
       resources :account_activations, only: [:index, :show, :edit, :update]
-
-
     end
-     match 'clients/account_activations/:id', to: "clients/account_activations#update", via: :post
+    match 'clients/account_activations/:id', to: "clients/account_activations#update", via: :post
+
+
+
+
 
 
     # Profile - Client

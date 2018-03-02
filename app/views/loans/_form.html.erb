@@ -1,0 +1,41 @@
+<%= form_with(model: loan, local: true) do |form| %>
+  <% if loan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
+
+      <ul>
+      <% loan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div class="field">
+    <%= form.label :principal_amount %>
+    <%= form.text_field :principal_amount, id: :loan_principal_amount %>
+  </div>
+
+  
+
+  
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :loan_notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

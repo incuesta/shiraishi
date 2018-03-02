@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301114623) do
+ActiveRecord::Schema.define(version: 20180302060219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,8 +240,28 @@ ActiveRecord::Schema.define(version: 20180301114623) do
     t.index ["reset_password_token"], name: "index_loan_managers_on_reset_password_token", unique: true
   end
 
+  create_table "loans", force: :cascade do |t|
+    t.string "string_id"
+    t.datetime "application_date"
+    t.datetime "approved_date"
+    t.datetime "disbursement_date"
+    t.string "status", default: "draft"
+    t.decimal "principal_amount", precision: 8, scale: 2
+    t.datetime "from"
+    t.datetime "to"
+    t.decimal "net_loan", precision: 8, scale: 2
+    t.decimal "net_interest", precision: 8, scale: 2
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_loans_on_client_id"
+    t.index ["string_id"], name: "index_loans_on_string_id", unique: true
+  end
+
   add_foreign_key "accountant_profiles", "accountants"
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "golden_keys", "clients"
   add_foreign_key "loan_manager_profiles", "loan_managers"
+  add_foreign_key "loans", "clients"
 end

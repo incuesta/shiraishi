@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  string_id: MyString
+  application_date: 2018-03-02 12:24:43
+  approved_date: 2018-03-02 12:24:43
+  disbursement_date: 2018-03-02 12:24:43
+  status: MyString
+  principal_amount: 9.99
+  from: 2018-03-02 12:24:43
+  to: 2018-03-02 12:24:43
+  principal_amount: 9.99
+  net_loan: 9.99
+  net_interest: 9.99
+  notes: MyText
+
+two:
+  string_id: MyString
+  application_date: 2018-03-02 12:24:43
+  approved_date: 2018-03-02 12:24:43
+  disbursement_date: 2018-03-02 12:24:43
+  status: MyString
+  principal_amount: 9.99
+  from: 2018-03-02 12:24:43
+  to: 2018-03-02 12:24:43
+  principal_amount: 9.99
+  net_loan: 9.99
+  net_interest: 9.99
+  notes: MyText

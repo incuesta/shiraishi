@@ -10,6 +10,10 @@ class Client < ApplicationRecord
 
     has_one :golden_key, dependent: :destroy # the Model to Enable or disable an Account
 
+    
+
+    has_one :loan, dependent: :destroy # A client can only have 1 loan at a time.
+
 
 
 	# Validation

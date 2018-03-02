@@ -1,0 +1,146 @@
+
+
+
+<% client = @loan.client %>
+<% client_profile = client.client_profile %>
+
+<!-- Div Row -->
+<div class="row">
+    <div class="col-md-11 col-centered">
+      
+      <div class="panel panel-default">
+
+          <div class="panel-heading">
+              <div class="panel-title">
+                  <strong><%= client.user_name.capitalize %>'s Loan <%= @loan.status.capitalize %></strong>
+                  
+                  <div class="pull-right">
+                    <%= link_to 'Edit Loan Request', edit_loan_path(@loan) %> |
+                    <%= link_to 'Show Client Profile', client_profile_path(client.client_profile) %> |
+                    <%= link_to 'Back', loans_path %>
+                  </div>
+              </div>
+          </div>
+
+
+              <div class="row">
+
+                <!-- Image Div -->
+                <div class="col-md-4">
+                    <div class="well">
+                        <div class="row" style="margin: 25px;">
+                            <div class="col-md-12">
+                                <div>
+                                    <!-- Show this if no profile Image -->
+                                    <%= image_tag "user_icon_1.png", alt: "#{client.user_name}.jpg", class: "center-block", size:"200x200" unless client_profile.image.present? %>
+
+                                    <!-- Show this if there's a profile Image -->
+                                    <%= image_tag client_profile.image.img_200.url, alt: "#{client.user_name}.jpg", class: "center-block" if client_profile.image.present? %>
+                                
+                                      <p class="text-center h3"><%= client.full_name %></p>
+                                      <p class="text-center h5"><%= client.email %></p>
+                                      <p class="text-center h5"><%= "(#{client.class.name.underscore.humanize})" %></p>
+                                  
+                                </div>
+                            </div class="col-md-12">
+                              <table class="table">
+                                  <tr>
+                                    <td><strong>Mobile:</strong></td>
+                                    <td><%= client_profile.mobile %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Telephone:</strong></td>
+                                    <td><%= client_profile.telephone %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Company:</strong></td>
+                                    <td><%= client_profile.company %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Department:</strong></td>
+                                    <td><%= client_profile.department %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Employee category:</strong></td>
+                                    <td><%= client_profile.employee_category %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Job title:</strong></td>
+                                    <td><%= client_profile.job_title %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Manager:</strong></td>
+                                    <td><%= client_profile.manager %></td>
+                                  </tr>
+                              </table>
+
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Div End -->
+
+
+                <div class="col-md-6">
+
+                  <table class="table">
+                      <tr>
+                        <td><strong>Loan:</strong></td>
+                        <td><%= @loan.string_id %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Application date:</strong></td>
+                        <td><%= @loan.application_date %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Loan Status:</strong></td>
+                        <td><%= @loan.status %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Principal amount:</strong></td>
+                        <td><%= number_to_currency(@loan.principal_amount, unit: 'Php ') %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Net loan:</strong></td>
+                        <td><%= number_to_currency(@loan.net_loan, unit: 'Php ') %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Net interest:</strong></td>
+                        <td><%= number_to_currency(@loan.net_interest, unit: 'Php ') %></td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Notes:</strong></td>
+                        <td><%= @loan.notes %></td>
+                      </tr>
+
+
+                      
+
+                      
+                  </table>
+                  <!-- Table End -->
+
+                </div>
+                <!-- div col md 6 end -->
+              </div>
+      </div>
+      <!-- Panel Default End -->
+
+    </div>
+    <!-- End of col-md-offset-2 -->
+</div>
+<!-- Div Row End -->
