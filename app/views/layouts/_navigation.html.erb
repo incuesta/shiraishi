@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#">Brand</a>
+            <div class="navbar-brand"><%=link_to "CUESTA", root_path %></div>
         </div>
 
 
@@ -38,6 +38,7 @@
               </li>
 
 
+              <!-- Test Links 1 -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test Links <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -59,6 +60,32 @@
                   <li><a href="#">One more separated link</a></li>
                 </ul>
               </li>
+              <!-- Test Links 1 End -->
+
+
+              <!-- Test Link 2 -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test Links <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Define Loan Type", new_loan_type_path %></li>
+                  <li><%= link_to "Define Required Documents", new_loan_doc_path %></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Apply new Loan", new_loan_path %></li>
+                  <li><a href="#">Separated link</a></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+              <!-- Test Link 2 End -->
+
+
+
             </ul>
             <!-- Left Links End -->
 

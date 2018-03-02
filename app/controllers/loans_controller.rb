@@ -15,10 +15,12 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @loan = Loan.new
+    @loan_types = LoanType.all
   end
 
   # GET /loans/1/edit
   def edit
+    @loan_types = LoanType.all
   end
 
   # POST /loans
@@ -69,7 +71,7 @@ class LoansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params_origin
-      params.require(:loan).permit(:string_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :principal_amount, :net_loan, :net_interest, :notes)
+      params.require(:loan).permit(:string_id, :loan_type_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :principal_amount, :net_loan, :net_interest, :notes)
     end
 
 
@@ -78,7 +80,7 @@ class LoansController < ApplicationController
       interest = 10
 
       params_hash = loan_params_origin
-      params_hash[:string_id] = "loan_#{ '%05d' % [current_client.id]}_#{Time.zone.now.to_i}"
+      params_hash[:string_id] = "LOAN-#{ '%03d' % [current_client.id]}#{Time.zone.now.to_i}"
       params_hash[:application_date] = Time.zone.now
       params_hash[:from] = Time.zone.now
       params_hash[:to] = Time.zone.now.next_year

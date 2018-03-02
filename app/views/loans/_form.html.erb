@@ -14,7 +14,10 @@
   
 
   
-
+  <div class="field">
+    <%= form.label :loan_type_id %>
+    <%= form.select :loan_type_id, @loan_types.map { | loan_type | [loan_type.name, loan_type.id] } %>
+  </div>
   
 
   

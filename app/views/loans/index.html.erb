@@ -1,48 +1,47 @@
-<p id="notice"><%= notice %></p>
+<!-- Panel Table -->
+<div class="panel panel-default">
 
-<h1>Loans</h1>
+  <div class="panel-heading">Loans</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>String</th>
-      <th>Application date</th>
-      <th>Approved date</th>
-      <th>Disbursement date</th>
-      <th>Status</th>
-      <th>Principal amount</th>
-      <th>From</th>
-      <th>To</th>
-      <th>Principal amount</th>
-      <th>Net loan</th>
-      <th>Net interest</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <!-- <div class="panel-body">
+      <p>Some things to say</p>
+  </div>
+ -->
 
-  <tbody>
-    <% @loans.each do |loan| %>
-      <tr>
-        <td><%= loan.string_id %></td>
-        <td><%= loan.application_date %></td>
-        <td><%= loan.approved_date %></td>
-        <td><%= loan.disbursement_date %></td>
-        <td><%= loan.status %></td>
-        <td><%= loan.principal_amount %></td>
-        <td><%= loan.from %></td>
-        <td><%= loan.to %></td>
-        <td><%= loan.principal_amount %></td>
-        <td><%= loan.net_loan %></td>
-        <td><%= loan.net_interest %></td>
-        <td><%= loan.notes %></td>
-        <td><%= link_to 'Show', loan %></td>
-        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Loan</th>
+            <th>Type</th>
+            <th>Applicant</th>
+            <th>Application date</th>
+            <th>Status</th>
+            <th>Principal amount</th>
+            <th>Notes</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @loans.each do |loan| %>
+            <tr>
+              <td><%= loan.string_id %></td>
+              <td><%= loan.loan_type.name %></td>
+              <td><%= loan.client.full_name %></td>
+              <td><%= loan.application_date.to_date %></td>
+              <td><%= loan.status %></td>
+              <td><%= number_to_currency(loan.principal_amount, unit: "Php ") %></td>
+              <td><%= truncate(loan.notes, length: 15) { link_to "continue", loan } %></td>
+              <td><%= link_to 'Show', loan %></td>
+              <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
+              <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+
+</div>
+<!-- Table Panel End -->
 
 <br>
 

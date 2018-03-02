@@ -32,6 +32,12 @@
   </div>
 
   <div class="field">
+    <%= form.label :duration, "Duration in months" %>
+    <%= form.text_field :duration, id: :loan_type_duration %>
+
+  </div>
+
+  <div class="field">
     <%= form.label :repayment_method %>
     <%= form.text_field :repayment_method, id: :loan_type_repayment_method %>
   </div>

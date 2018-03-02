@@ -90,49 +90,81 @@
 
 
                 <div class="col-md-6">
+                  <div class="row">
+                      <div class="col-md-12 for-the-table">
+                          <table class="table">
 
-                  <table class="table">
-                      <tr>
-                        <td><strong>Loan:</strong></td>
-                        <td><%= @loan.string_id %></td>
-                      </tr>
+                                <!-- Loan Type attr -->
+                                <tr>
+                                  <td><strong>Loan Type</strong></td>
+                                  <td><%= @loan.loan_type.name %></td>
+                                </tr>
+                                <!-- End Loan Type attr -->
 
-                      <tr>
-                        <td><strong>Application date:</strong></td>
-                        <td><%= @loan.application_date %></td>
-                      </tr>
+                                <tr>
+                                  <td><strong>Loan:</strong></td>
+                                  <td><%= @loan.string_id %></td>
+                                </tr>
 
-                      <tr>
-                        <td><strong>Loan Status:</strong></td>
-                        <td><%= @loan.status %></td>
-                      </tr>
+                                <tr>
+                                  <td><strong>Application date:</strong></td>
+                                  <td><%= @loan.application_date %></td>
+                                </tr>
 
-                      <tr>
-                        <td><strong>Principal amount:</strong></td>
-                        <td><%= number_to_currency(@loan.principal_amount, unit: 'Php ') %></td>
-                      </tr>
+                                <tr>
+                                  <td><strong>Loan Status:</strong></td>
+                                  <td><%= ("on review" if @loan.status == "request") || "appoved" %></td>
+                                </tr>
 
-                      <tr>
-                        <td><strong>Net loan:</strong></td>
-                        <td><%= number_to_currency(@loan.net_loan, unit: 'Php ') %></td>
-                      </tr>
+                                <tr>
+                                  <td><strong>Principal amount:</strong></td>
+                                  <td><%= number_to_currency(@loan.principal_amount, unit: 'Php ') %></td>
+                                </tr>
 
-                      <tr>
-                        <td><strong>Net interest:</strong></td>
-                        <td><%= number_to_currency(@loan.net_interest, unit: 'Php ') %></td>
-                      </tr>
+                                <tr>
+                                  <td><strong>Net loan:</strong></td>
+                                  <td><%= number_to_currency(@loan.net_loan, unit: 'Php ') %></td>
+                                </tr>
 
-                      <tr>
-                        <td><strong>Notes:</strong></td>
-                        <td><%= @loan.notes %></td>
-                      </tr>
+                                <tr>
+                                  <td><strong>Net interest:</strong></td>
+                                  <td><%= number_to_currency(@loan.net_interest, unit: 'Php ') %></td>
+                                </tr>
 
+                                <!-- Loan Type attr -->
+                                <tr>
+                                  <td><strong>Interest mode:</strong></td>
+                                  <td><%= @loan.loan_type.interest_mode %></td>
+                                </tr>
 
-                      
+                                <tr>
+                                  <td><strong>Rate:</strong></td>
+                                  <td><%= number_to_percentage(@loan.loan_type.rate * 100, precision: 0) %></td>
+                                </tr>
 
-                      
-                  </table>
-                  <!-- Table End -->
+                                <tr>
+                                  <td><strong>Duration:</strong></td>
+                                  <td><%= @loan.loan_type.duration %> months</td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Repayment method:</strong></td>
+                                  <td><%= @loan.loan_type.repayment_method %></td>
+                                </tr>
+                                <!-- Loan Type End -->
+
+                                <tr>
+                                  <td><strong>Notes:</strong></td>
+                                  <td><%= @loan.notes %></td>
+                                </tr>
+                              
+                            </table>
+                            <!-- Table End -->
+                        </div>
+                        <!-- For the Table End -->
+
+                  </div>
+                  <!-- Row For Right End -->
 
                 </div>
                 <!-- div col md 6 end -->
