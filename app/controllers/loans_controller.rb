@@ -78,7 +78,7 @@ class LoansController < ApplicationController
       interest = 10
 
       params_hash = loan_params_origin
-      params_hash[:string_id] = "loan_#{ '%04d' % [current_client.id]}_#{Time.zone.now.to_i}"
+      params_hash[:string_id] = "loan_#{ '%05d' % [current_client.id]}_#{Time.zone.now.to_i}"
       params_hash[:application_date] = Time.zone.now
       params_hash[:from] = Time.zone.now
       params_hash[:to] = Time.zone.now.next_year

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @loan_type.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @loan_type.code %>
+</p>
+
+<p>
+  <strong>Interest mode:</strong>
+  <%= @loan_type.interest_mode %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @loan_type.rate %>
+</p>
+
+<p>
+  <strong>Repayment method:</strong>
+  <%= @loan_type.repayment_method %>
+</p>
+
+<%= link_to 'Edit', edit_loan_type_path(@loan_type) %> |
+<%= link_to 'Back', loan_types_path %>
