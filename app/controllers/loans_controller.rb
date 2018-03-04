@@ -12,21 +12,19 @@ class LoansController < ApplicationController
   def show
   end
 
+
+
+
   # GET /loans/new
   def new
     @loan = Loan.new
     @loan_types = LoanType.all
   end
 
-  # GET /loans/1/edit
-  def edit
-    @loan_types = LoanType.all
-  end
-
   # POST /loans
   # POST /loans.json
   def create
-    @loan = current_client.build_loan(loan_params)
+    @loan = current_client.loans.build(loan_params)
 
     respond_to do |format|
       if @loan.save
@@ -39,12 +37,20 @@ class LoansController < ApplicationController
     end
   end
 
+
+
+  # GET /loans/1/edit
+  def edit
+    @loan_types = LoanType.all
+  end
+
   # PATCH/PUT /loans/1
   # PATCH/PUT /loans/1.json
   def update
     respond_to do |format|
       if @loan.update(loan_params)
-        format.html { redirect_to @loan, notice: 'Loan was successfully updated.' }
+
+        format.html { redirect_to @loan, notice: 'Loan evaluated.' }
         format.json { render :show, status: :ok, location: @loan }
       else
         format.html { render :edit }
@@ -52,6 +58,9 @@ class LoansController < ApplicationController
       end
     end
   end
+
+
+
 
   # DELETE /loans/1
   # DELETE /loans/1.json
@@ -63,6 +72,44 @@ class LoansController < ApplicationController
     end
   end
 
+
+  def compute_installment
+        set_loan
+
+        from_date = Time.zone.now
+        end_date = from_date + 1.month
+
+        principal_amount = @loan.principal_amount / 12
+        interest_amount = principal_amount * @loan.loan_type.rate
+        monthly_emi = principal_amount + interest_amount
+
+        12.times do | i |
+          from_date += 1.month unless i == 0
+          end_date += 1.month unless i == 0
+
+
+          LoanInstallment.create(installment_no: i + 1, client: @loan.client.full_name, from: from_date, to: end_date, principal_amount: principal_amount, interest_amount: interest_amount, emi_installment: monthly_emi)
+        end
+
+        redirect_to loan_installments_path
+  end
+
+
+
+  # Sets the status of the Loan to "approved"
+  # PATCH /loans/1
+  def approve_the_loan
+      set_loan
+      respond_to do | format |
+        if @loan.update(loan_params_origin)
+          format.js { render "loans/approve_the_loan.js.erb" }
+        end
+      end
+  end
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan
@@ -71,26 +118,26 @@ class LoansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params_origin
-      params.require(:loan).permit(:string_id, :loan_type_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :principal_amount, :net_loan, :net_interest, :notes)
+      params.require(:loan).permit(:string_id, :loan_type_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :net_loan, :net_interest, :notes)
     end
 
 
     def loan_params
 
-      interest = 10
-
       params_hash = loan_params_origin
-      params_hash[:string_id] = "LOAN-#{ '%03d' % [current_client.id]}#{Time.zone.now.to_i}"
+
+
+      interest = 10
+      principal = params_hash[:principal_amount]
+
+      
+
+      params_hash[:string_id] = "LOAN-#{ '%03d' % [(current_client.id if current_client) || @loan.client.id]}#{Time.zone.now.to_i}"
       params_hash[:application_date] = Time.zone.now
       params_hash[:from] = Time.zone.now
       params_hash[:to] = Time.zone.now.next_year
-      params_hash[:net_loan] = params_hash[:principal_amount].to_d + interest;
+      params_hash[:net_loan] = principal.to_d + interest
       params_hash[:net_interest] = interest
-      params_hash[:status] = "request"
       params_hash
     end
 end
-
-
-
-"%s/%s.%04d.txt" % ["dirname", "filename", 23]

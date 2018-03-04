@@ -8,18 +8,24 @@
 <div class="row">
     <div class="col-md-11 col-centered">
       
-      <div class="panel panel-default">
+      <div class="panel panel-success">
 
           <div class="panel-heading">
               <div class="panel-title">
-                  <strong><%= client.user_name.capitalize %>'s Loan <%= @loan.status.capitalize %></strong>
+                  <strong><%= ("#{client.user_name.capitalize}\'s Loan  Request" if @loan.status == 'draft') || "#{client.user_name.capitalize}\'s Loan, #{@loan.status.capitalize}" %></strong>
                   
                   <div class="pull-right">
-                    <%= link_to 'Edit Loan Request', edit_loan_path(@loan) %> |
-                    <%= link_to 'Show Client Profile', client_profile_path(client.client_profile) %> |
-                    <%= link_to 'Back', loans_path %>
+
+                    <%= link_to "Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: "approved"}}, remote: true, method: :patch, class: "btn btn-sm btn-success" %> 
+
+                    |
+
+                    <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
+                    <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
+
                   </div>
               </div>
+              <br/>
           </div>
 
 
@@ -89,9 +95,9 @@
                 <!-- Image Div End -->
 
 
-                <div class="col-md-6">
+                <div class="col-md-8">
                   <div class="row">
-                      <div class="col-md-12 for-the-table">
+                      <div class="col-md-9 for-the-table">
                           <table class="table">
 
                                 <!-- Loan Type attr -->
@@ -113,7 +119,7 @@
 
                                 <tr>
                                   <td><strong>Loan Status:</strong></td>
-                                  <td><%= ("on review" if @loan.status == "request") || "appoved" %></td>
+                                  <td><%= @loan.status %></td>
                                 </tr>
 
                                 <tr>
@@ -163,6 +169,24 @@
                         </div>
                         <!-- For the Table End -->
 
+                        <!-- Statuses -->
+                        <div class="col-md-3">
+                            <div class="row">
+                              <br/>
+                              <!-- Loan Status Image -->
+                              <div class="col-md-12 loan_status_image">
+                                  <div class="loan_status">
+                                    <%= image_tag 'approved_check.png', size: "150x150" if @loan.status == "approved" %>
+                                  </div>
+
+                              </div>
+                              <!-- Loan Status Image End -->
+
+
+                            </div>
+                        </div>
+                        <!-- Statuses End -->
+
                   </div>
                   <!-- Row For Right End -->
 
@@ -175,6 +199,9 @@
                     <% end %>
                   </ul>
 
+
+                  <%= link_to "Compute Installment", "/loans/compute_installment/#{@loan.id}", class: "btn btn-lg btn-success", method: :post if @loan.status == "disbursed" %>
+
                 </div>
                 <!-- div col md 6 end -->
               </div>
@@ -185,3 +212,5 @@
     <!-- End of col-md-offset-2 -->
 </div>
 <!-- Div Row End -->
+
+

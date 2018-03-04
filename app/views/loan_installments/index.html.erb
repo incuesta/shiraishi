@@ -5,13 +5,12 @@
 <table>
   <thead>
     <tr>
-      <th>Installment no</th>
+      <th>Month number</th>
       <th>Client</th>
       <th>From</th>
       <th>To</th>
       <th>Principal amount</th>
       <th>Interest amount</th>
-      <th>Decimal</th>
       <th>Emi installment</th>
       <th>State</th>
       <th>Notes</th>
@@ -20,16 +19,15 @@
   </thead>
 
   <tbody>
-    <% @loan_installments.each do |loan_installment| %>
+    <% @loan_installments.order("installment_no ASC").each do |loan_installment| %>
       <tr>
         <td><%= loan_installment.installment_no %></td>
         <td><%= loan_installment.client %></td>
-        <td><%= loan_installment.from %></td>
-        <td><%= loan_installment.to %></td>
-        <td><%= loan_installment.principal_amount %></td>
-        <td><%= loan_installment.interest_amount %></td>
-        <td><%= loan_installment.decimal %></td>
-        <td><%= loan_installment.emi_installment %></td>
+        <td><%= loan_installment.from.to_date %></td>
+        <td><%= loan_installment.to.to_date %></td>
+        <td><%= number_to_currency(loan_installment.principal_amount, unit: "Php ") %></td>
+        <td><%= number_to_currency(loan_installment.interest_amount, unit: "Php ") %></td>
+        <td><%= number_to_currency(loan_installment.emi_installment, unit: "Php ") %></td>
         <td><%= loan_installment.state %></td>
         <td><%= loan_installment.notes %></td>
         <td><%= link_to 'Show', loan_installment %></td>

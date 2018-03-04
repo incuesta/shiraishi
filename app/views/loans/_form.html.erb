@@ -11,34 +11,34 @@
     </div>
   <% end %>
 
-  
 
-  
-  <div class="field">
-    <%= form.label :loan_type_id %>
-    <%= form.select :loan_type_id, @loan_types.map { | loan_type | [loan_type.name, loan_type.id] } %>
-  </div>
-  
+    <div>
+      <%= form.label :loan_type_id %>
+      <%= form.select :loan_type_id, LoanType.all.map { |loan_type|  [loan_type.name, loan_type.id]  } %>
+    </div>
 
-  
 
-  
-
-  <div class="field">
-    <%= form.label :principal_amount %>
-    <%= form.text_field :principal_amount, id: :loan_principal_amount %>
-  </div>
+    <div class="field">
+      <%= form.label :principal_amount %>
+      <%= form.text_field :principal_amount %>
+    </div>
 
   
 
-  
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, [["disburse", "disbursed"], ["reject", "rejected"]] %>
+    </div>
 
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes, id: :loan_notes %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+    <div class="field">
+      <%= form.label :notes %>
+      <%= form.text_area :notes, id: :loan_notes %>
+    </div>
+
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
 <% end %>

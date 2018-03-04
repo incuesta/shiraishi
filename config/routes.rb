@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 	  
+    match 'loans/approve_the_loan/:id', to: 'loans#approve_the_loan', via: :patch
+
+
     # ClientDoc
     resources :client_docs
 

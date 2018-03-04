@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302154316) do
+ActiveRecord::Schema.define(version: 20180303095047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,11 @@ ActiveRecord::Schema.define(version: 20180302154316) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "loan_installment_containers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "loan_installments", force: :cascade do |t|
     t.integer "installment_no"
     t.string "client"
@@ -215,6 +220,8 @@ ActiveRecord::Schema.define(version: 20180302154316) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "loan_installment_container_id"
+    t.index ["loan_installment_container_id"], name: "index_loan_installments_on_loan_installment_container_id"
   end
 
   create_table "loan_manager_profiles", force: :cascade do |t|
@@ -315,6 +322,7 @@ ActiveRecord::Schema.define(version: 20180302154316) do
   add_foreign_key "accountant_profiles", "accountants"
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "golden_keys", "clients"
+  add_foreign_key "loan_installments", "loan_installment_containers"
   add_foreign_key "loan_manager_profiles", "loan_managers"
   add_foreign_key "loan_type_loan_docs", "loan_docs"
   add_foreign_key "loan_type_loan_docs", "loan_types"
