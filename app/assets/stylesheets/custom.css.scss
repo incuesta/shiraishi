@@ -5,7 +5,18 @@
 
 
 
+/* Disable a link */
+.not-active 
+{
+    pointer-events: none;
+    cursor: default;
+    background-color: gray;
+}
 
+
+
+
+/* Center a Column */
 .col-centered
 {
     float: none;

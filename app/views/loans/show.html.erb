@@ -12,11 +12,11 @@
 
           <div class="panel-heading">
               <div class="panel-title">
-                  <strong><%= ("#{client.user_name.capitalize}\'s Loan  Request" if @loan.status == 'draft') || "#{client.user_name.capitalize}\'s Loan, #{@loan.status.capitalize}" %></strong>
+                  <strong><%= "#{client.user_name.capitalize}\'s Loan  Request" %></strong>
                   
                   <div class="pull-right">
 
-                    <%= link_to "Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: "approved"}}, remote: true, method: :patch, class: "btn btn-sm btn-success" %> 
+                    <%= link_to "Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved]}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success #{'not-active' if @loan.status == Loan.statuses[:approved]}", data: {confirm: 'Approve the Loan?'} %> 
 
                     |
 
@@ -176,7 +176,8 @@
                               <!-- Loan Status Image -->
                               <div class="col-md-12 loan_status_image">
                                   <div class="loan_status">
-                                    <%= image_tag 'approved_check.png', size: "150x150" if @loan.status == "approved" %>
+                                    <%= image_tag 'approved_check.png', width: "150" if @loan.status == Loan.statuses[:approved] %>
+                                    <%= image_tag 'under_review.png', width: "150" if @loan.status == Loan.statuses[:draft] %>
                                   </div>
 
                               </div>

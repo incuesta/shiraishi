@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @loan_doc.name %>
-</p>
 
-<p>
-  <strong>Compulsory:</strong>
-  <%= @loan_doc.compulsory %>
-</p>
 
-<%= link_to 'Edit', edit_loan_doc_path(@loan_doc) %> |
-<%= link_to 'Back', loan_docs_path %>
+<div class="row">
+	<div class="col-md-3">
+		<div class="well">
+			<p>
+			  <strong>Name:</strong>
+			  <%= @loan_doc.name %>
+			</p>
+
+			<p>
+			  <strong>Compulsory:</strong>
+			  <%= @loan_doc.compulsory %>
+			</p>
+
+			<%= link_to 'Edit', edit_loan_doc_path(@loan_doc) %> |
+			<%= link_to 'Back', loan_docs_path %>
+		</div>
+	</div>
+</div>

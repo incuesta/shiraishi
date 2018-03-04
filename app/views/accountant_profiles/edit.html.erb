@@ -3,7 +3,7 @@
 <div class="row">
 
 	<!-- The Left side containing the Form -->
-	<div class="col-md-5">
+	<div class="col-md-6 col-centered">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -17,10 +17,11 @@
 				</div>
 
 				<br />
-				<hr />
 
-				<div class="panel-body">
-					<%= render 'user_partials/form', shiraishi: @accountant_profile %>
+				<div class="row">
+					<div class="col-md-10 col-centered">
+						<%= render 'user_partials/form', shiraishi: @accountant_profile %>
+					</div>
 				</div>
 			</div>
 			<!-- Panel Heading End -->

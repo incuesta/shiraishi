@@ -2,7 +2,7 @@
 
 
 	<!-- The Left side containing the Form -->
-	<div class="col-md-5">
+	<div class="col-md-6 col-centered">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -13,8 +13,10 @@
 				<hr />
 			
 
-				<div class="panel-body">
-					<%= render partial: 'user_partials/form', locals: { shiraishi: @accountant_profile } %>
+				<div class="row">
+					<div class="col-md-10 col-centered">
+						<%= render partial: 'user_partials/form', locals: { shiraishi: @accountant_profile } %>
+					</div>
 				</div>
 
 			</div>

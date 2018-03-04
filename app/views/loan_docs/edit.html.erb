@@ -1,6 +1,34 @@
-<h1>Editing Loan Doc</h1>
 
-<%= render 'form', loan_doc: @loan_doc %>
 
-<%= link_to 'Show', @loan_doc %> |
-<%= link_to 'Back', loan_docs_path %>
+<div class="row">
+
+	<div class="col-md-6 col-centered">
+
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-custom">
+				<div class="panel-title">
+					<span class="h4" >Edit Loan Doc</span>
+
+					<div class="pull-right">
+						<%= link_to 'Show', @loan_doc, class: "btn btn-sm btn-info" %> |
+						<%= link_to 'Back', loan_docs_path, class: "btn btn-sm btn-info" %>
+					</div>
+				</div>
+
+				<br/>
+				
+			</div>
+
+				<div class="row">
+					<div class="col-md-10 col-centered">
+
+						<%= render 'form', loan_doc: @loan_doc %>
+					</div>
+				</div>
+		</div>
+		<!-- End Panel Heading -->
+		
+
+	</div>
+
+</div>

@@ -12,33 +12,25 @@
   <% end %>
 
 
-    <div>
+    <div class="field form-group">
       <%= form.label :loan_type_id %>
-      <%= form.select :loan_type_id, LoanType.all.map { |loan_type|  [loan_type.name, loan_type.id]  } %>
+      <%= form.select :loan_type_id, LoanType.all.map { |loan_type|  [loan_type.name, loan_type.id]  }, {}, class: 'form-control' %>
     </div>
 
 
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :principal_amount %>
-      <%= form.text_field :principal_amount %>
+      <%= form.text_field :principal_amount, class: 'form-control' %>
     </div>
 
   
-
-    <div class="field">
-      <%= form.label :status %>
-      <%= form.select :status, [["disburse", "disbursed"], ["reject", "rejected"]] %>
-    </div>
-
-
-
-    <div class="field">
+    <div class="field form-group">
       <%= form.label :notes %>
-      <%= form.text_area :notes, id: :loan_notes %>
+      <%= form.text_area :notes, id: :loan_notes, class: 'form-control' %>
     </div>
 
 
-    <div class="actions">
-      <%= form.submit %>
+    <div class="actions form-group">
+      <%= form.submit class: 'btn btn-lg btn-success' %>
     </div>
 <% end %>

@@ -4,21 +4,22 @@
 
 
 	<!-- The Left side containing the Form -->
-	<div class="col-md-6">
+	<div class="col-md-6 col-centered">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="panel-title">
 					<span class="h4" >Complete the profile</span>
 
-					
 				</div>
-			</div>
+			
 
-			<div class="row">
-				<div class="col-md-10 col-centered ">
-					<%= render partial: 'user_partials/form_for_client', locals: { shiraishi: @client_profile } %>
+				<div class="row">
+					<div class="col-md-10 col-centered ">
+						<%= render partial: 'user_partials/form_for_client', locals: { shiraishi: @client_profile } %>
+					</div>
 				</div>
+
 			</div>
 		</div>
 

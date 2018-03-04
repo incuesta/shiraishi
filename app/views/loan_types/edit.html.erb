@@ -1,6 +1,32 @@
-<h1>Editing Loan Type</h1>
 
-<%= render 'form', loan_type: @loan_type %>
+<div class="row">
 
-<%= link_to 'Show', @loan_type %> |
-<%= link_to 'Back', loan_types_path %>
+	<div class="col-md-6 col-centered">
+
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-custom">
+				<div class="panel-title">
+					<span class="h4" >Editing Loan Type</span>
+
+					<div class="pull-right">
+						<%= link_to 'Show', @loan_type, class: "btn btn-sm btn-info" %> |
+						<%= link_to 'Back', loan_types_path, class: "btn btn-sm btn-info" %>
+					</div>
+				</div>
+
+				<br/>
+				
+			</div>
+
+				<div class="row">
+					<div class="col-md-10 col-centered">
+						<%= render 'form', loan_type: @loan_type %>
+					</div>
+				</div>
+		</div>
+		<!-- End Panel Heading -->
+		
+
+	</div>
+
+</div>

@@ -1,58 +1,94 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+    <div class="col-md-6 col-centered">
+        <div class="panel panel-default">
 
-<p>
-  <strong>Name:</strong>
-  <%= @loan_type.name %>
-</p>
+            <div class="panel-heading panel-heading-custom">
+              <div class="panel-title">
+                <td>Name:</td>
+                <%= @loan_type.name %>
 
-<p>
-  <strong>Code:</strong>
-  <%= @loan_type.code %>
-</p>
+                <div class="pull-right">
+                    <%= link_to 'Edit', edit_loan_type_path(@loan_type), class:"btn btn-sm btn-info" %> |
+                    <%= link_to 'Back', loan_types_path, class:"btn btn-sm btn-info" %>
+                </div>
+              </div>
+              <br/>
+            </div>
 
-<p>
-  <strong>Interest mode:</strong>
-  <%= @loan_type.interest_mode %>
-</p>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-10 col-centered">
+                      <table class="table">
+                              <tr>
+                                <td><strong>Code:</strong></td>
+                                <td><%= @loan_type.code %></td>
+                              </tr>
 
-<p>
-  <strong>Rate:</strong>
-  <%= number_to_percentage(@loan_type.rate * 100, precision: 0) %>
-</p>
+                              <tr>
+                                <td><strong>Interest mode:</strong></td>
+                                <td><%= @loan_type.interest_mode %></td>
+                              </tr>
 
-<p>
-  <strong>Duration:</strong>
-  <%= @loan_type.duration %> months
-</p>
+                              <tr>
+                                <td><strong>Rate:</strong></td>
+                                <td><%= number_to_percentage(@loan_type.rate * 100, precision: 0) %></td>
+                              </tr>
 
-
-<p>
-  <strong>Minimum:</strong>
-  <%= number_to_currency(@loan_type.minimum, unit: "Php ") %>
-</p>
-
-<p>
-  <strong>Maximum:</strong>
-  <%= number_to_currency(@loan_type.maximum, unit: "Php ") %>
-</p>
-
-
-
-<p>
-  <strong>Repayment method:</strong>
-  <%= @loan_type.repayment_method %>
-</p>
+                              <tr>
+                                <td><strong>Duration:</strong></td>
+                                <td><%= @loan_type.duration %> months</td>
+                              </tr>
 
 
-<p>
-  <strong>Loan Docs:</strong>
-</p>
-<ul>
-  <% @loan_type.loan_docs.each do |loan_doc| %>
-      <li><%= loan_doc.name %></li>
-  <% end %>
-</ul>
+                              <tr>
+                                <td><strong>Minimum:</strong></td>
+                                <td><%= number_to_currency(@loan_type.minimum, unit: "Php ") %></td>
+                              </tr>
+
+                              <tr>
+                                <td><strong>Maximum:</strong></td>
+                                <td><%= number_to_currency(@loan_type.maximum, unit: "Php ") %></td>
+                              </tr>
 
 
-<%= link_to 'Edit', edit_loan_type_path(@loan_type) %> |
-<%= link_to 'Back', loan_types_path %>
+
+                              <tr>
+                                <td><strong>Repayment method:</strong></td>
+                                <td><%= @loan_type.repayment_method %></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                    <strong>Required documents:</strong>
+                                </td>
+                                <td>
+
+                                    <ul class="list-unstyled">
+                                        <% @loan_type.loan_docs.each do |loan_doc| %>
+                                            <li><%= loan_doc.name %></li>
+                                        <% end %>
+                                    </ul>
+
+                                </td>
+                              </tr>
+
+
+                              
+                              
+                        </table>
+                        <!-- Table End -->
+
+
+                        
+
+                    </div>
+                    <!-- Panel End -->
+              </div>
+              <!-- Row End -->
+          </div>
+          <!-- Panel Body End -->
+          
+
+        </div>
+        <!-- Panel End -->
+    </div>
+</div>

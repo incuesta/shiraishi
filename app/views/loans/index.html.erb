@@ -1,7 +1,17 @@
 <!-- Panel Table -->
 <div class="panel panel-default">
 
-  <div class="panel-heading">Loans</div>
+  <div class="panel-heading">
+      <div class="pull-left" style="font-size: 2em;">Loans</div>
+
+
+      <div class="pull-right">
+          <%= link_to 'New Loan', new_loan_path, class: 'btn btn-sm btn-info' %>
+      </div>
+
+      <br/>
+      <br/>
+  </div>
 
   <!-- <div class="panel-body">
       <p>Some things to say</p>
@@ -43,6 +53,3 @@
 </div>
 <!-- Table Panel End -->
 
-<br>
-
-<%= link_to 'New Loan', new_loan_path %>

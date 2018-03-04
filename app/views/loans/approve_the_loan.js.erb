@@ -1,1 +1,5 @@
-$('div.loan_status').replaceWith("<%= j render partial: 'loan_status' %>")
+$('div.loan_status').replaceWith("<%= j render partial: 'loan_status', notice: 'Loan was approved' %>");
+
+
+// Make the link inactive if already approved
+$('#loan_approval_link').addClass("not-active"); 

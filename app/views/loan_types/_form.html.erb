@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: loan_type, local: true) do |form| %>
   <% if loan_type.errors.any? %>
     <div id="error_explanation">
@@ -11,50 +13,50 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :loan_type_name %>
+    <%= form.text_field :name, id: :loan_type_name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :code %>
-    <%= form.text_field :code, id: :loan_type_code %>
+    <%= form.text_field :code, id: :loan_type_code, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :interest_mode %>
-    <%= form.text_field :interest_mode, id: :loan_type_interest_mode %>
+    <%= form.text_field :interest_mode, id: :loan_type_interest_mode, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :rate %>
-    <%= form.text_field :rate, id: :loan_type_rate %>
+    <%= form.text_field :rate, id: :loan_type_rate, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :duration, "Duration in months" %>
-    <%= form.text_field :duration, id: :loan_type_duration %>
+    <%= form.text_field :duration, id: :loan_type_duration, class: 'form-control' %>
 
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :minimum %>
-    <%= form.text_field :minimum, id: :loan_type_minimum %>
+    <%= form.text_field :minimum, id: :loan_type_minimum, class: 'form-control' %>
   </div>
 
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :maximum %>
-    <%= form.text_field :maximum, id: :loan_type_maximum %>
+    <%= form.text_field :maximum, id: :loan_type_maximum, class: 'form-control' %>
   </div>
 
 
   <div class="field">
     <%= form.label :repayment_method %>
-    <%= form.text_field :repayment_method, id: :loan_type_repayment_method %>
+    <%= form.text_field :repayment_method, id: :loan_type_repayment_method, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :loan_doc_ids %>
     <%= form.collection_check_boxes :loan_doc_ids, @loan_docs, :id, :name do | cb | %>
         <% cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
@@ -62,6 +64,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-lg btn-success" %>
   </div>
 <% end %>
+
