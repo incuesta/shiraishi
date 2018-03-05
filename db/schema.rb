@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305040438) do
+ActiveRecord::Schema.define(version: 20180305124709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,9 @@ ActiveRecord::Schema.define(version: 20180305040438) do
   create_table "loan_installment_containers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "fully_paid", default: false
+    t.bigint "loan_id"
+    t.index ["loan_id"], name: "index_loan_installment_containers_on_loan_id"
   end
 
   create_table "loan_installments", force: :cascade do |t|
@@ -334,6 +337,7 @@ ActiveRecord::Schema.define(version: 20180305040438) do
   add_foreign_key "accountant_profiles", "accountants"
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "golden_keys", "clients"
+  add_foreign_key "loan_installment_containers", "loans"
   add_foreign_key "loan_installments", "loan_installment_containers"
   add_foreign_key "loan_manager_profiles", "loan_managers"
   add_foreign_key "loan_type_loan_docs", "loan_docs"

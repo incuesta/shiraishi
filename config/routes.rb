@@ -1,13 +1,23 @@
 Rails.application.routes.draw do
 
 
+    # compute the installments to be made
+    match 'loans/compute_installments/:id', to: 'loans#compute_installments', via: :post
+
+
+
+
 	  # Check when the Client Submitted a document
     match 'loans/update_submitted_docs/:id', to: 'loans#update_submitted_docs', via: :patch
+
+
 
 
     # Reject or accept a Loan
     match 'loans/approve_the_loan/:id', to: 'loans#approve_the_loan', via: :patch
     match 'loans/reject_the_loan/:id', to: 'loans#reject_the_loan', via: :patch
+
+
 
 
     # ClientDoc

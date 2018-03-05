@@ -8,6 +8,10 @@ class Loan < ApplicationRecord
 	has_many :loan_docs, through: :submitted_docs
 
 
+	# In association to LoanInstallmentContainer
+	has_one :loan_installment_container, dependent: :destroy
+
+
 	# Loan Status Constant
 	def self.statuses
 		{draft: 'draft', rejected: 'rejected', approved: 'approved', disbursed: 'disbursed'}

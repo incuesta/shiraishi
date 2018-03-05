@@ -76,25 +76,16 @@ class LoansController < ApplicationController
 
 
 
-  def compute_installment
+  def compute_installments
         set_loan
 
-        from_date = Time.zone.now
-        end_date = from_date + 1.month
+        @loan_installment_container = @loan.create_loan_installment_container!
 
-        principal_amount = @loan.principal_amount / 12
-        interest_amount = principal_amount * @loan.loan_type.rate
-        monthly_emi = principal_amount + interest_amount
+        @loan_installments = @loan_installment_container.calculate
 
-        12.times do | i |
-          from_date += 1.month unless i == 0
-          end_date += 1.month unless i == 0
-
-
-          LoanInstallment.create(installment_no: i + 1, client: @loan.client.full_name, from: from_date, to: end_date, principal_amount: principal_amount, interest_amount: interest_amount, emi_installment: monthly_emi)
+        respond_to do | format | 
+            format.html { render 'loan_installments/index' }
         end
-
-        redirect_to loan_installments_path
   end
 
 
