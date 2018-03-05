@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304063436) do
+ActiveRecord::Schema.define(version: 20180305040438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -320,6 +320,17 @@ ActiveRecord::Schema.define(version: 20180304063436) do
     t.index ["string_id"], name: "index_loans_on_string_id", unique: true
   end
 
+  create_table "submitted_docs", force: :cascade do |t|
+    t.bigint "loan_id"
+    t.string "name"
+    t.boolean "submitted", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "loan_doc_id"
+    t.index ["loan_doc_id"], name: "index_submitted_docs_on_loan_doc_id"
+    t.index ["loan_id"], name: "index_submitted_docs_on_loan_id"
+  end
+
   add_foreign_key "accountant_profiles", "accountants"
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "golden_keys", "clients"
@@ -329,4 +340,6 @@ ActiveRecord::Schema.define(version: 20180304063436) do
   add_foreign_key "loan_type_loan_docs", "loan_types"
   add_foreign_key "loans", "clients"
   add_foreign_key "loans", "loan_types"
+  add_foreign_key "submitted_docs", "loan_docs"
+  add_foreign_key "submitted_docs", "loans"
 end

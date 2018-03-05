@@ -16,10 +16,10 @@
                   
                   <div class="pull-right" id="the_buttons">
 
-                      <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-success") if @loan.status == Loan.statuses[:approved] %> 
+                      <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] %> 
                       
 
-                      <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved]}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] %> 
+                      <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved]}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] || @loan.status == Loan.statuses[:draft] %> 
 
                       |
 
@@ -175,9 +175,9 @@
                               <!-- Loan Status Image -->
                               <div class="col-md-12 loan_status_image">
                                   <div class="loan_status">
-                                    <%= image_tag 'approved_check.png', width: "150" if @loan.status == Loan.statuses[:approved] %>
-                                    <%= image_tag 'rejected.png', width: "150" if @loan.status == Loan.statuses[:rejected] %>
-                                    <%= image_tag 'under_review.png', width: "150" if @loan.status == Loan.statuses[:draft] %>
+                                    <%= image_tag 'approved_check.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:approved] %>
+                                    <%= image_tag 'rejected.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:rejected] %>
+                                    <%= image_tag 'under_review.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:draft] %>
                                   </div>
                               </div>
                               <!-- Loan Status Image End -->
@@ -190,16 +190,33 @@
                   <!-- Row For Right End -->
 
 
-                  <h4>Required Documents</h4>
-                  <ul>
+                  <hr/>
 
-                    <% @loan.loan_type.loan_docs.each do |loan_doc| %>
-                        <li><%= loan_doc.name %></li>
-                    <% end %>
-                  </ul>
+                  <div class="submitted_document_form">
+                      <%= form_with url: {controller: 'loans', action: 'update_submitted_docs'}, scope: 'loan', local: true, method: :patch do | form | %>
+
+                            <div class="field form-group">
+
+                              <%= form.label 'Required Documents:' %>
+
+                              <%= form.collection_check_boxes :loan_doc_ids, @loan.loan_type.loan_docs, :id, :name do | cb | %>
+                                  
+                                  <% cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
+                                  
+                              <% end %>
+
+                            </div>
 
 
-                  <%= link_to "Compute Installment", "/loans/compute_installment/#{@loan.id}", class: "btn btn-lg btn-success", method: :post if @loan.status == "disbursed" %>
+
+                            <div class="actions">
+                              <%= form.submit 'Update submitted documents', class:"btn btn-md btn-success" %>
+                            </div>
+
+                      <% end %>
+                  </div>
+
+
 
                 </div>
                 <!-- div col md 6 end -->

@@ -48,9 +48,10 @@ class LoansController < ApplicationController
   # PATCH/PUT /loans/1.json
   def update
     respond_to do |format|
+      binding.pry
       if @loan.update(loan_params)
 
-        format.html { redirect_to @loan, notice: 'Loan evaluated.' }
+        format.html { redirect_to @loan, notice: 'Loan details, updated' }
         format.json { render :show, status: :ok, location: @loan }
       else
         format.html { render :edit }
@@ -58,7 +59,6 @@ class LoansController < ApplicationController
       end
     end
   end
-
 
 
 
@@ -71,6 +71,9 @@ class LoansController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
 
 
   def compute_installment
@@ -97,7 +100,7 @@ class LoansController < ApplicationController
 
 
   # Sets the status of the Loan to "approved"
-  # PATCH /loans/1
+  # PATCH /loans/approve_the_loan/1
   def approve_the_loan
       set_loan
       respond_to do | format |
@@ -111,7 +114,7 @@ class LoansController < ApplicationController
 
 
   # Sets the status of the Loan to "rejected"
-  # PATCH /loans/1
+  # PATCH /loans/reject_the_loan/1
   def reject_the_loan
       set_loan
       respond_to do | format |
@@ -120,6 +123,22 @@ class LoansController < ApplicationController
         end
       end
   end
+
+
+
+# Check if the Client have submitted the Documents
+# PATCH /loans/update_submitted_docs/1
+  def update_submitted_docs
+      set_loan
+      respond_to do | format | 
+          if @loan.update(loan_params_origin)
+            format.js { render "loans/update_submitted_docs.js.erb" }
+            format.html { redirect_to loans_path, notice: "Yesshshshshs" }
+          end
+      end
+  end
+
+
 
 
 
@@ -132,7 +151,7 @@ class LoansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params_origin
-      params.require(:loan).permit(:string_id, :loan_type_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :net_loan, :net_interest, :notes, :fully_paid)
+      params.require(:loan).permit(:string_id, :loan_type_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :net_loan, :net_interest, :notes, :fully_paid, loan_doc_ids: [])
     end
 
 

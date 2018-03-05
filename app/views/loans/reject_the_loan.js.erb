@@ -1,5 +1,5 @@
 // Show the rejected.png
-$('div.loan_status').children().replaceWith("<%= j image_tag 'rejected.png', width: "150" %>");
+$('div.loan_status').children().replaceWith("<%= j image_tag 'rejected.png', width: '150', class: 'img-responsive' %>");
 
 // Show the approve button
 $('#the_buttons').children().first().replaceWith("<%= j render partial: 'btn_approve' %>");
