@@ -1,5 +1,7 @@
-$('div.loan_status').replaceWith("<%= j render partial: 'loan_status', notice: 'Loan was approved' %>");
+
+// Show the approved_check.png image
+$('div.loan_status').children().replaceWith("<%= j image_tag 'approved_check.png', width: "150" %>");
 
 
-// Make the link inactive if already approved
-$('#loan_approval_link').addClass("not-active"); 
+// Show the reject button
+$('#the_buttons').children().first().replaceWith("<%= j render partial: 'btn_reject' %>");

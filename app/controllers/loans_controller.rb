@@ -110,6 +110,20 @@ class LoansController < ApplicationController
 
 
 
+  # Sets the status of the Loan to "rejected"
+  # PATCH /loans/1
+  def reject_the_loan
+      set_loan
+      respond_to do | format |
+        if @loan.update(loan_params_origin)
+          format.js { render "loans/reject_the_loan.js.erb" }
+        end
+      end
+  end
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan
@@ -126,13 +140,11 @@ class LoansController < ApplicationController
 
       params_hash = loan_params_origin
 
-
-      interest = 10
-      principal = params_hash[:principal_amount]
-
       
+      principal = params_hash[:principal_amount]
+      interest = LoanType.find(params_hash[:loan_type_id]).rate * principal.to_d
 
-      params_hash[:string_id] = "LOAN-#{ '%03d' % [(current_client.id if current_client) || @loan.client.id]}#{Time.zone.now.to_i}"
+      params_hash[:string_id] = Loan.identification_string(current_client) unless @loan
       params_hash[:application_date] = Time.zone.now
       params_hash[:from] = Time.zone.now
       params_hash[:to] = Time.zone.now.next_year

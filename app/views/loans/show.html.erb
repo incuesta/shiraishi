@@ -8,20 +8,23 @@
 <div class="row">
     <div class="col-md-11 col-centered">
       
-      <div class="panel panel-success">
+      <div class="panel panel-default">
 
-          <div class="panel-heading">
+          <div class="panel-heading panel-heading-custom">
               <div class="panel-title">
                   <strong><%= "#{client.user_name.capitalize}\'s Loan  Request" %></strong>
                   
-                  <div class="pull-right">
+                  <div class="pull-right" id="the_buttons">
 
-                    <%= link_to "Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved]}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success #{'not-active' if @loan.status == Loan.statuses[:approved]}", data: {confirm: 'Approve the Loan?'} %> 
+                      <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-success") if @loan.status == Loan.statuses[:approved] %> 
+                      
 
-                    |
+                      <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved]}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] %> 
 
-                    <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
-                    <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
+                      |
+
+                      <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
+                      <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
 
                   </div>
               </div>
@@ -117,10 +120,6 @@
                                   <td><%= @loan.application_date %></td>
                                 </tr>
 
-                                <tr>
-                                  <td><strong>Loan Status:</strong></td>
-                                  <td><%= @loan.status %></td>
-                                </tr>
 
                                 <tr>
                                   <td><strong>Principal amount:</strong></td>
@@ -177,12 +176,11 @@
                               <div class="col-md-12 loan_status_image">
                                   <div class="loan_status">
                                     <%= image_tag 'approved_check.png', width: "150" if @loan.status == Loan.statuses[:approved] %>
+                                    <%= image_tag 'rejected.png', width: "150" if @loan.status == Loan.statuses[:rejected] %>
                                     <%= image_tag 'under_review.png', width: "150" if @loan.status == Loan.statuses[:draft] %>
                                   </div>
-
                               </div>
                               <!-- Loan Status Image End -->
-
 
                             </div>
                         </div>
@@ -213,5 +211,3 @@
     <!-- End of col-md-offset-2 -->
 </div>
 <!-- Div Row End -->
-
-

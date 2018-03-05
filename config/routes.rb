@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 	  
     match 'loans/approve_the_loan/:id', to: 'loans#approve_the_loan', via: :patch
+    match 'loans/reject_the_loan/:id', to: 'loans#reject_the_loan', via: :patch
 
 
     # ClientDoc
