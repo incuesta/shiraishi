@@ -192,8 +192,9 @@
 
                   <hr/>
 
-                  <div class="submitted_document_form">
-                      <%= form_with url: {controller: 'loans', action: 'update_submitted_docs'}, scope: 'loan', local: true, method: :patch do | form | %>
+                  <div id="submitted_document_form">
+                      <div id="first_child" style="line-height: 50px;"></div>
+                      <%= form_with url: {controller: 'loans', action: 'update_submitted_docs'}, scope: 'loan', method: :patch do | form | %>
 
                             <div class="field form-group">
 
@@ -201,7 +202,7 @@
 
                               <%= form.collection_check_boxes :loan_doc_ids, @loan.loan_type.loan_docs, :id, :name do | cb | %>
                                   
-                                  <% cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
+                                  <%= cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
                                   
                               <% end %>
 
@@ -214,6 +215,8 @@
                             </div>
 
                       <% end %>
+
+
                   </div>
 
 

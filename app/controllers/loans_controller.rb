@@ -133,7 +133,7 @@ class LoansController < ApplicationController
       respond_to do | format | 
           if @loan.update(loan_params_origin)
             format.js { render "loans/update_submitted_docs.js.erb" }
-            format.html { redirect_to loans_path, notice: "Yesshshshshs" }
+            format.html { redirect_to loans_path, notice: "Updated" }
           end
       end
   end
@@ -160,7 +160,7 @@ class LoansController < ApplicationController
       params_hash = loan_params_origin
 
       
-      principal = params_hash[:principal_amount]
+      principal = params_hash[:principal_amount]      
       interest = LoanType.find(params_hash[:loan_type_id]).rate * principal.to_d
 
       params_hash[:string_id] = Loan.identification_string(current_client) unless @loan
