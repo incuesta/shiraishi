@@ -1,6 +1,10 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
 
+
+
+
+
   # GET /loans
   # GET /loans.json
   def index
@@ -12,6 +16,7 @@ class LoansController < ApplicationController
   def show
     @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
   end
+
 
 
 
@@ -29,7 +34,7 @@ class LoansController < ApplicationController
 
     respond_to do |format|
       if @loan.save
-        format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
+        format.html { redirect_to @loan, notice: 'Loan request was successfully submitted.' }
         format.json { render :show, status: :created, location: @loan }
       else
         format.html { render :new }
@@ -37,6 +42,8 @@ class LoansController < ApplicationController
       end
     end
   end
+
+
 
 
 
@@ -59,6 +66,8 @@ class LoansController < ApplicationController
       end
     end
   end
+
+
 
 
 
@@ -93,24 +102,15 @@ class LoansController < ApplicationController
 
 
 
+
+
   # Sets the status of the Loan to "approved"
   # PATCH /loans/approve_the_loan/1
   def approve_the_loan
       set_loan
 
-
-      principal_amt = @loan.principal_amount
-      minimum = @loan.loan_type.minimum
-      maximum = @loan.loan_type.maximum
-
-      required_documents = @loan.loan_type.loan_docs.sort
-      submitted_documents = @loan.loan_docs.sort unless @loan.loan_docs.nil?
-
-
       # Evaluate validity of request
-      request_valid = (principal_amt >= minimum && principal_amt <= maximum) && required_documents == submitted_documents
-
-
+      request_valid = @loan.evaluate_request
 
       respond_to do | format |
         if request_valid && @loan.update(loan_params_origin)
@@ -120,9 +120,6 @@ class LoansController < ApplicationController
         end
       end
   end
-
-
-
 
   # Sets the status of the Loan to "rejected"
   # PATCH /loans/reject_the_loan/1
@@ -134,6 +131,8 @@ class LoansController < ApplicationController
         end
       end
   end
+
+
 
 
 

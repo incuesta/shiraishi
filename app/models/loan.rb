@@ -23,4 +23,19 @@ class Loan < ApplicationRecord
 	end
 
 	
+
+	# Returns true if the Loan requisites are met
+	def evaluate_request
+		principal_amt = principal_amount
+	    minimum = loan_type.minimum
+	    maximum = loan_type.maximum
+
+	    required_documents = loan_type.loan_docs.sort
+	    submitted_documents = loan_docs.sort unless loan_docs.nil?
+
+
+	    (principal_amt >= minimum && principal_amt <= maximum) && required_documents == submitted_documents
+	end
+
+	
 end
