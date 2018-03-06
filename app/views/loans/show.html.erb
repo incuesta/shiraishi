@@ -17,9 +17,6 @@
                   <div class="pull-right" id="the_buttons">
 
 
-                      <%= link_to("Compute", {controller: 'loans', action: 'compute_installments'}, method: :post, id: 'installment_computation_link', class: "btn btn-sm btn-info") %> 
-
-                      |
 
                       <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] %> 
                       
@@ -197,7 +194,9 @@
 
                   <hr/>
 
-                  <div id="submitted_document_form">
+
+
+                  <div id="submitted_document_form col-md-12">
                       <div id="first_child" style="line-height: 50px;"></div>
                       <%= form_with url: {controller: 'loans', action: 'update_submitted_docs'}, scope: 'loan', method: :patch do | form | %>
 
@@ -219,16 +218,44 @@
                               <%= form.submit 'Update submitted documents', class:"btn btn-md btn-success" %>
                             </div>
 
+                            <br/>
+                            <hr/>
+
+                            <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-info") %> 
+
                       <% end %>
 
 
-                  </div>
-
-
+                    </div>
+                    <!-- submitted document form end -->
 
                 </div>
-                <!-- div col md 6 end -->
-              </div>
+                <!-- div col md 8 end -->
+
+            </div>
+            <!-- div row end -->
+
+
+            <!-- To display Loan Installments here -->
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+
+                                <div id="loan_installments">
+
+                                    <%= render partial: 'loan_installments/installments' unless @loan_installments.nil? %>
+                                </div>
+                                <!-- Loan Installments End -->
+
+                            </div>
+                        </div>
+                        <!-- row End -->
+                    </div>
+                    <!-- col-md-12 End -->
+
+            <!-- To display Loan Installments End -->
+
+
       </div>
       <!-- Panel Default End -->
 

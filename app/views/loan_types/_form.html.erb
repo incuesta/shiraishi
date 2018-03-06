@@ -40,13 +40,13 @@
   </div>
 
   <div class="field form-group">
-    <%= form.label :minimum %>
+    <%= form.label :minimum, 'Minimum (Php)' %>
     <%= form.text_field :minimum, id: :loan_type_minimum, class: 'form-control' %>
   </div>
 
 
   <div class="field form-group">
-    <%= form.label :maximum %>
+    <%= form.label :maximum, 'Maximum (Php)' %>
     <%= form.text_field :maximum, id: :loan_type_maximum, class: 'form-control' %>
   </div>
 
@@ -57,7 +57,7 @@
   </div>
 
   <div class="field form-group">
-    <%= form.label :loan_doc_ids %>
+    <%= form.label :loan_doc_ids , 'Required documents' %>
     <%= form.collection_check_boxes :loan_doc_ids, @loan_docs, :id, :name do | cb | %>
         <% cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
     <% end %>

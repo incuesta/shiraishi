@@ -1,0 +1,60 @@
+			<!-- This is a partial listing all LoanInstallments in Loans -->
+<div class="row"
+		<div class="col-md-12">
+				<!-- Panel Table -->
+				<div class="panel panel-default">
+
+						  <div class="panel-heading panel-heading-custom">
+						      <div class="pull-left h4">Calculated Installments</div>
+
+
+						      <div class="pull-right">
+						          <!-- Put buttons here -->
+						      </div>
+
+						      <br/>
+						      <br/>
+						  </div>
+
+
+							<table class="table table-striped">
+							  <thead>
+							    <tr>
+							      <th>Month number</th>
+							      <th>Client</th>
+							      <th>From</th>
+							      <th>To</th>
+							      <th>Principal amount</th>
+							      <th>Interest amount</th>
+							      <th>Emi installment</th>
+							      <th>State</th>
+							      <th colspan="3"></th>
+							    </tr>
+							  </thead>
+
+							  <tbody>
+							    <% @loan_installments.order("installment_no ASC").each do |loan_installment| %>
+							      <tr>
+							        <td><%= loan_installment.installment_no %></td>
+							        <td><%= loan_installment.client %></td>
+							        <td><%= loan_installment.from.to_date %></td>
+							        <td><%= loan_installment.to.to_date %></td>
+							        <td><%= number_to_currency(loan_installment.principal_amount, unit: "Php ") %></td>
+							        <td><%= number_to_currency(loan_installment.interest_amount, unit: "Php ") %></td>
+							        <td><%= number_to_currency(loan_installment.emi_installment, unit: "Php ") %></td>
+							        <td><%= loan_installment.state %></td>
+							        <td><%= link_to 'Show', loan_installment %></td>
+							        <td><%= link_to 'Edit', edit_loan_installment_path(loan_installment) %></td>
+							        <td><%= link_to 'Destroy', loan_installment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+							      </tr>
+							    <% end %>
+							  </tbody>
+							</table>
+
+				</div>
+				<!-- Table Panel End -->
+
+		</div>
+		<!-- col md 12 end -->
+</div>
+<!-- row End -->

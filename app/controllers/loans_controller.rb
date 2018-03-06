@@ -10,6 +10,7 @@ class LoansController < ApplicationController
   # GET /loans/1
   # GET /loans/1.json
   def show
+    @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
   end
 
 
@@ -48,7 +49,6 @@ class LoansController < ApplicationController
   # PATCH/PUT /loans/1.json
   def update
     respond_to do |format|
-      binding.pry
       if @loan.update(loan_params)
 
         format.html { redirect_to @loan, notice: 'Loan details, updated' }
@@ -81,10 +81,13 @@ class LoansController < ApplicationController
 
         @loan_installment_container = @loan.create_loan_installment_container!
 
+
+        # Generate some Loan Installments
         @loan_installments = @loan_installment_container.calculate
 
         respond_to do | format | 
             format.html { render 'loan_installments/index' }
+            format.js { render 'loan_installments/computed_installments.js.erb' }
         end
   end
 
