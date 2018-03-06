@@ -97,9 +97,26 @@ class LoansController < ApplicationController
   # PATCH /loans/approve_the_loan/1
   def approve_the_loan
       set_loan
+
+
+      principal_amt = @loan.principal_amount
+      minimum = @loan.loan_type.minimum
+      maximum = @loan.loan_type.maximum
+
+      required_documents = @loan.loan_type.loan_docs.sort
+      submitted_documents = @loan.loan_docs.sort unless @loan.loan_docs.nil?
+
+
+      # Evaluate validity of request
+      request_valid = (principal_amt >= minimum && principal_amt <= maximum) && required_documents == submitted_documents
+
+
+
       respond_to do | format |
-        if @loan.update(loan_params_origin)
-          format.js { render "loans/approve_the_loan.js.erb" }
+        if request_valid && @loan.update(loan_params_origin)
+            format.js { render "loans/approve_the_loan.js.erb" }
+        else
+            format.js { render "loans/invalid_loan_request.js.erb" }
         end
       end
   end

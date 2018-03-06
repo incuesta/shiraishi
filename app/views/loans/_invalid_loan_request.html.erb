@@ -1,0 +1,21 @@
+<div class='yeah_baby'>
+	<%= image_tag 'checklist_incomplete.png', width: '150', class: 'img-responsive' %>
+
+	<h5><%= "Loan type's conditions aren't fully met:" %></h5>
+	<ul>
+			<li>Maximum: <%= number_to_currency(@loan.loan_type.maximum, unit: 'Php ') %></li>
+			<li>Minimum: <%= number_to_currency(@loan.loan_type.minimum, unit: 'Php ') %></li>
+			<li>Required:
+				<ul>
+					<% @loan.loan_type.loan_docs.each do | loan_type_docs | %>
+						<li><%= loan_type_docs.name %></li>
+					<% end %>
+				</ul>
+
+			</li>
+	</ul>
+</div>
+
+<script>
+		$('.yeah_baby').hide().fadeIn(1000);
+</script>
