@@ -35,6 +35,20 @@ class Loan < ApplicationRecord
 	scope :undisbursed_loans, lambda { where ["status='draft' or status='approved' or status='rejected'"] }
 
 
+	def self.search(param)
+		the_day = Date.parse(param) rescue nil
+
+		if the_day
+			start_day = the_day.beginning_of_day
+			end_day = the_day.end_of_day
+		end
+
+		date_query = ("or application_date between :start and :end" if the_day) || ""
+		date_values = {start: start_day, end: end_day} if the_day || {}
+
+		list_with_loan_type_and_client.where("status like :loan_status or notes like :loan_notes or loan_types.name like :type_name #{date_query}", {loan_status: "#{param}%", loan_notes: "#{param}%", type_name: "#{param}%"}.merge(date_values) )
+	end
+
 
 
 
