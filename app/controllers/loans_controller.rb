@@ -2,13 +2,55 @@ class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
 
 
+  # Param Getters for Sorting
+  helper_method :sort_order_param, :sort_column_param
+
+
+
 
 
 
   # GET /loans
   # GET /loans.json
   def index
-    @loans = Loan.all
+    @loans = Loan.list_loans(params[:status]).list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}")
+  end
+
+  # The Following are index Variants
+  # So that we could restrict each with Pundit
+  # GET /loans/requested_loans
+  def requested_loans
+    @loans = Loan.requested_loans
+
+    render 'index'
+  end
+
+  # GET /loans/approved_loans
+  def approved_loans
+    @loans = Loan.approved_loans
+
+    render 'index'
+  end
+
+  # GET /loans/rejected_loans
+  def rejected_loans
+    @loans = Loan.rejected_loans
+
+    render 'index'
+  end
+
+  # GET /loans/disbursed_loans
+  def disbursed_loans
+    @loans = Loan.disbursed_loans
+
+    render 'index'
+  end
+
+  # GET /loans/undisbursed_loans
+  def undisbursed_loans
+    @loans = Loan.undisbursed_loans
+
+    render 'index'
   end
 
   # GET /loans/1
@@ -16,6 +58,9 @@ class LoansController < ApplicationController
   def show
     @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
   end
+
+
+
 
 
 
@@ -181,4 +226,16 @@ class LoansController < ApplicationController
       params_hash[:net_interest] = interest
       params_hash
     end
+
+
+
+    # Url params for Sorting
+    def sort_column_param
+      params[:sort_column] || 'application_date'
+    end
+
+    def sort_order_param
+      params[:sort_order] || 'desc'
+    end
+    
 end

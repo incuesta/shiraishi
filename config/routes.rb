@@ -1,21 +1,10 @@
 Rails.application.routes.draw do
 
 
-    # compute the installments to be made
-    match 'loans/compute_installments/:id', to: 'loans#compute_installments', via: :post
 
 
 
-
-	  # Check when the Client Submitted a document
-    match 'loans/update_submitted_docs/:id', to: 'loans#update_submitted_docs', via: :patch
-
-
-
-
-    # Reject or accept a Loan
-    match 'loans/approve_the_loan/:id', to: 'loans#approve_the_loan', via: :patch
-    match 'loans/reject_the_loan/:id', to: 'loans#reject_the_loan', via: :patch
+    
 
 
 
@@ -43,8 +32,52 @@ Rails.application.routes.draw do
 
 
 
+# # compute the installments to be made
+#     match 'loans/compute_installments/:id', to: 'loans#compute_installments', via: :post
+
+
+
+
+#     # Check when the Client Submitted a document
+#     match 'loans/update_submitted_docs/:id', to: 'loans#update_submitted_docs', via: :patch
+
+
+
+
+#     # Reject or accept a Loan
+#     match 'loans/approve_the_loan/:id', to: 'loans#approve_the_loan', via: :patch
+#     match 'loans/reject_the_loan/:id', to: 'loans#reject_the_loan', via: :patch
+
+
+
+
     # Loan Model
-    resources :loans
+    resources :loans do
+        collection do
+          # return Loans based on status
+          get :requested_loans
+          get :approved_loans
+          get :rejected_loans
+          get :disbursed_loans
+          get :undisbursed_loans
+        end
+
+
+
+        member do 
+          # compute the installments to be made
+          post :compute_installments
+
+
+          # Check when the Client Submitted a document
+          patch :update_submitted_docs
+
+
+          # Reject or accept a Loan
+          patch :approve_the_loan
+          patch :reject_the_loan
+        end
+    end
 
 
 
