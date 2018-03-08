@@ -11,13 +11,15 @@
               <!-- This is for the Simple Search -->
               <%= form_with url: loans_path, local: true, method: :get, scope: 'loans', class: 'form-inline' do | form | %>
                     <div class="form-group">
-                      <%= form.text_field :search, value: search_param, class:'form-control' %>
+                      <%= form.text_field :search, class:'form-control' %>
                     </div>
                   <%= form.submit 'Search', name: nil, class: 'btn btn-sm btn-info' %>
               <% end %>
               <!-- Simple Search End -->
 
-              <%= link_to 'Advance search', '#' %>
+
+              <!-- Link to Advanced Search -->
+              <%= link_to 'Advance search', new_loan_search_path %>
 
 
           </div>

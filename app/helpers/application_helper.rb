@@ -22,6 +22,6 @@ module ApplicationHelper
     	
 
     	# Return a Link
-		link_to "#{title} <span class='#{icon}'></span>".html_safe, {sort_column: column, sort_order: direction}.merge(additional_url_params)
+		link_to "#{title} <span class='#{icon}'></span>".html_safe, {controller: :loans, action: :index, sort_column: column, sort_order: direction}.merge(additional_url_params)
 	end
 end

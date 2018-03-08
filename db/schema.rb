@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305124709) do
+ActiveRecord::Schema.define(version: 20180308032634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -276,6 +276,21 @@ ActiveRecord::Schema.define(version: 20180305124709) do
     t.string "middle_name"
     t.index ["email"], name: "index_loan_managers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_loan_managers_on_reset_password_token", unique: true
+  end
+
+  create_table "loan_searches", force: :cascade do |t|
+    t.string "string_id"
+    t.string "client_last_name"
+    t.string "client_first_name"
+    t.string "client_middle_name"
+    t.bigint "loan_type_id"
+    t.datetime "application_date"
+    t.datetime "approved_date"
+    t.datetime "disbursement_date"
+    t.string "loan_status"
+    t.boolean "fully_paid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "loan_type_loan_docs", force: :cascade do |t|

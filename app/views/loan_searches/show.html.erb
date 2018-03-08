@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>String:</strong>
+  <%= @loan_search.string_id %>
+</p>
+
+<p>
+  <strong>Client last name:</strong>
+  <%= @loan_search.client_last_name %>
+</p>
+
+<p>
+  <strong>Client first name:</strong>
+  <%= @loan_search.client_first_name %>
+</p>
+
+<p>
+  <strong>Client middle name:</strong>
+  <%= @loan_search.client_middle_name %>
+</p>
+
+<p>
+  <strong>Loan type:</strong>
+  <%= @loan_search.loan_type_id %>
+</p>
+
+<p>
+  <strong>Application date:</strong>
+  <%= @loan_search.application_date %>
+</p>
+
+<p>
+  <strong>Approved date:</strong>
+  <%= @loan_search.approved_date %>
+</p>
+
+<p>
+  <strong>Disbursement date:</strong>
+  <%= @loan_search.disbursement_date %>
+</p>
+
+<p>
+  <strong>Loan status:</strong>
+  <%= @loan_search.loan_status %>
+</p>
+
+<p>
+  <strong>Fully paid:</strong>
+  <%= @loan_search.fully_paid %>
+</p>
+
+<%= link_to 'Edit', edit_loan_search_path(@loan_search) %> |
+<%= link_to 'Back', loan_searches_path %>

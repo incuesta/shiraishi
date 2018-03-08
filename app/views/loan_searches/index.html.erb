@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Loan Searches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>String</th>
+      <th>Client last name</th>
+      <th>Client first name</th>
+      <th>Client middle name</th>
+      <th>Loan type</th>
+      <th>Application date</th>
+      <th>Approved date</th>
+      <th>Disbursement date</th>
+      <th>Loan status</th>
+      <th>Fully paid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan_searches.each do |loan_search| %>
+      <tr>
+        <td><%= loan_search.string_id %></td>
+        <td><%= loan_search.client_last_name %></td>
+        <td><%= loan_search.client_first_name %></td>
+        <td><%= loan_search.client_middle_name %></td>
+        <td><%= loan_search.loan_type_id %></td>
+        <td><%= loan_search.application_date %></td>
+        <td><%= loan_search.approved_date %></td>
+        <td><%= loan_search.disbursement_date %></td>
+        <td><%= loan_search.loan_status %></td>
+        <td><%= loan_search.fully_paid %></td>
+        <td><%= link_to 'Show', loan_search %></td>
+        <td><%= link_to 'Edit', edit_loan_search_path(loan_search) %></td>
+        <td><%= link_to 'Destroy', loan_search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loan Search', new_loan_search_path %>

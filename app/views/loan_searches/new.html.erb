@@ -1,0 +1,36 @@
+
+<div class="row">
+
+	<div class="col-md-6 col-centered">
+
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-custom">
+				<div class="panel-title">
+					<span class="h4" >Search</span>
+
+					<div class="pull-right">
+						<%= link_to 'Back', loans_path, class: "btn btn-sm btn-info" %>
+					</div>
+				</div>
+
+				<br/>
+				
+			</div>
+
+				<div class="row">
+					<div class="col-md-10 col-centered">
+
+
+							<%= render 'form', loan_search: @loan_search %>
+
+
+					</div>
+				</div>
+				
+			</div>
+			<!-- End Panel Heading -->
+		
+
+	</div>
+
+</div>

@@ -15,6 +15,14 @@ class Loan < ApplicationRecord
 
 
 
+	# Loan Status Constant
+	def self.statuses
+		{draft: 'draft', rejected: 'rejected', approved: 'approved', disbursed: 'disbursed'}
+	end
+
+
+
+
 	# Scopes
 	scope :list_loans, lambda { | status=nil | 
 		(where(status: status) unless status.nil?) || all
@@ -72,12 +80,6 @@ class Loan < ApplicationRecord
 	end
 
 
-
-
-	# Loan Status Constant
-	def self.statuses
-		{draft: 'draft', rejected: 'rejected', approved: 'approved', disbursed: 'disbursed'}
-	end
 
 
 

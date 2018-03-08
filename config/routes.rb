@@ -4,13 +4,15 @@ Rails.application.routes.draw do
 
 
 
-    
-
-
-
 
     # ClientDoc
     resources :client_docs
+
+
+
+
+    # LoanSearch, advance search routes
+    resources :loan_searches
 
 
 

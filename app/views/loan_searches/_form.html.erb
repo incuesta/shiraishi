@@ -1,0 +1,63 @@
+<%= form_with(model: loan_search, local: true) do |form| %>
+  <% if loan_search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(loan_search.errors.count, "error") %> Search errors:</h2>
+
+      <ul>
+      <% loan_search.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :string_id, 'Loan number' %>
+    <%= form.text_field :string_id, id: :loan_search_string_id, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :client_last_name, 'Member last name' %>
+    <%= form.text_field :client_last_name, id: :loan_search_client_last_name, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :client_first_name, 'Member first name' %>
+    <%= form.text_field :client_first_name, id: :loan_search_client_first_name, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :client_middle_name, 'Member middle name' %>
+    <%= form.text_field :client_middle_name, id: :loan_search_client_middle_name, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :loan_type_id %>
+    <%= form.select :loan_type_id, LoanType.all.map { |loan_type|  [loan_type.name, loan_type.id]  }, {include_blank: true}, id: :loan_search_loan_type_id, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :application_date, 'Application date newer than' %>
+    <%= form.datetime_select :application_date, {include_blank: true}, id: :loan_search_application_date %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :approved_date, 'Approved date newer than' %>
+    <%= form.datetime_select :approved_date, {include_blank: true}, id: :loan_search_approved_date %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :disbursement_date, 'Disbursement date newer than' %>
+    <%= form.datetime_select :disbursement_date, {include_blank: true}, id: :loan_search_disbursement_date %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :loan_status %>
+    <%= form.select :loan_status, Loan.statuses, {include_blank: true}, id: :loan_search_loan_status, class: 'form-control' %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit 'Search', class: 'btn btn-lg btn-success' %>
+  </div>
+<% end %>
