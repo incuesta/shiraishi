@@ -1,0 +1,10 @@
+$('#the_buttons').children().first().replaceWith("<%= j render partial: 'btn_pay' %>");
+$('#state').children().first().replaceWith("<span>unpaid</span>");
+
+
+
+$('#state_msg').append("<span class='msg'>updated</span>").hide().fadeIn(500).fadeOut(1000, function() {
+
+	$(".msg").replaceWith('');
+
+});

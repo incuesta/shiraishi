@@ -1,5 +1,29 @@
-<h1>New Loan Installment</h1>
+<div class="row">
 
-<%= render 'form', loan_installment: @loan_installment %>
+	<div class="col-md-6 col-centered">
 
-<%= link_to 'Back', loan_installments_path %>
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-custom">
+				<div class="panel-title">
+					<span class="h4" >New Loan Installment</span>
+
+					<div class="pull-right">
+						<%= link_to 'Backs', loan_installments_path, class: "btn btn-sm btn-success" %>
+					</div>
+				</div>
+
+				<br/>
+				
+			</div>
+
+				<div class="row">
+					<div class="col-md-10 col-centered">
+						<%= render 'form', loan_installment: @loan_installment %>
+					</div>
+				</div>
+		</div>
+		<!-- End Panel Heading -->
+
+	</div>
+
+</div>

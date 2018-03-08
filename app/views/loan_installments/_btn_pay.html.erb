@@ -1,0 +1,1 @@
+<%= link_to("Set to paid", {controller: 'loan_installments', action: 'pay_installment', loan_installment:  {state: LoanInstallment.states[:paid]}}, remote: true, method: :patch, id: 'loan_installment_paid_link', class: "btn btn-sm btn-success") %> 

@@ -1,50 +1,114 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+    <div class="col-md-6 col-centered">
+        <div class="panel panel-default">
 
-<p>
-  <strong>Installment no:</strong>
-  <%= @loan_installment.installment_no %>
-</p>
+            <div class="panel-heading panel-heading-custom">
+              <div class="panel-title">
+                <td>Month number:</td>
+                <%= @loan_installment.installment_no %>
 
-<p>
-  <strong>Client:</strong>
-  <%= @loan_installment.client %>
-</p>
-
-<p>
-  <strong>From:</strong>
-  <%= @loan_installment.from %>
-</p>
-
-<p>
-  <strong>To:</strong>
-  <%= @loan_installment.to %>
-</p>
-
-<p>
-  <strong>Principal amount:</strong>
-  <%= @loan_installment.principal_amount %>
-</p>
-
-<p>
-  <strong>Interest amount:</strong>
-  <%= @loan_installment.interest_amount %>
-</p>
+                <div class="pull-right" id="the_buttons">
 
 
-<p>
-  <strong>Emi installment:</strong>
-  <%= @loan_installment.emi_installment %>
-</p>
+                    <%= link_to("Set to unpaid", {controller: 'loan_installments', action: 'unpay_installment', loan_installment:  {state: LoanInstallment.states[:unpaid]}}, remote: true, method: :patch, id: 'loan_installment_unpaid_link', class: "btn btn-sm btn-success") if @loan_installment.state == LoanInstallment.states[:paid] %> 
 
-<p>
-  <strong>State:</strong>
-  <%= @loan_installment.state %>
-</p>
+                    
 
-<p>
-  <strong>Notes:</strong>
-  <%= @loan_installment.notes %>
-</p>
+                    <%= link_to("Set to paid", {controller: 'loan_installments', action: 'pay_installment', loan_installment:  {state: LoanInstallment.states[:paid]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'loan_installment_paid_link', class: "btn btn-sm btn-success") if @loan_installment.state == LoanInstallment.states[:unpaid] %> 
 
-<%= link_to 'Edit', edit_loan_installment_path(@loan_installment) %> |
-<%= link_to 'Back', loan_installments_path %>
+                    |
+
+
+                    <%= link_to 'Edit', edit_loan_installment_path(@loan_installment), class:"btn btn-sm btn-success" %> |
+                    <%= link_to 'Loan details', loan_path(@loan_installment.loan_installment_container.loan), class:"btn btn-sm btn-success" %>
+                </div>
+              </div>
+              <br/>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-10 col-centered">
+                      <table class="table">
+                              <tr>
+                                <td><strong>Client:</strong></td>
+                                <td><%= @loan_installment.client %></td>
+                              </tr>
+
+                              <tr>
+                                <td><strong>From:</strong></td>
+                                <td><%= @loan_installment.from %></td>
+                              </tr>
+
+                              <tr>
+                                <td><strong>To:</strong></td>
+                                <td><%= @loan_installment.to %></td>
+                              </tr>
+
+                              <tr>
+                                <td><strong>Monthly principal:</strong></td>
+                                <td><%= number_to_currency @loan_installment.principal_amount, unit: 'Php ' %></td>
+                              </tr>
+
+
+                              <tr>
+                                <td><strong>Monthly interest:</strong></td>
+                                <td><%= number_to_currency @loan_installment.interest_amount, unit: 'Php ' %></td>
+                              </tr>
+
+
+                              <tr>
+                                <td><strong>EMI installment:</strong></td>
+                                <td><%= number_to_currency @loan_installment.emi_installment, unit: 'Php ' %></td>
+                              </tr>
+
+
+                              <tr>
+                                <td><strong>State:</strong></td>
+                                <td id="state"><span><%= @loan_installment.state %></span><span class='pull-right' id="state_msg"></span></td>
+                              </tr>
+
+
+                              <tr>
+                                <td><strong>Notes:</strong></td>
+                                <td>
+
+                                    <!-- Form for Submitting Notes -->
+                                    <div class="col-md-12" style="padding:0;">
+                                        <%= form_with url: {controller: :loan_installments, action: :write_a_note}, method: :patch, scope: :loan_installment do | form | %>
+
+                                            <div class="field form-group">
+                                              <%= form.text_area :notes, id: :loan_installment_notes, class: 'form-control' %>
+                                            </div>
+                                            <div class="actions">
+                                              <%= form.submit 'Save', class: 'btn btn-sm btn-success' %>
+                                            </div>
+                                        <% end %>
+
+
+                                        <!-- Where the message is displayed -->
+                                        <span id="note_msg">
+
+                                        </span>
+                                    </div>
+
+                                    <!-- Notes Submission End -->
+
+                                </td>
+                              </tr>
+                              
+                        </table>
+                        <!-- Table End -->                       
+
+                    </div>
+                    <!-- Panel End -->
+              </div>
+              <!-- Row End -->
+          </div>
+          <!-- Panel Body End -->
+          
+
+        </div>
+        <!-- Panel End -->
+    </div>
+</div>

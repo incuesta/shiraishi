@@ -12,13 +12,13 @@ class LoanInstallmentsController < ApplicationController
   def show
   end
 
+
+
+
+
   # GET /loan_installments/new
   def new
     @loan_installment = LoanInstallment.new
-  end
-
-  # GET /loan_installments/1/edit
-  def edit
   end
 
   # POST /loan_installments
@@ -37,6 +37,14 @@ class LoanInstallmentsController < ApplicationController
     end
   end
 
+
+
+
+
+  # GET /loan_installments/1/edit
+  def edit
+  end
+
   # PATCH/PUT /loan_installments/1
   # PATCH/PUT /loan_installments/1.json
   def update
@@ -51,6 +59,10 @@ class LoanInstallmentsController < ApplicationController
     end
   end
 
+
+
+
+
   # DELETE /loan_installments/1
   # DELETE /loan_installments/1.json
   def destroy
@@ -60,6 +72,46 @@ class LoanInstallmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+
+  # Set the status to paid
+  def pay_installment
+    set_loan_installment
+    @loan_installment.update(loan_installment_params)
+
+    respond_to do | format |
+      format.js { render 'loan_installments/pay_installment.js.erb' }
+    end
+  end
+
+
+  # Set the status to paid
+  def unpay_installment
+    set_loan_installment
+    @loan_installment.update(loan_installment_params)
+
+    respond_to do | format |
+        format.js { render 'loan_installments/unpay_installment.js.erb' }
+    end
+  end
+
+
+
+
+  # Set a note
+  def write_a_note
+    set_loan_installment
+    @loan_installment.update loan_installment_params
+    
+    respond_to do | format |
+       format.js { render 'loan_installments/write_a_note.js.erb' }
+    end
+  end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

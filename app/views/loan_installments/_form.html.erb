@@ -11,57 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :installment_no %>
-    <%= form.number_field :installment_no, id: :loan_installment_installment_no %>
+  <div class="field form-group">
+    <%= form.label :installment_no, 'Installment number' %>
+    <%= form.number_field :installment_no, id: :loan_installment_installment_no, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :client %>
-    <%= form.text_field :client, id: :loan_installment_client %>
+    <%= form.text_field :client, id: :loan_installment_client, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :from %>
     <%= form.datetime_select :from, id: :loan_installment_from %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :to %>
     <%= form.datetime_select :to, id: :loan_installment_to %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :principal_amount %>
-    <%= form.text_field :principal_amount, id: :loan_installment_principal_amount %>
+    <%= form.text_field :principal_amount, id: :loan_installment_principal_amount, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :interest_amount %>
-    <%= form.text_field :interest_amount, id: :loan_installment_interest_amount %>
+    <%= form.text_field :interest_amount, id: :loan_installment_interest_amount, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :decimal %>
-    <%= form.text_field :decimal, id: :loan_installment_decimal %>
+  <div class="field form-group">
+    <%= form.label :emi_installment, 'EMI installment' %>
+    <%= form.text_field :emi_installment, id: :loan_installment_emi_installment, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :emi_installment %>
-    <%= form.text_field :emi_installment, id: :loan_installment_emi_installment %>
-  </div>
-
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :state %>
-    <%= form.text_field :state, id: :loan_installment_state %>
+    <%= form.select :state, LoanInstallment.states, {}, id: :loan_installment_state, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :notes %>
-    <%= form.text_area :notes, id: :loan_installment_notes %>
+    <%= form.text_area :notes, id: :loan_installment_notes, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit class: 'btn btn-lg btn-success' %>
   </div>
 <% end %>

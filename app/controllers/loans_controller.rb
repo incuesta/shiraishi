@@ -13,49 +13,59 @@ class LoansController < ApplicationController
   # GET /loans
   # GET /loans.json
   def index
-    if search_param
-        @loans = Loan.list_loans(params[:status]).list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}").simple_search search_param
-    else
-        @loans = Loan.list_loans(params[:status]).list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}")
-    end
+    sort_and_search(Loan.all)
   end
+
+
+
+
 
   # The Following are index Variants
   # So that we could restrict each with Pundit
   # GET /loans/requested_loans
   def requested_loans
-    @loans = Loan.requested_loans
-
+    sort_and_search(Loan.requested_loans)
     render 'index'
   end
+
+
+
 
   # GET /loans/approved_loans
   def approved_loans
-    @loans = Loan.approved_loans
-
+    sort_and_search(Loan.approved_loans)
     render 'index'
   end
+
+
+
 
   # GET /loans/rejected_loans
   def rejected_loans
-    @loans = Loan.rejected_loans
-
+    sort_and_search(Loan.rejected_loans)
     render 'index'
   end
+
+
+
 
   # GET /loans/disbursed_loans
   def disbursed_loans
-    @loans = Loan.disbursed_loans
-
+    sort_and_search(Loan.disbursed_loans)
     render 'index'
   end
+
+
+
 
   # GET /loans/undisbursed_loans
   def undisbursed_loans
-    @loans = Loan.undisbursed_loans
-
+    sort_and_search(Loan.undisbursed_loans)
     render 'index'
   end
+
+
+
 
   # GET /loans/1
   # GET /loans/1.json
@@ -229,6 +239,18 @@ class LoansController < ApplicationController
       params_hash[:net_loan] = principal.to_d + interest
       params_hash[:net_interest] = interest
       params_hash
+    end
+
+
+
+
+    # Refactored Index Search and Sorting
+    def sort_and_search(loans)
+      if search_param
+        @loans = loans.list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}").simple_search search_param
+      else
+        @loans = loans.list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}")
+      end
     end
 
 

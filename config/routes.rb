@@ -18,7 +18,13 @@ Rails.application.routes.draw do
 
 
     # LoanInstallment
-    resources :loan_installments
+    resources :loan_installments do
+      member do 
+        patch :pay_installment
+        patch :unpay_installment
+        patch :write_a_note
+      end
+    end
 
 
 

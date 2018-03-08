@@ -3,6 +3,20 @@
 @import "bootstrap";
 
 
+textarea
+{
+    resize: none;
+}
+
+
+
+
+/*colorize span.msg*/
+span.msg
+{
+    color: green;
+}
+
 
 
 /* Disable a link */
