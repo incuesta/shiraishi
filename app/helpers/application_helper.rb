@@ -17,7 +17,11 @@ module ApplicationHelper
     	icon = column == sort_column_param ? icon : ""
 
 
+    	# Add existing Parameters
+    	additional_url_params = ({loans: {search: search_param}} if search_param) || Hash.new
+    	
+
     	# Return a Link
-		link_to "#{title} <span class='#{icon}'></span>".html_safe, sort_column: column, sort_order: direction
+		link_to "#{title} <span class='#{icon}'></span>".html_safe, {sort_column: column, sort_order: direction}.merge(additional_url_params)
 	end
 end

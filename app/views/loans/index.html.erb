@@ -1,4 +1,4 @@
-<!-- Panel Table -->
+<!-- Panel Table  -->
 <div class="panel panel-default">
 
   <div class="panel-heading">
@@ -7,18 +7,26 @@
 
       <div class="pull-right col-md-5">
           <div class="col-md-10">
-              <%= form_with url: '#', local: true, method: :post, scope: 'loans', class: 'form-inline' do | form | %>
+
+              <!-- This is for the Simple Search -->
+              <%= form_with url: loans_path, local: true, method: :get, scope: 'loans', class: 'form-inline' do | form | %>
                     <div class="form-group">
-                      <%= form.text_field :search_field, class:'form-control' %>
+                      <%= form.text_field :search, value: search_param, class:'form-control' %>
                     </div>
-                  <%= form.submit 'Search', class: 'btn btn-sm btn-info' %>
+                  <%= form.submit 'Search', name: nil, class: 'btn btn-sm btn-info' %>
               <% end %>
+              <!-- Simple Search End -->
+
+              <%= link_to 'Advance search', '#' %>
+
+
           </div>
 
 
           <%= link_to 'New Loan', new_loan_path, class: 'btn btn-sm btn-info' %>
       </div>
 
+      <br/>
       <br/>
       <br/>
   </div>
@@ -57,4 +65,4 @@
     </table>
 
 </div>
-<!-- Table Panel End -->
+<!-- Table Panel End

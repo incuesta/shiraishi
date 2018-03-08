@@ -3,7 +3,7 @@ class LoansController < ApplicationController
 
 
   # Param Getters for Sorting
-  helper_method :sort_order_param, :sort_column_param
+  helper_method :sort_order_param, :sort_column_param, :search_param
 
 
 
@@ -13,7 +13,11 @@ class LoansController < ApplicationController
   # GET /loans
   # GET /loans.json
   def index
-    @loans = Loan.list_loans(params[:status]).list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}")
+    if search_param
+        @loans = Loan.list_loans(params[:status]).list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}").simple_search search_param
+    else
+        @loans = Loan.list_loans(params[:status]).list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}")
+    end
   end
 
   # The Following are index Variants
@@ -229,6 +233,8 @@ class LoansController < ApplicationController
 
 
 
+
+
     # Url params for Sorting
     def sort_column_param
       params[:sort_column] || 'application_date'
@@ -236,6 +242,14 @@ class LoansController < ApplicationController
 
     def sort_order_param
       params[:sort_order] || 'desc'
+    end
+
+
+
+
+    # Url params for Simple Search
+    def search_param
+      params[:loans][:search] if params[:loans] || nil
     end
     
 end
