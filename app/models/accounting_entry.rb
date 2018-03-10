@@ -1,5 +1,5 @@
 class AccountingEntry < ApplicationRecord
-	belongs_to :loan
+	belongs_to :accounting_book
 
 	has_many :dr_entries, dependent: :destroy
 	has_many :cr_entries, dependent: :destroy

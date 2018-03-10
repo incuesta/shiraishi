@@ -17,7 +17,7 @@
                   <div class="pull-right" id="the_buttons">
 
 
-                      <%= link_to("Disburse Loan", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, method: :patch, id: 'loan_disbursion_link', class: "btn btn-sm btn-danger", confirm: {data: "Are you sure?"}) + " |" if @loan.status == Loan.statuses[:approved] %>
+                      <%= link_to("Disburse Loan", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, method: :patch, id: 'loan_disbursion_link', class: "btn btn-sm btn-info", confirm: {data: "Are you sure?"}) %> |
 
 
 
@@ -180,6 +180,7 @@
 
 
                                   <div class="loan_status" style="margin-top: 15px;">
+                                    <%= image_tag 'disbursed_money.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:disbursed] %>
                                     <%= image_tag 'approved_check.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:approved] %>
                                     <%= image_tag 'rejected.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:rejected] %>
                                     <%= image_tag 'under_review.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:draft] %>

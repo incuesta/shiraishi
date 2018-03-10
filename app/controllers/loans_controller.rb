@@ -221,10 +221,45 @@ class LoansController < ApplicationController
   def disburse_the_loan
       set_loan
       respond_to do | format |
-        if @loan.status == Loan.statuses[:approved] && @loan.update(loan_params_origin)
+        if (@loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed]) && @loan.update(loan_params_origin)
+          
+          # Todo Create an Accouting Entry
+          if @loan.status == Loan.statuses[:disbursed]
+
+              accounting_book = @loan.build_accounting_book
+              accounting_book.save
+
+
+              accounting_entry = accounting_book.accounting_entries.build()
+              accounting_entry.title = "Kubo"
+              accounting_entry.principal_balance = @loan.principal_amount
+              accounting_entry.interest_income_balance = @loan.loan_type.rate * @loan.principal_amount
+              accounting_entry.description = "Yehheeey"
+              accounting_entry.save
+
+
+              dr_entry = accounting_entry.dr_entries.build()
+              dr_entry.description = "Account Receivable"
+              dr_entry.value = @loan.principal_amount
+              dr_entry.save
+
+
+              cr_entry = accounting_entry.cr_entries.build()
+              cr_entry.description = "Cash: Loan to member"
+              cr_entry.value = @loan.principal_amount
+              cr_entry.save
+
+
+
+          end
+
+
           format.js { render "loans/disburse_the_loan.js.erb"}
 
         else
+
+
+          # Render failure message
           format.js { render "loans/disbursion_failed.js.erb" }
         end
       end

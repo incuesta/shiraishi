@@ -13,8 +13,8 @@ class Loan < ApplicationRecord
 
 
 
-	# AccoutingEntry for Loans
-	has_many :accounting_entries, dependent: :destroy
+	# AccoutingBook for Loan
+	has_one :accounting_book, dependent: :destroy
 
 
 

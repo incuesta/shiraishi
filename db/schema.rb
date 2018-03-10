@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310002438) do
+ActiveRecord::Schema.define(version: 20180310121729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,16 @@ ActiveRecord::Schema.define(version: 20180310002438) do
     t.index ["user_name"], name: "index_accountants_on_user_name", unique: true
   end
 
-  create_table "accounting_entries", force: :cascade do |t|
+  create_table "accounting_books", force: :cascade do |t|
     t.bigint "loan_id"
+    t.string "name"
+    t.boolean "closed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_accounting_books_on_loan_id"
+  end
+
+  create_table "accounting_entries", force: :cascade do |t|
     t.string "title"
     t.datetime "entry_date"
     t.decimal "principal_balance"
@@ -76,7 +84,8 @@ ActiveRecord::Schema.define(version: 20180310002438) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["loan_id"], name: "index_accounting_entries_on_loan_id"
+    t.bigint "accounting_book_id"
+    t.index ["accounting_book_id"], name: "index_accounting_entries_on_accounting_book_id"
   end
 
   create_table "admin_profiles", force: :cascade do |t|
@@ -380,7 +389,8 @@ ActiveRecord::Schema.define(version: 20180310002438) do
   end
 
   add_foreign_key "accountant_profiles", "accountants"
-  add_foreign_key "accounting_entries", "loans"
+  add_foreign_key "accounting_books", "loans"
+  add_foreign_key "accounting_entries", "accounting_books"
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "cr_entries", "accounting_entries"
   add_foreign_key "dr_entries", "accounting_entries"
