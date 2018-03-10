@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-  before_action :set_loan, only: [:show, :edit, :update, :destroy]
+  before_action :set_loan, only: [:show, :edit, :update, :destroy, :show_loan_disbursion]
 
 
   # Param Getters for Sorting
@@ -14,6 +14,7 @@ class LoansController < ApplicationController
   # GET /loans.json
   def index
     sort_and_search(Loan.all)
+    @search_path = loans_path
   end
 
 
@@ -25,6 +26,7 @@ class LoansController < ApplicationController
   # GET /loans/requested_loans
   def requested_loans
     sort_and_search(Loan.requested_loans)
+    @search_path = requested_loans_loans_path
     render 'index'
   end
 
@@ -34,7 +36,19 @@ class LoansController < ApplicationController
   # GET /loans/approved_loans
   def approved_loans
     sort_and_search(Loan.approved_loans)
+    @search_path = approved_loans_loans_path
     render 'index'
+  end
+
+
+
+
+
+  # GET /loans/approved_loans
+  def approved_loans_for_disbursion
+    sort_and_search(Loan.approved_loans)
+    @search_path = approved_loans_for_disbursion_loans_path
+    render 'approved_loans_for_disbursion'
   end
 
 
@@ -43,6 +57,7 @@ class LoansController < ApplicationController
   # GET /loans/rejected_loans
   def rejected_loans
     sort_and_search(Loan.rejected_loans)
+    @search_path = rejected_loans_loans_path
     render 'index'
   end
 
@@ -52,6 +67,7 @@ class LoansController < ApplicationController
   # GET /loans/disbursed_loans
   def disbursed_loans
     sort_and_search(Loan.disbursed_loans)
+    @search_path = disbursed_loans_loans_path
     render 'index'
   end
 
@@ -61,6 +77,7 @@ class LoansController < ApplicationController
   # GET /loans/undisbursed_loans
   def undisbursed_loans
     sort_and_search(Loan.undisbursed_loans)
+    @search_path = undisbursed_loans_loans_path
     render 'index'
   end
 
@@ -70,6 +87,13 @@ class LoansController < ApplicationController
   # GET /loans/1
   # GET /loans/1.json
   def show
+    @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
+  end
+
+
+  # GET /loans/1
+  # This page will have a disbursion button
+  def show_loan_disbursion
     @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
   end
 
@@ -187,6 +211,21 @@ class LoansController < ApplicationController
       respond_to do | format |
         if @loan.update(loan_params_origin)
           format.js { render "loans/reject_the_loan.js.erb" }
+        end
+      end
+  end
+
+
+  # Sets the status of the Loan to "disbursed"
+  # PATCH /loans/reject_the_loan/1
+  def disburse_the_loan
+      set_loan
+      respond_to do | format |
+        if @loan.status == Loan.statuses[:approved] && @loan.update(loan_params_origin)
+          format.js { render "loans/disburse_the_loan.js.erb"}
+
+        else
+          format.js { render "loans/disbursion_failed.js.erb" }
         end
       end
   end

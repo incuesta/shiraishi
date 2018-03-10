@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
 
 
+    # AccoutingEntry
+    resources :accounting_entries
+
+
+
 
     # ClientDoc
     resources :client_docs
@@ -68,6 +73,10 @@ Rails.application.routes.draw do
           get :rejected_loans
           get :disbursed_loans
           get :undisbursed_loans
+
+
+          # For Loan Disbursion
+          get :approved_loans_for_disbursion
         end
 
 
@@ -84,6 +93,14 @@ Rails.application.routes.draw do
           # Reject or accept a Loan
           patch :approve_the_loan
           patch :reject_the_loan
+
+
+          # Disburse the Loan
+          patch :disburse_the_loan
+
+
+          # loans#show_loan_disbursion
+          get :show_loan_disbursion
         end
     end
 

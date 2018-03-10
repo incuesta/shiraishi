@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Accounting Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Entry date</th>
+      <th>Principal balance</th>
+      <th>Interest income balance</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accounting_entries.each do |accounting_entry| %>
+      <tr>
+        <td><%= accounting_entry.title %></td>
+        <td><%= accounting_entry.entry_date %></td>
+        <td><%= accounting_entry.principal_balance %></td>
+        <td><%= accounting_entry.interest_income_balance %></td>
+        <td><%= accounting_entry.description %></td>
+        <td><%= link_to 'Show', accounting_entry %></td>
+        <td><%= link_to 'Edit', edit_accounting_entry_path(accounting_entry) %></td>
+        <td><%= link_to 'Destroy', accounting_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Accounting Entry', new_accounting_entry_path %>

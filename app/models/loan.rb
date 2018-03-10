@@ -13,6 +13,11 @@ class Loan < ApplicationRecord
 
 
 
+	# AccoutingEntry for Loans
+	has_many :accounting_entries, dependent: :destroy
+
+
+
 
 
 	# Loan Status Constant

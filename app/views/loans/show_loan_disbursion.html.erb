@@ -1,0 +1,268 @@
+
+
+
+<% client = @loan.client %>
+<% client_profile = client.client_profile %>
+
+<!-- Div Row -->
+<div class="row">
+    <div class="col-md-11 col-centered">
+      
+      <div class="panel panel-default">
+
+          <div class="panel-heading panel-heading-custom">
+              <div class="panel-title">
+                  <strong><%= "#{client.user_name.capitalize}\'s Loan  Disbursion" %></strong>
+                  
+                  <div class="pull-right" id="the_buttons">
+
+
+                      <%= link_to("Disburse Loan", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, method: :patch, id: 'loan_disbursion_link', class: "btn btn-sm btn-danger", confirm: {data: "Are you sure?"}) + " |" if @loan.status == Loan.statuses[:approved] %>
+
+
+
+                      <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
+                      <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
+
+                  </div>
+              </div>
+              <br/>
+          </div>
+
+
+              <div class="row">
+
+                <!-- Image Div -->
+                <div class="col-md-4">
+                    <div class="well">
+                        <div class="row" style="margin: 25px;">
+                            <div class="col-md-12">
+                                <div>
+                                    <!-- Show this if no profile Image -->
+                                    <%= image_tag "user_icon_1.png", alt: "#{client.user_name}.jpg", class: "center-block", size:"200x200" unless client_profile.image.present? %>
+
+                                    <!-- Show this if there's a profile Image -->
+                                    <%= image_tag client_profile.image.img_200.url, alt: "#{client.user_name}.jpg", class: "center-block" if client_profile.image.present? %>
+                                
+                                      <p class="text-center h3"><%= client.full_name %></p>
+                                      <p class="text-center h5"><%= client.email %></p>
+                                      <p class="text-center h5"><%= "(#{client.class.name.underscore.humanize})" %></p>
+                                  
+                                </div>
+                            </div class="col-md-12">
+                              <table class="table">
+                                  <tr>
+                                    <td><strong>Mobile:</strong></td>
+                                    <td><%= client_profile.mobile %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Telephone:</strong></td>
+                                    <td><%= client_profile.telephone %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Company:</strong></td>
+                                    <td><%= client_profile.company %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Department:</strong></td>
+                                    <td><%= client_profile.department %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Employee category:</strong></td>
+                                    <td><%= client_profile.employee_category %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Job title:</strong></td>
+                                    <td><%= client_profile.job_title %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Manager:</strong></td>
+                                    <td><%= client_profile.manager %></td>
+                                  </tr>
+                              </table>
+
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Div End -->
+
+
+                <div class="col-md-8">
+                  <div class="row">
+                      <div class="col-md-9 for-the-table">
+                          <table class="table">
+
+                                <!-- Loan Type attr -->
+                                <tr>
+                                  <td><strong>Loan Type</strong></td>
+                                  <td><%= @loan.loan_type.name %></td>
+                                </tr>
+                                <!-- End Loan Type attr -->
+
+                                <tr>
+                                  <td><strong>Loan:</strong></td>
+                                  <td><%= @loan.string_id %></td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Application date:</strong></td>
+                                  <td><%= @loan.application_date %></td>
+                                </tr>
+
+
+                                <tr>
+                                  <td><strong>Principal amount:</strong></td>
+                                  <td><%= number_to_currency(@loan.principal_amount, unit: 'Php ') %></td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Net loan:</strong></td>
+                                  <td><%= number_to_currency(@loan.net_loan, unit: 'Php ') %></td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Net interest:</strong></td>
+                                  <td><%= number_to_currency(@loan.net_interest, unit: 'Php ') %></td>
+                                </tr>
+
+                                <!-- Loan Type attr -->
+                                <tr>
+                                  <td><strong>Interest mode:</strong></td>
+                                  <td><%= @loan.loan_type.interest_mode %></td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Rate:</strong></td>
+                                  <td><%= number_to_percentage(@loan.loan_type.rate * 100, precision: 0) %></td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Duration:</strong></td>
+                                  <td><%= @loan.loan_type.duration %> months</td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Repayment method:</strong></td>
+                                  <td><%= @loan.loan_type.repayment_method %></td>
+                                </tr>
+                                <!-- Loan Type End -->
+
+                                <tr>
+                                  <td><strong>Notes:</strong></td>
+                                  <td><%= @loan.notes %></td>
+                                </tr>
+
+                                
+                              
+                            </table>
+                            <!-- Table End -->
+                        </div>
+                        <!-- For the Table End -->
+
+
+                        <!-- Statuses -->
+                        <div class="col-md-3">
+                            <div class="row">
+                              <br/>
+                              <!-- Loan Status Image -->
+                              <div class="col-md-12">
+
+                                  
+
+
+                                  <div class="loan_status" style="margin-top: 15px;">
+                                    <%= image_tag 'approved_check.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:approved] %>
+                                    <%= image_tag 'rejected.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:rejected] %>
+                                    <%= image_tag 'under_review.png', width: "150", class: "img-responsive" if @loan.status == Loan.statuses[:draft] %>
+                                  </div>
+                              </div>
+                              <!-- Loan Status Image End -->
+
+                            </div>
+                        </div>
+                        <!-- Statuses End -->
+
+
+
+                  </div>
+                  <!-- Row For Right End -->
+
+
+                  <hr/>
+
+
+
+                  <div id="submitted_document_form col-md-12">
+                      <div id="first_child" style="line-height: 50px;"></div>
+                      <%= form_with url: {controller: 'loans', action: 'update_submitted_docs'}, scope: 'loan', method: :patch do | form | %>
+
+                            <div class="field form-group">
+
+                              <%= form.label 'Submitted Documents:' %>
+
+                              <%= form.collection_check_boxes :loan_doc_ids, @loan.loan_type.loan_docs, :id, :name do | cb | %>
+                                  
+                                  <%= cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox", disabled: true) + cb.text } %> 
+                                  
+                              <% end %>
+
+                            </div>
+
+
+
+                            
+
+                            <br/>
+                            <hr/>
+
+                            <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, data: {confirm: 'This will overwrite previous calculation, continue?'}, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-success") %> 
+
+                      <% end %>
+
+
+                    </div>
+                    <!-- submitted document form end -->
+
+                </div>
+                <!-- div col md 8 end -->
+
+            </div>
+            <!-- div row end -->
+
+
+            <!-- To display Loan Installments here -->
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+
+                                <div id="loan_installments">
+
+                                    <%= render partial: 'loan_installments/installments' unless @loan_installments.nil? %>
+                                </div>
+                                <!-- Loan Installments End -->
+
+                            </div>
+                        </div>
+                        <!-- row End -->
+                    </div>
+                    <!-- col-md-12 End -->
+
+            <!-- To display Loan Installments End -->
+
+
+      </div>
+      <!-- Panel Default End -->
+
+    </div>
+    <!-- End of col-md-offset-2 -->
+</div>
+<!-- Div Row End -->

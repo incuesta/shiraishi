@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @accounting_entry.title %>
+</p>
+
+<p>
+  <strong>Entry date:</strong>
+  <%= @accounting_entry.entry_date %>
+</p>
+
+<p>
+  <strong>Principal balance:</strong>
+  <%= @accounting_entry.principal_balance %>
+</p>
+
+<p>
+  <strong>Interest income balance:</strong>
+  <%= @accounting_entry.interest_income_balance %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @accounting_entry.description %>
+</p>
+
+<%= link_to 'Edit', edit_accounting_entry_path(@accounting_entry) %> |
+<%= link_to 'Back', accounting_entries_path %>
