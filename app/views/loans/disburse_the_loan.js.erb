@@ -1,5 +1,9 @@
 
 // Show the approved_check.png image
-$('div.loan_status').children().first().replaceWith("<%= j image_tag 'disbursed_money.png', width: '150', class: 'img-responsive' %>");
+$('div.loan_status').children().first().replaceWith("<%= j render 'disburse_the_loan' %>");
 
 
+$('div.show_accounting').append("<%= j link_to('See accounting entry', {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'show_accounting_link', style: 'margin-top: 25px;', class: 'btn btn-md btn-success') %>");
+
+
+$('#loan_disbursion_link').replaceWith("<%= j image_tag 'disbursed_thumbs_up.png', class: 'img-responsive', style: 'display: inline-block;' %>");

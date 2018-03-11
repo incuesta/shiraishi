@@ -68,7 +68,7 @@ class LoansController < ApplicationController
   def disbursed_loans
     sort_and_search(Loan.disbursed_loans)
     @search_path = disbursed_loans_loans_path
-    render 'index'
+    render 'disbursed_loans'
   end
 
 
@@ -96,6 +96,7 @@ class LoansController < ApplicationController
   def show_loan_disbursion
     @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
   end
+
 
 
 
@@ -223,33 +224,19 @@ class LoansController < ApplicationController
       respond_to do | format |
         if (@loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed]) && @loan.update(loan_params_origin)
           
-          # Todo Create an Accouting Entry
+          # If the status is disbursed, create an AccountingBook with Entries
           if @loan.status == Loan.statuses[:disbursed]
 
+
               accounting_book = @loan.build_accounting_book
+              accounting_book.name = "Book for #{@loan.string_id}"
+
+              accounting_entry = accounting_book.create_entry title: "Disbursed the loan", description: " Loaned to #{@loan.client.full_name}", principal_balance: @loan.principal_amount, interest_income_balance: @loan.loan_type.rate * @loan.principal_amount
+              accounting_entry.create_dr_entry description: "Account receivable", value: @loan.principal_amount
+              accounting_entry.create_cr_entry description: "Account receivable", value: @loan.principal_amount
+
               accounting_book.save
-
-
-              accounting_entry = accounting_book.accounting_entries.build()
-              accounting_entry.title = "Kubo"
-              accounting_entry.principal_balance = @loan.principal_amount
-              accounting_entry.interest_income_balance = @loan.loan_type.rate * @loan.principal_amount
-              accounting_entry.description = "Yehheeey"
-              accounting_entry.save
-
-
-              dr_entry = accounting_entry.dr_entries.build()
-              dr_entry.description = "Account Receivable"
-              dr_entry.value = @loan.principal_amount
-              dr_entry.save
-
-
-              cr_entry = accounting_entry.cr_entries.build()
-              cr_entry.description = "Cash: Loan to member"
-              cr_entry.value = @loan.principal_amount
-              cr_entry.save
-
-
+              
 
           end
 

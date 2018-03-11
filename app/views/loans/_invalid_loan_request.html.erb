@@ -1,7 +1,7 @@
-<div class='yeah_baby'>
+<div class='yeah_baby msg'>
 	<%= image_tag 'checklist_incomplete.png', width: '150', class: 'img-responsive' %>
 
-	<h5><%= "Loan type's conditions aren't fully met:" %></h5>
+	<h5><strong><%= "Loan type's conditions aren't fully met:" %></strong></h5>
 	<ul>
 			<li>Maximum: <%= number_to_currency(@loan.loan_type.maximum, unit: 'Php ') %></li>
 			<li>Minimum: <%= number_to_currency(@loan.loan_type.minimum, unit: 'Php ') %></li>

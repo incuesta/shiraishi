@@ -4,4 +4,30 @@ class AccountingEntry < ApplicationRecord
 	has_many :dr_entries, dependent: :destroy
 	has_many :cr_entries, dependent: :destroy
 
+
+
+
+
+
+    # description (String)
+    # value (decimal)
+    def create_dr_entry(options = {})
+    	dr = dr_entries.build()
+    	dr.description = options[:description]
+    	dr.value = options[:value]
+    	dr.save
+    	dr
+    end
+
+
+
+    # description (String)
+    # value (decimal)
+    def create_cr_entry(options = {})
+    	cr = cr_entries.build()
+    	cr.description = options[:description]
+    	cr.value = options[:value]
+    	cr.save
+    	cr
+    end
 end

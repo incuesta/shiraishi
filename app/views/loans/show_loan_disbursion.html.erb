@@ -17,9 +17,15 @@
                   <div class="pull-right" id="the_buttons">
 
 
-                      <%= link_to("Disburse Loan", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, method: :patch, id: 'loan_disbursion_link', class: "btn btn-sm btn-info", confirm: {data: "Are you sure?"}) %> |
+
+                      <%= image_tag('disbursed_thumbs_up.png', style: "display: inline-block;", class: "img-responsive") if @loan.status == Loan.statuses[:disbursed] %>
 
 
+                      
+
+                      <%= link_to("Disburse Loan", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'loan_disbursion_link', class: "btn btn-sm btn-info") unless @loan.status == Loan.statuses[:disbursed] %> 
+
+                      |
 
                       <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
                       <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
@@ -165,8 +171,13 @@
                               
                             </table>
                             <!-- Table End -->
+
+                            <div class="show_accounting">
+                              <%= link_to("See accounting entry", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'show_accounting_link', style: "margin-top: 25px;", class: "btn btn-md btn-success") if @loan.status == Loan.statuses[:disbursed] %>
+
+                            </div>
                         </div>
-                        <!-- For the Table End -->
+                        <!-- For the Table End col-md-9 -->
 
 
                         <!-- Statuses -->

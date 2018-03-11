@@ -1,6 +1,6 @@
 
 // Show the approved_check.png image
-$('div.loan_status').children().first().replaceWith("<%= j image_tag 'approved_check.png', width: '150', class: 'img-responsive' %>");
+$('div.loan_status').children().first().replaceWith("<%= j render 'approve_the_loan' %>");
 
 
 // Show the reject button

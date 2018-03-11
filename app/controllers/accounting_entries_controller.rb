@@ -12,14 +12,15 @@ class AccountingEntriesController < ApplicationController
   def show
   end
 
+
+
+
+
   # GET /accounting_entries/new
   def new
     @accounting_entry = AccountingEntry.new
   end
 
-  # GET /accounting_entries/1/edit
-  def edit
-  end
 
   # POST /accounting_entries
   # POST /accounting_entries.json
@@ -37,6 +38,14 @@ class AccountingEntriesController < ApplicationController
     end
   end
 
+
+
+
+
+  # GET /accounting_entries/1/edit
+  def edit
+  end
+
   # PATCH/PUT /accounting_entries/1
   # PATCH/PUT /accounting_entries/1.json
   def update
@@ -51,6 +60,10 @@ class AccountingEntriesController < ApplicationController
     end
   end
 
+
+
+
+
   # DELETE /accounting_entries/1
   # DELETE /accounting_entries/1.json
   def destroy
@@ -60,6 +73,10 @@ class AccountingEntriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
