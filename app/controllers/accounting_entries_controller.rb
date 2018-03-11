@@ -51,7 +51,7 @@ class AccountingEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @accounting_entry.update(accounting_entry_params)
-        format.html { redirect_to @accounting_entry, notice: 'Accounting entry was successfully updated.' }
+        format.html { redirect_to show_accounting_for_loan_loan_path(@accounting_entry.accounting_book.loan), notice: 'Accounting entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @accounting_entry }
       else
         format.html { render :edit }

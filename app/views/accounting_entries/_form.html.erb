@@ -11,32 +11,57 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :accounting_entry_title %>
+    <%= form.text_field :title, id: :accounting_entry_title, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :entry_date %>
     <%= form.datetime_select :entry_date, id: :accounting_entry_entry_date %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :principal_balance %>
-    <%= form.text_field :principal_balance, id: :accounting_entry_principal_balance %>
+    <%= form.text_field :principal_balance, id: :accounting_entry_principal_balance, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :interest_income_balance %>
-    <%= form.text_field :interest_income_balance, id: :accounting_entry_interest_income_balance %>
+    <%= form.text_field :interest_income_balance, id: :accounting_entry_interest_income_balance, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :description %>
-    <%= form.text_field :description, id: :accounting_entry_description %>
+    <%= form.text_field :description, id: :accounting_entry_description, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+  <div class="">
+    <p><strong>Debits:</strong></p>
+    <% accounting_entry.dr_entries.each do | dr | %>
+        <p>
+            <%= number_to_currency(dr.value, unit: 'Php ') %>
+            <%= link_to "(Click to Change)", edit_dr_entry_path(dr) %>
+        </p>
+    <% end %>
+
+    <p><strong>Credits:</strong></p>
+    <% accounting_entry.cr_entries.each do | cr | %>
+        <p>
+            <%= number_to_currency(cr.value, unit: 'Php ') %>
+            <%= link_to "(Click to Change)", edit_cr_entry_path(cr) %>
+            
+        </p>
+    <% end %>
+
+  </div>
+
+
+  <div class="actions form-group">
+    <%= form.submit class: "btn btn-lg btn-success" %>
   </div>
 <% end %>
+
+
+

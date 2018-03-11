@@ -173,7 +173,7 @@
                             <!-- Table End -->
 
                             <div class="show_accounting">
-                              <%= link_to("See accounting entry", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'show_accounting_link', style: "margin-top: 25px;", class: "btn btn-md btn-success") if @loan.status == Loan.statuses[:disbursed] %>
+                              <%= link_to("See accounting entry", show_accounting_for_loan_loan_path(@loan), id: 'show_accounting_link', style: "margin-top: 25px;", class: "btn btn-md btn-success") if @loan.status == Loan.statuses[:disbursed] %>
 
                             </div>
                         </div>

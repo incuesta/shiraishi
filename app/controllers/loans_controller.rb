@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-  before_action :set_loan, only: [:show, :edit, :update, :destroy, :show_loan_disbursion]
+  before_action :set_loan, only: [:show, :edit, :update, :destroy, :show_loan_disbursion, :show_accounting_for_loan]
 
 
   # Param Getters for Sorting
@@ -98,8 +98,12 @@ class LoansController < ApplicationController
   end
 
 
-
-
+  # GET /loans/1/show_accounting_for_loan
+  # This will show the Accouting Entry for a particular Loan
+  def show_accounting_for_loan
+    @accounting_book = @loan.accounting_book
+    @accounting_entries = @accounting_book.accounting_entries
+  end
 
 
 
@@ -233,7 +237,7 @@ class LoansController < ApplicationController
 
               accounting_entry = accounting_book.create_entry title: "Disbursed the loan", description: " Loaned to #{@loan.client.full_name}", principal_balance: @loan.principal_amount, interest_income_balance: @loan.loan_type.rate * @loan.principal_amount
               accounting_entry.create_dr_entry description: "Account receivable", value: @loan.principal_amount
-              accounting_entry.create_cr_entry description: "Account receivable", value: @loan.principal_amount
+              accounting_entry.create_cr_entry description: "Cash", value: @loan.principal_amount
 
               accounting_book.save
               

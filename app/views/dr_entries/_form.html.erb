@@ -1,0 +1,22 @@
+<%= form_with model: dr_entry, local: true do | form |  %>
+	<div class="field form-group">
+
+		<%= form.label :description %>
+		<%= form.text_field :description, id: :dr_entry_description, class:'form-control' %>
+
+	</div>
+
+
+	<div class="field form-group">
+
+		<%= form.label :value %>
+		<%= form.text_field :value, id: :dr_entry_value, class:'form-control' %>
+
+	</div>
+
+
+	<div class="actions form-group">
+	    <%= form.submit "Update Debit", class: "btn btn-lg btn-success" %>
+	</div>
+
+<% end %>

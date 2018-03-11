@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+    resources :cr_entries, only: [:edit, :update]
+
+
+
+    resources :dr_entries, only: [:edit, :update]
 
 
 
@@ -101,6 +106,10 @@ Rails.application.routes.draw do
 
           # loans#show_loan_disbursion
           get :show_loan_disbursion
+
+
+          # loans#show_accounting_for_loan
+          get :show_accounting_for_loan
         end
     end
 

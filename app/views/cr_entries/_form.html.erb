@@ -1,0 +1,22 @@
+<%= form_with model: cr_entry, local: true do | form |  %>
+	<div class="field form-group">
+
+		<%= form.label :description %>
+		<%= form.text_field :description, id: :cr_entry_description, class:'form-control' %>
+
+	</div>
+
+
+	<div class="field form-group">
+
+		<%= form.label :value %>
+		<%= form.text_field :value, id: :cr_entry_value, class:'form-control' %>
+
+	</div>
+
+
+	<div class="actions form-group">
+	    <%= form.submit "Update Credit", class: "btn btn-lg btn-success" %>
+	</div>
+
+<% end %>
