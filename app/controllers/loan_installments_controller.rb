@@ -10,6 +10,16 @@ class LoanInstallmentsController < ApplicationController
   # GET /loan_installments/1
   # GET /loan_installments/1.json
   def show
+
+      respond_to do | format |
+          format.html
+
+          format.pdf do
+              loan_installment_pdf = LoanInstallmentPdf.new(@loan_installment, view_context)
+
+              send_data loan_installment_pdf.render, filename: 'loan_installment_receipt.pdf', type: 'application/pdf', disposition: 'inline'
+          end
+      end
   end
 
 

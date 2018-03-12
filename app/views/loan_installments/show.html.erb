@@ -70,31 +70,42 @@
 
 
                               <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td>
+                                  <td><strong>Notes:</strong></td>
+                                  <td>
 
-                                    <!-- Form for Submitting Notes -->
-                                    <div class="col-md-12" style="padding:0;">
-                                        <%= form_with url: {controller: :loan_installments, action: :write_a_note}, method: :patch, scope: :loan_installment do | form | %>
+                                      <!-- Form for Submitting Notes -->
+                                      <div class="col-md-12" style="padding:0;">
+                                          <%= form_with url: {controller: :loan_installments, action: :write_a_note}, method: :patch, scope: :loan_installment do | form | %>
 
-                                            <div class="field form-group">
-                                              <%= form.text_area :notes, id: :loan_installment_notes, class: 'form-control' %>
-                                            </div>
-                                            <div class="actions">
-                                              <%= form.submit 'Save', class: 'btn btn-sm btn-success' %>
-                                            </div>
-                                        <% end %>
+                                              <div class="field form-group">
+                                                <%= form.text_area :notes, id: :loan_installment_notes, class: 'form-control' %>
+                                              </div>
+                                              <div class="actions">
+                                                <%= form.submit 'Save', class: 'btn btn-sm btn-success' %>
+                                              </div>
+                                          <% end %>
 
 
-                                        <!-- Where the message is displayed -->
-                                        <span id="note_msg">
+                                          <!-- Where the message is displayed -->
+                                          <span id="note_msg">
 
-                                        </span>
-                                    </div>
+                                          </span>
+                                      </div>
 
-                                    <!-- Notes Submission End -->
+                                      <!-- Notes Submission End -->
 
-                                </td>
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td>
+
+                                  </td>
+
+                                  <td>
+                                      <%= link_to "Printable receipt", loan_installment_path(@loan_installment, format: :pdf) %>
+                                  </td>
+
                               </tr>
                               
                         </table>
