@@ -234,8 +234,10 @@ class LoansController < ApplicationController
 
               accounting_book = @loan.build_accounting_book
               accounting_book.name = "Book for #{@loan.string_id}"
+              accounting_book.overall_principal_balance = @loan.principal_amount
+              accounting_book.overall_interest_balance = @loan.principal_amount * @loan.loan_type.rate
 
-              accounting_entry = accounting_book.create_entry title: "Disbursed the loan", description: " Loaned to #{@loan.client.full_name}", principal_balance: @loan.principal_amount, interest_income_balance: @loan.loan_type.rate * @loan.principal_amount
+              accounting_entry = accounting_book.create_entry title: "Disbursed the loan", description: " Loaned to #{@loan.client.full_name}", principal_balance: accounting_book.overall_principal_balance, interest_income_balance: accounting_book.overall_interest_balance
               accounting_entry.create_dr_entry description: "Account receivable", value: @loan.principal_amount
               accounting_entry.create_cr_entry description: "Cash", value: @loan.principal_amount
 

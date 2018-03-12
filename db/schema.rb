@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310121729) do
+ActiveRecord::Schema.define(version: 20180312021716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20180310121729) do
     t.boolean "closed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "overall_principal_balance", precision: 11, scale: 2
+    t.decimal "overall_interest_balance", precision: 11, scale: 2
     t.index ["loan_id"], name: "index_accounting_books_on_loan_id"
   end
 
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20180310121729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "accounting_book_id"
+    t.bigint "from_installment"
     t.index ["accounting_book_id"], name: "index_accounting_entries_on_accounting_book_id"
   end
 

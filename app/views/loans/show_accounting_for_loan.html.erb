@@ -5,7 +5,14 @@
 
 		<div class="col-md-11 col-centered">
 
-		<div class="well-title"><%= @loan.string_id %> Accounting Entries</div>
+		<div class="well-header">
+			<div class="well-title" style="display: inline-block;"><%= @loan.string_id %> Accounting Entries</div>
+
+			<div class="well-right">
+				<p><strong>Principal Balance</strong> <%= number_to_currency @accounting_book.overall_principal_balance, unit: "Php " %></p>
+				<p><strong>Interest Balance</strong> <%= number_to_currency @accounting_book.overall_interest_balance, unit: "Php " %></p>
+			</div>
+		</div>
 		
 
 		<% @accounting_entries.each do |accounting_entry| %>
@@ -66,12 +73,6 @@
 								</tr>
 
 							</table>
-
-
-							<div class="panel-footer">
-								<p><strong>Principal balance:</strong> <%= number_to_currency accounting_entry.principal_balance, unit: "Php " %></p>
-								<p><strong>Interest income balance:</strong> <%= number_to_currency accounting_entry.interest_income_balance, unit: "Php " %></p>
-							</div>
 							
 
 						</div>

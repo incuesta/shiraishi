@@ -79,10 +79,45 @@ class LoanInstallmentsController < ApplicationController
   # Set the status to paid
   def pay_installment
     set_loan_installment
-    @loan_installment.update(loan_installment_params)
+
+    @loan = @loan_installment.loan_installment_container.loan
+
+    
 
     respond_to do | format |
-      format.js { render 'loan_installments/pay_installment.js.erb' }
+        
+        if @loan.status == Loan.statuses[:disbursed]
+
+            ae_exist = AccountingEntry.where(from_installment: @loan_installment.id).first
+
+            unless ae_exist
+
+                @loan_installment.update(loan_installment_params)
+
+
+                ab = @loan.accounting_book
+
+
+                remaining_principal = ab.overall_principal_balance - @loan_installment.principal_amount
+                remaining_interest = ab.overall_interest_balance - @loan_installment.interest_amount
+
+
+                ae = ab.create_entry title: "Installment no #{@loan_installment.installment_no}", description: " Payment of #{@loan.client.full_name}", principal_balance: remaining_principal, interest_income_balance: remaining_interest, from_installment: @loan_installment.id
+                ae.create_dr_entry description: "Cash", value: @loan_installment.principal_amount + @loan_installment.interest_amount
+                ae.create_cr_entry description: "Account receivable", value: @loan_installment.principal_amount
+                ae.create_cr_entry description: "Interest income", value: @loan_installment.interest_amount
+                
+          
+                ab.overall_principal_balance = remaining_principal
+                ab.overall_interest_balance = remaining_interest
+
+                ab.save
+            end
+
+            format.js { render 'loan_installments/pay_installment.js.erb' }
+        else
+            format.js { render 'loan_installments/pay_installment_failed.js.erb' }
+        end
     end
   end
 
@@ -91,6 +126,19 @@ class LoanInstallmentsController < ApplicationController
   def unpay_installment
     set_loan_installment
     @loan_installment.update(loan_installment_params)
+
+    ae = AccountingEntry.where(from_installment: @loan_installment.id).first
+
+
+    # note this has a bug wherein if you unpay it will mis-calculate AccountingEntry's principal_balance and interest_income Balance
+    unless ae.nil?
+        ab = ae.accounting_book
+        ab.overall_principal_balance = ab.overall_principal_balance + ae.cr_entries.first.value
+        ab.overall_interest_balance = ab.overall_interest_balance + ae.cr_entries.last.value
+        ab.save
+
+        ae.destroy
+    end
 
     respond_to do | format |
         format.js { render 'loan_installments/unpay_installment.js.erb' }
