@@ -15,7 +15,9 @@ class LoanInstallmentsController < ApplicationController
           format.html
 
           format.pdf do
-              loan_installment_pdf = LoanInstallmentPdf.new(@loan_installment, view_context)
+              issuer = (current_accountant if current_accountant) || "ACGECCO"
+
+              loan_installment_pdf = LoanInstallmentPdf.new(@loan_installment, view_context, issuer)
 
               send_data loan_installment_pdf.render, filename: 'loan_installment_receipt.pdf', type: 'application/pdf', disposition: 'inline'
           end
