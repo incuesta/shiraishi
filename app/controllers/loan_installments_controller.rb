@@ -15,7 +15,7 @@ class LoanInstallmentsController < ApplicationController
           format.html
 
           format.pdf do
-              issuer = (current_accountant if current_accountant) || "ACGECCO"
+              issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
 
               loan_installment_pdf = LoanInstallmentPdf.new(@loan_installment, view_context, issuer)
 

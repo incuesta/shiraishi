@@ -27,7 +27,20 @@ class LoansController < ApplicationController
   def requested_loans
     sort_and_search(Loan.requested_loans)
     @search_path = requested_loans_loans_path
-    render 'index'
+    
+
+    respond_to do | format |
+        format.html { render 'index' }
+        
+        format.pdf do
+            issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
+
+            loans_pdf = LoansPdf.new(@loans, view_context, issuer, "Requested loans", action_name)
+
+            send_data loans_pdf.render, filename: 'requested_loans.pdf', type: 'application/pdf', disposition: 'inline'
+          
+        end
+    end
   end
 
 
@@ -37,7 +50,19 @@ class LoansController < ApplicationController
   def approved_loans
     sort_and_search(Loan.approved_loans)
     @search_path = approved_loans_loans_path
-    render 'index'
+    
+    respond_to do | format |
+        format.html { render 'index' }
+        
+        format.pdf do
+            issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
+
+            loans_pdf = LoansPdf.new(@loans, view_context, issuer, "Approved loans", action_name)
+
+            send_data loans_pdf.render, filename: 'approved_loans.pdf', type: 'application/pdf', disposition: 'inline'
+          
+        end
+    end
   end
 
 
@@ -58,7 +83,19 @@ class LoansController < ApplicationController
   def rejected_loans
     sort_and_search(Loan.rejected_loans)
     @search_path = rejected_loans_loans_path
-    render 'index'
+
+    respond_to do | format |
+        format.html { render 'index' }
+        
+        format.pdf do
+            issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
+
+            loans_pdf = LoansPdf.new(@loans, view_context, issuer, "Rejected Loan Request", action_name)
+
+            send_data loans_pdf.render, filename: 'rejected_loans.pdf', type: 'application/pdf', disposition: 'inline'
+          
+        end
+    end
   end
 
 
@@ -68,7 +105,19 @@ class LoansController < ApplicationController
   def disbursed_loans
     sort_and_search(Loan.disbursed_loans)
     @search_path = disbursed_loans_loans_path
-    render 'disbursed_loans'
+
+     respond_to do | format |
+        format.html { render 'disbursed_loans' }
+        
+        format.pdf do
+            issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
+
+            loans_pdf = LoansPdf.new(@loans, view_context, issuer, "Disbursed loans", action_name)
+
+            send_data loans_pdf.render, filename: 'disbursed_loans.pdf', type: 'application/pdf', disposition: 'inline'
+          
+        end
+    end
   end
 
 
@@ -78,7 +127,19 @@ class LoansController < ApplicationController
   def undisbursed_loans
     sort_and_search(Loan.undisbursed_loans)
     @search_path = undisbursed_loans_loans_path
-    render 'index'
+    
+    respond_to do | format |
+        format.html { render 'index' }
+        
+        format.pdf do
+            issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
+
+            loans_pdf = LoansPdf.new(@loans, view_context, issuer, "Undisbursed Loan Request", action_name)
+
+            send_data loans_pdf.render, filename: 'undisbursed_loans.pdf', type: 'application/pdf', disposition: 'inline'
+          
+        end
+    end
   end
 
 

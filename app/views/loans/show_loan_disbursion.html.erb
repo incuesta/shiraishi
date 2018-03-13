@@ -23,7 +23,7 @@
 
                       
 
-                      <%= link_to("Disburse Loan", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'loan_disbursion_link', class: "btn btn-sm btn-info") unless @loan.status == Loan.statuses[:disbursed] %> 
+                      <%= link_to("Disburse Loan", {controller: 'loans', action: 'disburse_the_loan', loan:  {status: Loan.statuses[:disbursed], disbursement_date: Date.current }}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'loan_disbursion_link', class: "btn btn-sm btn-info") unless @loan.status == Loan.statuses[:disbursed] %> 
 
                       |
 
