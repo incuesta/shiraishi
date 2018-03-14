@@ -1,6 +1,12 @@
 class AccountingEntriesController < ApplicationController
   before_action :set_accounting_entry, only: [:show, :edit, :update, :destroy]
 
+
+  helper_method :sort_order_param, :sort_column_param, :search_param
+
+
+
+
   # GET /accounting_entries
   # GET /accounting_entries.json
   def index
@@ -10,6 +16,11 @@ class AccountingEntriesController < ApplicationController
   # GET /accounting_entries/1
   # GET /accounting_entries/1.json
   def show
+  end
+
+
+  def show_all_loan_entries
+    @loans = Loan.disbursed_loans
   end
 
 
@@ -88,4 +99,26 @@ class AccountingEntriesController < ApplicationController
     def accounting_entry_params
       params.require(:accounting_entry).permit(:title, :entry_date, :principal_balance, :interest_income_balance, :description)
     end
+
+
+
+
+
+    # Url params for Sorting
+    def sort_column_param
+      params[:sort_column] || 'entry_date'
+    end
+
+    def sort_order_param
+      params[:sort_order] || 'desc'
+    end
+
+
+
+
+    # Url params for Simple Search
+    def search_param
+      params[:loans][:search] if params[:accounting_entries] || nil
+    end
+    
 end

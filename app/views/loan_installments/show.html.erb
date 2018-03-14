@@ -19,8 +19,9 @@
                     |
 
 
-                    <%= link_to 'Edit', edit_loan_installment_path(@loan_installment), class:"btn btn-sm btn-success" %> |
-                    <%= link_to 'Loan details', loan_path(@loan_installment.loan_installment_container.loan), class:"btn btn-sm btn-success" %>
+                    <%= link_to 'Edit', edit_loan_installment_path(@loan_installment), class:"btn btn-sm btn-success" %>
+                    <%= " | " if @loan_installment.loan_installment_container.loan.status == "disbursed" %>
+                    <%= link_to('Loan details', show_loan_disbursion_loan_path(@loan_installment.loan_installment_container.loan), class:"btn btn-sm btn-success") if @loan_installment.loan_installment_container.loan.status == "disbursed" %>
                 </div>
               </div>
               <br/>

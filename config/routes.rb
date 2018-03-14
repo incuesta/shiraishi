@@ -28,7 +28,11 @@ Rails.application.routes.draw do
 
 
     # AccoutingEntry
-    resources :accounting_entries
+    resources :accounting_entries do
+        collection do
+            get :show_all_loan_entries
+        end
+    end
 
 
 

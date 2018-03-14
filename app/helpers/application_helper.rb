@@ -18,10 +18,10 @@ module ApplicationHelper
 
 
     	# Add existing Parameters
-    	additional_url_params = ({loans: {search: search_param}} if search_param) || Hash.new
+    	additional_url_params = ({controller_name => {search: search_param}} if search_param) || Hash.new
     	
 
     	# Return a Link
-		link_to "#{title} <span class='#{icon}'></span>".html_safe, {controller: :loans, action: action_name, sort_column: column, sort_order: direction}.merge(additional_url_params)
+		link_to "#{title} <span class='#{icon}'></span>".html_safe, {controller: controller_name, action: action_name, sort_column: column, sort_order: direction}.merge(additional_url_params)
 	end
 end

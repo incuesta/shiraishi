@@ -24,27 +24,11 @@
             <ul class="nav navbar-nav">
               <li><a href="#">Link <span class="sr-only">(current)</span></a></li>
               <li><a href="#">Link</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounting <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Accounting entries', accounting_entries_path %></li>
-                
-
-                  <li role="separator" class="divider"></li>
 
 
-                  <li><%= link_to 'Loans for Disbursion', approved_loans_for_disbursion_loans_path %></li>
 
 
-                  <li role="separator" class="divider"></li>
-
-
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
-
-
-              <!-- Test Links 1 -->
+              <!-- User Management -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Management <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -78,12 +62,32 @@
                  
                 </ul>
               </li>
-              <!-- Test Links 1 End -->
+              <!-- User Management End -->
+
 
 
               
 
-              <!-- Test Link 2 -->
+              <!-- Accounting -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounting <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+
+                  <li><%= link_to 'Loans for Disbursion', approved_loans_for_disbursion_loans_path %></li>
+                  <li><%= link_to "Disbursed Loans", disbursed_loans_loans_path %></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to 'Show book entries', show_all_loan_entries_accounting_entries_path %></li>
+
+                </ul>
+              </li>
+              <!-- Accounting End -->
+
+
+              
+              <!-- Loan Management -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Loan Management <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -113,10 +117,12 @@
                   <li><%= link_to "Undisbursed Loans", undisbursed_loans_loans_path %></li>
                 </ul>
               </li>
-              <!-- Test Link 2 End -->
+              <!-- Loan Managment End -->
 
 
-              <!-- Test Link 3 -->
+
+
+              <!-- Reports -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Reports <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -134,7 +140,7 @@
                   <li><%= link_to "Undisbursed loans report", undisbursed_loans_reports_path(format: :pdf) %></li>
                 </ul>
               </li>
-              <!-- Test Link 3 End -->
+              <!-- Reports End -->
 
 
 
