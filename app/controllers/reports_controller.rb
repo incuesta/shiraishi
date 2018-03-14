@@ -8,6 +8,26 @@ class ReportsController < ApplicationController
 	  end
 
 
+	   # GET /reports/income_summary
+	  def income_summary
+	    @loans = Loan.disbursed_loans
+	    
+
+	    respond_to do | format |
+	        
+	        format.pdf do
+	            issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
+
+	            loans_pdf = IncomeSummaryPdf.new(@loans, view_context, issuer, "Income Summary", action_name)
+
+	            send_data loans_pdf.render, filename: 'income_summary.pdf', type: 'application/pdf', disposition: 'inline'
+	          
+	        end
+	    end
+	  end
+
+
+
 
 	 
 	  # GET /reports/requested_loans

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
             get :rejected_loans
             get :disbursed_loans
             get :undisbursed_loans
+
+
+            # Accounting, pdf version of accounting_entries#show_income_summary
+            get :income_summary
         end
     end
 

@@ -93,8 +93,8 @@ class LoansPdf < Prawn::Document
 
 
 	def disbursed_loans_data
-		[["Loan", "Type", "Application date", "Disbursed on", "Applicant", "Principal amount", "Net interest"]] +
-		@loans.map { | loan | [loan.string_id, loan.loan_type.name, loan.disbursement_date.to_date, loan.approved_date.to_date, loan.client.full_name, @view.number_to_currency(loan.principal_amount, unit: "Php "), @view.number_to_currency(loan.net_interest, unit: "Php ")] }
+		[["Loan", "Type", "Duration", "Application date", "Disbursed on", "Applicant", "Principal amount", "Net interest"]] +
+		@loans.map { | loan | [loan.string_id, loan.loan_type.name, "#{loan.loan_type.duration} mos.", loan.disbursement_date.to_date, loan.approved_date.to_date, loan.client.full_name, @view.number_to_currency(loan.principal_amount, unit: "Php "), @view.number_to_currency(loan.net_interest, unit: "Php ")] }
 	end
 
 end
