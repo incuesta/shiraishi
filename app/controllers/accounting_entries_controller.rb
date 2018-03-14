@@ -19,8 +19,16 @@ class AccountingEntriesController < ApplicationController
   end
 
 
+
+  # Shows the journal of all loans
   def show_all_loan_entries
-    @loans = Loan.disbursed_loans
+    @loans = Loan.disbursed_loans.paginate(page: params[:page], per_page: 2)
+  end
+
+
+  # Shows income summary
+  def show_income_summary
+    @loans = Loan.disbursed_loans.paginate(page: params[:page], per_page: 5)
   end
 
 

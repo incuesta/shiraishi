@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :accounting_entries do
         collection do
             get :show_all_loan_entries
+            get :show_income_summary
         end
     end
 

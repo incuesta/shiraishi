@@ -1,0 +1,114 @@
+
+<div class="col-md-10 col-centered">
+
+		<!-- Panel Table  -->
+		<div class="panel panel-default">
+
+			<div class="panel-heading panel-heading-custom">
+			      <div class="panel_title_to_the_left" style="font-size: 2em;">Income Summary</div>
+
+			</div>
+
+
+			<!-- Pagination -->
+			<div class="center_pagination">
+				<%= will_paginate @loans %>
+			</div>
+
+
+
+		  <% @loans.each do | loan |%>
+
+		  		<% accounting_book = loan.accounting_book %>
+		  		<div class="well well-custom">
+		  			<div class="well-header">
+			  			<div class="well-title"><%= link_to loan.string_id, show_loan_disbursion_loan_path(loan), class: "link-shiraishi" %></div>
+
+			  			<div class="well-right">
+				  			<p>Principal balance <%= number_to_currency accounting_book.overall_principal_balance, unit: "Php " %></p>
+				  			<p>Interest balance <%= number_to_currency accounting_book.overall_interest_balance, unit: "Php " %></p>
+				  		</div>
+			  		</div>
+
+		  			<table class="table">
+
+		  				<% principal_paid = loan.principal_amount - accounting_book.overall_principal_balance %>
+
+		  				<% interest_paid = loan.net_interest - accounting_book.overall_interest_balance %>
+
+
+				        <tbody>
+
+				        	<tr>
+					            <td>Principal</td>
+					            <td>Rate</td>
+					            <td>Net Loan</td>
+					            <td>Net Interest</td>
+					            <td>Principal paid</td>
+					            <td>Interest paid</td> 
+					        </tr>
+			        		
+			        		<tr>
+					            <td class="separate_next_row"><%= number_to_currency(loan.principal_amount, unit: "Php ") %></td>
+					            <td><%= number_to_percentage(loan.loan_type.rate * 100, precision: 0) %></td>
+					            <td><%= number_to_currency(loan.net_loan, unit: "Php ") %></td>
+					            <td><%= number_to_currency(loan.net_interest, unit: "Php ") %></td>
+					            <td><%= number_to_currency(principal_paid, unit: "Php ") %></td>
+					            <td><%= number_to_currency(interest_paid, unit: "Php ") %></td> 
+					        </tr>
+
+					        <tr>
+					            <td></td>
+					            <td></td>
+					            <td></td>
+					            <td></td>
+					            <td>Principal balance</td>
+					            <td>Interest balance</td> 
+					        </tr>
+
+					        <tr>
+					        	<td class="separate_next_row"></td>
+					            <td></td>
+					            <td></td>
+					            <td></td>
+
+					        	<td><%= number_to_currency(accounting_book.overall_principal_balance, unit: "Php ") %></td>
+					            <td><%= number_to_currency(accounting_book.overall_interest_balance, unit: "Php ") %></td> 
+					        </tr>
+
+
+					        <tr>
+					        	<td class="separate_next_row"></td>
+					            <td></td>
+					            <td></td>
+					            <td></td>
+
+					        	<td><strong><%= number_to_currency(principal_paid, unit: "Php ") + "/#{number_to_currency loan.principal_amount, unit: 'Php '}" %></strong></td>
+					            <td><strong><%= number_to_currency(interest_paid, unit: "Php ") + "/#{number_to_currency loan.net_interest, unit: 'Php '}" %></strong></td> 
+					        </tr>
+
+
+
+
+				    	</tbody>
+
+		  			</table>
+
+		  		</div>
+
+		  	<% end %>
+		  	<!-- Loans end -->
+
+
+		  	<!-- Pagination -->
+			<div class="center_pagination">
+				<%= will_paginate @loans %>
+			</div>
+
+
+
+		</div>
+		<!-- Table Panel End-->
+
+</div>
+<!-- End col-md-10 -->

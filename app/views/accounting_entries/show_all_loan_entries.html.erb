@@ -4,11 +4,16 @@
 		<!-- Panel Table  -->
 		<div class="panel panel-default">
 
-		  <div class="panel-heading panel-heading-custom">
-		      <div class="panel_title_to_the_left" style="font-size: 2em;">Book entries</div>
+			<div class="panel-heading panel-heading-custom">
+			      <div class="panel_title_to_the_left" style="font-size: 2em;">Accounting Entries</div>
 
-		  </div>
+			</div>
 
+
+			<!-- Pagination -->
+			<div class="center_pagination">
+				<%= will_paginate @loans %>
+			</div>
 
 
 		  <% @loans.each do | loan |%>
@@ -16,7 +21,7 @@
 		  		<% accounting_book = loan.accounting_book %>
 		  		<div class="well well-custom">
 		  			<div class="well-header">
-			  			<div class="well-title"><%= loan.string_id %></div>
+			  			<div class="well-title"><%= link_to loan.string_id, show_loan_disbursion_loan_path(loan), class: "link-shiraishi" %></div>
 
 			  			<div class="well-right">
 				  			<p><strong>Principal balance </strong> <%= number_to_currency accounting_book.overall_principal_balance, unit: "Php " %></p>
@@ -88,8 +93,14 @@
 
 		  		</div>
 
-		  <% end %>
-		  <!-- Loans end -->
+		  	<% end %>
+		  	<!-- Loans end -->
+
+
+		  	<!-- Pagination -->
+		  	<div class="center_pagination">
+				<%= will_paginate @loans %>
+		  	</div>
 
 
 		</div>
