@@ -1,11 +1,29 @@
 Rails.application.routes.draw do
 
 
+    # Reports
+    resources :reports, only: [:show, :index] do
+        collection do
+            # loans report
+            get :requested_loans
+            get :approved_loans
+            get :rejected_loans
+            get :disbursed_loans
+            get :undisbursed_loans
+        end
+    end
+
+
+
+
+
     resources :cr_entries, only: [:edit, :update]
 
 
 
+
     resources :dr_entries, only: [:edit, :update]
+
 
 
 
