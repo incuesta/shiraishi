@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
             # Accounting, pdf version of accounting_entries#show_income_summary
             get :income_summary
+
+
+            # Get User Logs
+            get :activity_logs
         end
     end
 

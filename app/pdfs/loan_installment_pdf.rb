@@ -8,7 +8,6 @@ class LoanInstallmentPdf < Prawn::Document
 		@view = view_context	# Pass the view_context to be able to use View Helper methods
 		@issued_by = issued_by
 
-		# title_block
 
 		show_receipt
 		

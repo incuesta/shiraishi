@@ -8,9 +8,30 @@ class ReportsController < ApplicationController
 	  end
 
 
+
+	  # GET /reports/activity_logs
+	  def activity_logs
+	    @logs = ActivityLog.order("last_sign_in_at desc")
+	    
+
+	    respond_to do | format |
+	        
+	        format.pdf do
+	            issuer = ("#{current_accountant.last_name} #{current_accountant.first_name}" if current_accountant) || "ACGECCO"
+
+	            logs_pdf = ActivityLogsPdf.new(@logs, view_context, issuer, "User Activity Logs")
+
+	            send_data logs_pdf.render, filename: 'user_activity_logs.pdf', type: 'application/pdf', disposition: 'inline'
+	          
+	        end
+	    end
+	  end
+
+
+
 	   # GET /reports/income_summary
 	  def income_summary
-	    @loans = Loan.disbursed_loans
+	    @loans = Loan.disbursed_loans.order("disbursement_date desc")
 	    
 
 	    respond_to do | format |
@@ -32,7 +53,7 @@ class ReportsController < ApplicationController
 	 
 	  # GET /reports/requested_loans
 	  def requested_loans
-	    @loans = Loan.requested_loans
+	    @loans = Loan.requested_loans.order("application_date desc")
 	    
 
 	    respond_to do | format |
@@ -53,7 +74,7 @@ class ReportsController < ApplicationController
 
 	  # GET /reports/approved_loans
 	  def approved_loans
-	   	@loans = Loan.approved_loans
+	   	@loans = Loan.approved_loans.order("approved_date desc")
 
 	    
 	    respond_to do | format |
@@ -74,7 +95,7 @@ class ReportsController < ApplicationController
 
 	  # GET /reports/rejected_loans
 	  def rejected_loans
-	    @loans = Loan.rejected_loans
+	    @loans = Loan.rejected_loans.order("application_date desc")
 
 	    respond_to do | format |
 	        
@@ -94,7 +115,7 @@ class ReportsController < ApplicationController
 
 	  # GET /reports/disbursed_loans
 	  def disbursed_loans
-	    @loans = Loan.disbursed_loans
+	    @loans = Loan.disbursed_loans.order("disbursement_date desc")
 
 	     respond_to do | format |
 	        
@@ -114,7 +135,7 @@ class ReportsController < ApplicationController
 
 	  # GET /reports/undisbursed_loans
 	  def undisbursed_loans
-	    @loans = Loan.undisbursed_loans
+	    @loans = Loan.undisbursed_loans.order("application_date desc")
 	    
 	    respond_to do | format |
 	        
