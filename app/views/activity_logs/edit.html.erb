@@ -1,6 +1,31 @@
-<h1>Editing Activity Log</h1>
+<div class="row">
 
-<%= render 'form', activity_log: @activity_log %>
+	<!-- The Left side containing the Form -->
+	<div class="col-md-6 col-centered">
 
-<%= link_to 'Show', @activity_log %> |
-<%= link_to 'Back', activity_logs_path %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<span class="h4" >Edit Activity Log</span>
+
+					<div class="pull-right">
+						<%= link_to 'Show', @activity_log %> |
+						<%= link_to 'Back', activity_logs_path %>
+					</div>
+				</div>
+
+				<br />
+
+				<div class="row">
+					<div class="col-md-10 col-centered">
+						<%= render 'form', activity_log: @activity_log %>
+					</div>
+				</div>
+			</div>
+			<!-- Panel Heading End -->
+		</div>
+
+	</div>
+	<!-- The Left Side End -->
+
+</div>

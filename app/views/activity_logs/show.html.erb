@@ -1,89 +1,166 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @activity_log.user_id %>
-</p>
 
-<p>
-  <strong>User class:</strong>
-  <%= @activity_log.user_class %>
-</p>
+<!-- Div Row -->
+<div class="row">
+    <div class="col-md-11 col-centered">
+      
+      <div class="panel panel-default">
 
-<p>
-  <strong>User name:</strong>
-  <%= @activity_log.user_name %>
-</p>
+          <div class="panel-heading panel-heading-custom">
+              <div class="panel_title_to_the_left">
+                  <strong>User Log Details</strong>
+              </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @activity_log.email %>
-</p>
+              <div class="panel_buttons_to_the_right">
 
-<p>
-  <strong>Last name:</strong>
-  <%= @activity_log.last_name %>
-</p>
+                  <%= link_to 'Show Profile', polymorphic_path(@user_profile), class: 'btn btn-sm btn-success' %> |
 
-<p>
-  <strong>First name:</strong>
-  <%= @activity_log.first_name %>
-</p>
+                  <%= link_to 'Edit', edit_activity_log_path(@activity_log), class: "btn btn-sm btn-success" %> |
 
-<p>
-  <strong>Middle name:</strong>
-  <%= @activity_log.middle_name %>
-</p>
+                  <%= link_to 'Back', activity_logs_path, class: "btn btn-sm btn-success"  %>
 
-<p>
-  <strong>Sign in count:</strong>
-  <%= @activity_log.sign_in_count %>
-</p>
+              </div>
+          </div>
 
-<p>
-  <strong>Current sign in at:</strong>
-  <%= @activity_log.current_sign_in_at %>
-</p>
 
-<p>
-  <strong>Last sign in at:</strong>
-  <%= @activity_log.last_sign_in_at %>
-</p>
+              <div class="row">
 
-<p>
-  <strong>Current sign in ip:</strong>
-  <%= @activity_log.current_sign_in_ip %>
-</p>
+                <!-- Image Div -->
+                <div class="col-md-4">
+                    <div class="well">
+                        <div class="row" style="margin: 25px;">
+                            <div class="col-md-12" style="margin-bottom: 25px">
+                                <div>
+                                    <!-- Show this if no profile Image -->
+                                <%= image_tag "user_icon_1.png", alt: "#{@user.user_name}.jpg", class: "center-block", size:"200x200" unless @user_profile.image.present? %>
 
-<p>
-  <strong>Last sign in ip:</strong>
-  <%= @activity_log.last_sign_in_ip %>
-</p>
+                                <!-- Show this if there's a profile Image -->
+                                <%= image_tag @user_profile.image.img_200.url, alt: "#{@user.user_name}.jpg", class: "center-block" if @user_profile.image.present? %>
 
-<p>
-  <strong>Browser:</strong>
-  <%= @activity_log.browser %>
-</p>
+                                
+                                      <p class="text-center h3"><%= @activity_log.email %></p>
+                                      <p class="text-center h5"><%= @activity_log.current_sign_in_ip %></p>
+                                  
+                                </div>
+                            </div class="col-md-12">
+                              <table class="table">
+                                  <tr>
+                                    <td><strong>User class:</strong></td>
+                                    <td><%= @activity_log.user_class %></td>
+                                  </tr>
 
-<p>
-  <strong>Controller:</strong>
-  <%= @activity_log.controller %>
-</p>
+                                  <tr>
+                                    <td><strong>User name:</strong></td>
+                                    <td><%= @activity_log.user_name %></td>
+                                  </tr>
 
-<p>
-  <strong>Action:</strong>
-  <%= @activity_log.action %>
-</p>
+                                  <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td><%= @activity_log.email %></td>
+                                  </tr>
 
-<p>
-  <strong>Params:</strong>
-  <%= @activity_log.params %>
-</p>
+                                  <tr>
+                                    <td><strong>Last name:</strong></td>
+                                    <td><%= @activity_log.last_name %></td>
+                                  </tr>
 
-<p>
-  <strong>Note:</strong>
-  <%= @activity_log.note %>
-</p>
+                                  <tr>
+                                    <td><strong>First name:</strong></td>
+                                    <td><%= @activity_log.first_name %></td>
+                                  </tr>
 
-<%= link_to 'Edit', edit_activity_log_path(@activity_log) %> |
-<%= link_to 'Back', activity_logs_path %>
+                                  <tr>
+                                    <td><strong>Middle name:</strong></td>
+                                    <td><%= @activity_log.middle_name %></td>
+                                  </tr>
+
+                                  
+                              </table>
+
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Div End -->
+
+
+                <div class="col-md-8">
+                  <div class="row">
+                      <div class="col-md-10 for-the-table">
+                          <table class="table">
+
+                                <tr>
+                                    <td><strong>Sign in count:</strong></td>
+                                    <td><%= @activity_log.sign_in_count %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Current sign in at:</strong></td>
+                                    <td><%= @activity_log.current_sign_in_at %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Last sign in at:</strong></td>
+                                    <td><%= @activity_log.last_sign_in_at %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Current sign in IP:</strong></td>
+                                    <td><%= @activity_log.current_sign_in_ip %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Last sign in IP:</strong></td>
+                                    <td><%= @activity_log.last_sign_in_ip %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Browser:</strong></td>
+                                    <td><%= @activity_log.browser %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Accessed functions:</strong></td>
+                                    <td><%= "#{@activity_log.controller} - #{@activity_log.action}" %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>URL parameters:</strong></td>
+                                    <td><%= @activity_log.params %></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><strong>Activity:</strong></td>
+                                    <td><%= @activity_log.note %></td>
+                                  </tr>
+                              
+                            </table>
+                            <!-- Table End -->
+                        </div>
+                        <!-- For the Table End -->
+
+                        <!-- Statuses -->
+                        <div class="col-md-3">
+                           
+                        </div>
+                        <!-- Statuses End -->
+
+                  </div>
+                  <!-- Row For Right End -->
+
+                </div>
+                <!-- div col md 8 end -->
+
+            </div>
+            <!-- div row end -->
+
+
+      </div>
+      <!-- Panel Default End -->
+
+    </div>
+    <!-- End of col-md-offset-2 -->
+</div>
+<!-- Div Row End -->

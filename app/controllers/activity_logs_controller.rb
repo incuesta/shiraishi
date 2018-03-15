@@ -15,6 +15,10 @@ class ActivityLogsController < ApplicationController
   # GET /activity_logs/1
   # GET /activity_logs/1.json
   def show
+      @user = ActivityLog.find_user @activity_log.user_class, @activity_log.user_id
+
+      # Dynamically return a _profile method
+      @user_profile = @user.public_send("#{@user.class.name.underscore}_profile")
   end
 
 

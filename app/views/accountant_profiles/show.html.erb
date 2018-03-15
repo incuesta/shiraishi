@@ -9,15 +9,15 @@
       
       <div class="panel panel-default">
 
-          <div class="panel-heading">
-              <div class="panel-title">
+          <div class="panel-heading panel-heading-custom">
+              <div class="panel_title_to_the_left">
                   <strong><%= accountant.user_name.capitalize %></strong>
+              </div>
                   
-                  <div class="pull-right">
-                    <%= link_to 'Update Profile', edit_accountant_profile_path(@accountant_profile) %> |
-                    <%= link_to 'Update Registration', edit_accountant_registration_path(accountant) %> |
-                    <%= link_to 'Back', accountant_profiles_path %>
-                  </div>
+              <div class="panel_buttons_to_the_right">
+                <%= link_to 'Update Profile', edit_accountant_profile_path(@accountant_profile), class: 'btn btn-sm btn-success' %> |
+                <%= link_to 'Update Registration', edit_accountant_registration_path(accountant), class: 'btn btn-sm btn-success' %> |
+                <%= link_to 'Back', accountant_profiles_path, class: 'btn btn-sm btn-success' %>
               </div>
           </div>
 

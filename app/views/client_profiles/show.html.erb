@@ -8,15 +8,15 @@
       
       <div class="panel panel-default">
 
-          <div class="panel-heading">
-              <div class="panel-title">
+          <div class="panel-heading panel-heading-custom">
+              <div class="panel_title_to_the_left">
                   <strong><%= client.user_name.capitalize %></strong>
+              </div>
                   
-                  <div class="pull-right">
-                    <%= link_to 'Update Profile', edit_client_profile_path(@client_profile) %> |
-                    <%= link_to 'Update Registration', edit_client_registration_path(client) %> |
-                    <%= link_to 'Back', client_profiles_path %>
-                  </div>
+              <div class="panel_buttons_to_the_right">
+                <%= link_to 'Update Profile', edit_client_profile_path(@client_profile), class: 'btn btn-sm btn-success' %> |
+                <%= link_to 'Update Registration', edit_client_registration_path(client), class: 'btn btn-sm btn-success' %> |
+                <%= link_to 'Back', client_profiles_path, class: 'btn btn-sm btn-success' %>
               </div>
           </div>
 

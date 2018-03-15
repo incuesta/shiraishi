@@ -1,59 +1,48 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Activity Logs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>User class</th>
-      <th>User name</th>
-      <th>Email</th>
-      <th>Last name</th>
-      <th>First name</th>
-      <th>Middle name</th>
-      <th>Sign in count</th>
-      <th>Current sign in at</th>
-      <th>Last sign in at</th>
-      <th>Current sign in ip</th>
-      <th>Last sign in ip</th>
-      <th>Browser</th>
-      <th>Controller</th>
-      <th>Action</th>
-      <th>Params</th>
-      <th>Note</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- Panel Table  -->
+<div class="panel panel-default">
 
-  <tbody>
-    <% @activity_logs.each do |activity_log| %>
-      <tr>
-        <td><%= activity_log.user_id %></td>
-        <td><%= activity_log.user_class %></td>
-        <td><%= activity_log.user_name %></td>
-        <td><%= activity_log.email %></td>
-        <td><%= activity_log.last_name %></td>
-        <td><%= activity_log.first_name %></td>
-        <td><%= activity_log.middle_name %></td>
-        <td><%= activity_log.sign_in_count %></td>
-        <td><%= activity_log.current_sign_in_at %></td>
-        <td><%= activity_log.last_sign_in_at %></td>
-        <td><%= activity_log.current_sign_in_ip %></td>
-        <td><%= activity_log.last_sign_in_ip %></td>
-        <td><%= activity_log.browser %></td>
-        <td><%= activity_log.controller %></td>
-        <td><%= activity_log.action %></td>
-        <td><%= activity_log.params %></td>
-        <td><%= activity_log.note %></td>
-        <td><%= link_to 'Show', activity_log %></td>
-        <td><%= link_to 'Edit', edit_activity_log_path(activity_log) %></td>
-        <td><%= link_to 'Destroy', activity_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="panel-heading panel-heading-custom">
+      <div class="panel_title_to_the_left" style="font-size: 2em;">User Logs</div>
 
-<br>
+  </div>
 
-<%= link_to 'New Activity Log', new_activity_log_path %>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>User class</th>
+                <th>User name</th>
+                <th>Email</th>
+                <th>Current sign in at</th>
+                <th>Last sign in at</th>
+                <th>Current sign in ip</th>
+                <th>Last sign in ip</th>
+                <th>Activity</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @activity_logs.each do |activity_log| %>
+                <tr>
+                    <td><%= activity_log.user_class %></td>
+                    <td><%= activity_log.user_name %></td>
+                    <td><%= activity_log.email %></td>
+                    <td><%= activity_log.current_sign_in_at %></td>
+                    <td><%= activity_log.last_sign_in_at %></td>
+                    <td><%= activity_log.current_sign_in_ip %></td>
+                    <td><%= activity_log.last_sign_in_ip %></td>
+                    <td><%= activity_log.note %></td>
+                    <td><%= link_to 'Show', activity_log %></td>
+                    <td><%= link_to 'Edit', edit_activity_log_path(activity_log) %></td>
+                    <td><%= link_to 'Destroy', activity_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+</div>
+<!-- Table Panel End
+
