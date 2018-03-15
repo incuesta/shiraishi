@@ -7,16 +7,20 @@ class Clients::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
+  
 
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  #POST /resource/sign_in
+  def create
+    super
+    record(current_client, "Signed in")
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    client = current_client
+    super
+    record(client, "Signed out")
+  end
 
   # protected
 

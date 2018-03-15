@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+    # ActivityLog - Audit Trail
+    resources :activity_logs
+
+
+
 
     # Reports
     resources :reports, only: [:show, :index] do

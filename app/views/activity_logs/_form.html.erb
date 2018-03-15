@@ -1,0 +1,102 @@
+<%= form_with(model: activity_log, local: true) do |form| %>
+  <% if activity_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(activity_log.errors.count, "error") %> prohibited this activity_log from being saved:</h2>
+
+      <ul>
+      <% activity_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :activity_log_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_class %>
+    <%= form.text_field :user_class, id: :activity_log_user_class %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name, id: :activity_log_user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :activity_log_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, id: :activity_log_last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, id: :activity_log_first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :middle_name %>
+    <%= form.text_field :middle_name, id: :activity_log_middle_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sign_in_count %>
+    <%= form.number_field :sign_in_count, id: :activity_log_sign_in_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_sign_in_at %>
+    <%= form.datetime_select :current_sign_in_at, id: :activity_log_current_sign_in_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_sign_in_at %>
+    <%= form.datetime_select :last_sign_in_at, id: :activity_log_last_sign_in_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_sign_in_ip %>
+    <%= form.text_field :current_sign_in_ip, id: :activity_log_current_sign_in_ip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_sign_in_ip %>
+    <%= form.text_field :last_sign_in_ip, id: :activity_log_last_sign_in_ip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :browser %>
+    <%= form.text_field :browser, id: :activity_log_browser %>
+  </div>
+
+  <div class="field">
+    <%= form.label :controller %>
+    <%= form.text_field :controller, id: :activity_log_controller %>
+  </div>
+
+  <div class="field">
+    <%= form.label :action %>
+    <%= form.text_field :action, id: :activity_log_action %>
+  </div>
+
+  <div class="field">
+    <%= form.label :params %>
+    <%= form.text_field :params, id: :activity_log_params %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_field :note, id: :activity_log_note %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

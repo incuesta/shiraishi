@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  user_class: MyString
+  user_name: MyString
+  email: MyString
+  last_name: MyString
+  first_name: MyString
+  middle_name: MyString
+  sign_in_count: 1
+  current_sign_in_at: 2018-03-15 10:44:17
+  last_sign_in_at: 2018-03-15 10:44:17
+  current_sign_in_ip: 
+  last_sign_in_ip: 
+  browser: MyString
+  controller: MyString
+  action: MyString
+  params: MyString
+  note: MyString
+
+two:
+  user_id: 
+  user_class: MyString
+  user_name: MyString
+  email: MyString
+  last_name: MyString
+  first_name: MyString
+  middle_name: MyString
+  sign_in_count: 1
+  current_sign_in_at: 2018-03-15 10:44:17
+  last_sign_in_at: 2018-03-15 10:44:17
+  current_sign_in_ip: 
+  last_sign_in_ip: 
+  browser: MyString
+  controller: MyString
+  action: MyString
+  params: MyString
+  note: MyString

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312021716) do
+ActiveRecord::Schema.define(version: 20180315024417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,28 @@ ActiveRecord::Schema.define(version: 20180312021716) do
     t.bigint "accounting_book_id"
     t.bigint "from_installment"
     t.index ["accounting_book_id"], name: "index_accounting_entries_on_accounting_book_id"
+  end
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "user_class"
+    t.string "user_name"
+    t.string "email"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "middle_name"
+    t.integer "sign_in_count"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "browser"
+    t.string "controller"
+    t.string "action"
+    t.string "params"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "admin_profiles", force: :cascade do |t|

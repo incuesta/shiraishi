@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   	include Pundit
 
 	
+
+
 	def pundit_user
 		if current_admin
 			current_admin
@@ -23,6 +25,7 @@ class ApplicationController < ActionController::Base
 	#alias_method :current_user, :the_users
   
   
+  
 
 
   	rescue_from Pundit::NotAuthorizedError, with: :yah_not_authorized_brother
@@ -31,6 +34,36 @@ class ApplicationController < ActionController::Base
 	  	redirect_to request.referrer || root_path, notice: "You're not authorized to do that"
 	end
 
+
+
+
+	# Audit Trail!!!!
+	def record(user, note)
+		log 					= ActivityLog.new
+		log.user_id 			= user.id
+		log.user_class 			= user.class.name
+		
+		log.user_name	 		= user.user_name
+		log.email 				= user.email
+		
+		log.last_name 			= user.last_name
+		log.first_name 			= user.first_name
+		log.middle_name 		= user.middle_name
+		
+		log.sign_in_count 		= user.sign_in_count
+		log.current_sign_in_at 	= user.current_sign_in_at
+		log.last_sign_in_at 	= user.last_sign_in_at
+		log.current_sign_in_ip 	= user.current_sign_in_ip
+		log.last_sign_in_ip 	= user.last_sign_in_ip
+		log.browser 			= request.env["HTTP_USER_AGENT"]
+		
+		log.controller 			= controller_name
+		log.action 				= action_name
+		log.params 				= params.inspect
+		
+		log.note 				= note
+		log.save
+	end
 
 
 end
