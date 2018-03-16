@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315024417) do
+ActiveRecord::Schema.define(version: 20180316072759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -260,6 +260,26 @@ ActiveRecord::Schema.define(version: 20180315024417) do
     t.index ["client_id"], name: "index_golden_keys_on_client_id"
   end
 
+  create_table "guarantors", force: :cascade do |t|
+    t.bigint "client_id"
+    t.string "image"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "sex"
+    t.datetime "birth_date"
+    t.string "address"
+    t.string "city"
+    t.string "zip_code"
+    t.string "civil_status"
+    t.string "mobile"
+    t.string "company"
+    t.string "job_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_guarantors_on_client_id"
+  end
+
   create_table "loan_docs", force: :cascade do |t|
     t.string "name"
     t.boolean "compulsory", default: true
@@ -420,6 +440,7 @@ ActiveRecord::Schema.define(version: 20180315024417) do
   add_foreign_key "cr_entries", "accounting_entries"
   add_foreign_key "dr_entries", "accounting_entries"
   add_foreign_key "golden_keys", "clients"
+  add_foreign_key "guarantors", "clients"
   add_foreign_key "loan_installment_containers", "loans"
   add_foreign_key "loan_installments", "loan_installment_containers"
   add_foreign_key "loan_manager_profiles", "loan_managers"

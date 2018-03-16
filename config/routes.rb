@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :guarantors
     # ActivityLog - Audit Trail
     resources :activity_logs
 
@@ -167,7 +168,12 @@ Rails.application.routes.draw do
 
 
     # Profile - Client
-    resources :client_profiles
+    resources :client_profiles do
+      member do
+        get :show_guarantors
+      end
+    end
+
     
     # Devise Client Account
     devise_for :clients, path: 'clients', controllers:

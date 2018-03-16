@@ -1,0 +1,45 @@
+
+<!-- Panel Table -->
+<div class="panel panel-default">
+
+  <div class="panel-heading">Guarantors</div>
+
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th>Last name</th>
+            <th>First name</th>
+            <th>Middle name</th>
+            <th>Sex</th>
+            <th>Birth date</th>
+            <th>Address</th>
+            <th>City</th>
+
+          <!-- For the Action -->
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @guarantors.each do |guarantor| %>
+            <tr>
+              <td><%= guarantor.last_name %></td>
+              <td><%= guarantor.first_name %></td>
+              <td><%= guarantor.middle_name %></td>
+              <td><%= guarantor.sex %></td>
+              <td><%= guarantor.birth_date.to_date %></td>
+              <td><%= guarantor.address %></td>
+              <td><%= guarantor.city %></td>
+             
+              <td><%= link_to 'Show', guarantor %></td>
+              <td><%= link_to 'Edit', edit_guarantor_path(guarantor) %></td>
+              <td><%= link_to 'Destroy', guarantor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+</div>
+<!-- Table Panel End -->

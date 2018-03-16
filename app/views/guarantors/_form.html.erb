@@ -1,0 +1,91 @@
+<%= form_with(model: guarantor, local: true, html: {multipart: true}) do |form| %>
+      <% if guarantor.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(guarantor.errors.count, "error") %> prohibited this guarantor from being saved:</h2>
+
+            <ul>
+            <% guarantor.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+
+       <div class="form-group">
+        <%= form.label :image %>
+        <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: :guarantor_image %>
+        <span><%= File.basename(guarantor.image.url) if guarantor.image.present? %></span>
+      </div>
+
+
+      <div class="field">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, id: :guarantor_last_name, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, id: :guarantor_first_name, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :middle_name %>
+        <%= form.text_field :middle_name, id: :guarantor_middle_name, class: 'form-control' %>
+      </div>
+
+
+      <div class="form-group">
+        <%= form.label :sex %>
+        <%= form.select :sex, ["male", "female"], {}, id: :guarantor_sex, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :birth_date %>
+        <%= form.datetime_select :birth_date, id: :guarantor_birth_date, selected: 18.years.ago, end_year: 100.years.ago.year, start_year: 18.years.ago.year %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :address %>
+        <%= form.text_field :address, id: :guarantor_address, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :city %>
+        <%= form.text_field :city, id: :guarantor_city, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :zip_code %>
+        <%= form.text_field :zip_code, id: :guarantor_zip_code, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :civil_status %>
+        <%= form.select :civil_status, ["single", "married"], {}, id: :guarantor_civil_status, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :mobile %>
+        <%= form.text_field :mobile, id: :guarantor_mobile, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :company %>
+        <%= form.text_field :company, id: :guarantor_company, class: "form-control" %>
+      </div>
+
+
+      <div class="form-group">
+        <%= form.label :job_title %>
+        <%= form.text_field :job_title, id: :guarantor_job_title, class: "form-control" %>
+      </div>
+
+
+      <div class="actions">
+        <%= form.submit class: 'btn btn-success btn-lg' %>
+      </div>
+
+
+
+<% end %>

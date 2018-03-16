@@ -12,7 +12,10 @@ class Client < ApplicationRecord
 
     
 
-    has_many :loans, dependent: :destroy # A client can only have 1 loan at a time.
+    has_many :loans, dependent: :destroy 
+
+
+    has_many :guarantors, dependent: :destroy
 
 
 
@@ -25,7 +28,7 @@ class Client < ApplicationRecord
 
 
     def full_name
-    	"#{last_name.capitalize} #{first_name.capitalize} #{middle_name.capitalize}"
+    	"#{last_name.capitalize}, #{first_name.capitalize} #{middle_name.capitalize}"
     end
 
 

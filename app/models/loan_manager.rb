@@ -16,6 +16,6 @@ class LoanManager < ApplicationRecord
   
 
   		def full_name
-  			"#{last_name.capitalize} #{first_name.capitalize} #{middle_name.capitalize}"
+  			"#{last_name.capitalize}, #{first_name.capitalize} #{middle_name.capitalize}"
   		end
 end

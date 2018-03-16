@@ -14,9 +14,10 @@
               </div>
                   
               <div class="panel_buttons_to_the_right">
+                <%= link_to 'Show Guarantors', show_guarantors_client_profile_path(@client_profile), class: 'btn btn-sm btn-success' %> |
+                <%= link_to 'Show Assets', "#", class: 'btn btn-sm btn-success' %>  |
                 <%= link_to 'Update Profile', edit_client_profile_path(@client_profile), class: 'btn btn-sm btn-success' %> |
-                <%= link_to 'Update Registration', edit_client_registration_path(client), class: 'btn btn-sm btn-success' %> |
-                <%= link_to 'Back', client_profiles_path, class: 'btn btn-sm btn-success' %>
+                <%= link_to 'Update Registration', edit_client_registration_path(client), class: 'btn btn-sm btn-success' %>
               </div>
           </div>
 
@@ -39,6 +40,8 @@
                                   <p class="text-center h5"><%= "(#{client.class.name.underscore.humanize})" %></p>
                               
                             </div>
+
+                            
                         </div>
                     </div>
                 </div>
