@@ -12,8 +12,28 @@ class LoanMailer < ApplicationMailer
 	  end
 
 
-	  # Send this when mail is approved
+	  # Send this when loan is approved
 	  def new_approved_loan(loan)
+	  		@loan = loan
+	  		@client = loan.client
+	  		@email = @client.email
+
+	  		mail to: @email
+	  end
+
+
+	  # Send this when loan is disbursed
+	  def new_disbursed_loan(loan)
+	  		@loan = loan
+	  		@client = loan.client
+	  		@email = @client.email
+
+	  		mail to: @email
+	  end
+
+
+	  # Send this when loan is rejected
+	  def new_rejected_loan(loan)
 	  		@loan = loan
 	  		@client = loan.client
 	  		@email = @client.email

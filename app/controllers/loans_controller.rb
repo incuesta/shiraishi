@@ -280,6 +280,11 @@ class LoansController < ApplicationController
       set_loan
       respond_to do | format |
         if @loan.update(loan_params_origin)
+
+          # Send a notification
+          rejected_mail = LoanMailer.new_rejected_loan @loan
+          rejected_mail.deliver_now
+
           format.js { render "loans/reject_the_loan.js.erb" }
         end
       end
@@ -307,6 +312,11 @@ class LoansController < ApplicationController
               accounting_entry.create_cr_entry description: "Cash", value: @loan.principal_amount
 
               accounting_book.save
+
+
+              # Send a notification
+              disbursed_mail = LoanMailer.new_disbursed_loan @loan
+              disbursed_mail.deliver_now
               
 
           end

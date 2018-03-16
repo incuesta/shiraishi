@@ -11,4 +11,15 @@ class LoanMailerPreview < ActionMailer::Preview
   	LoanMailer.new_approved_loan Loan.last
   end
 
+
+  def new_disbursed_loan
+  	LoanMailer.new_disbursed_loan Loan.last
+  end
+
+
+  def new_rejected_loan
+  	LoanMailer.new_rejected_loan Loan.last
+  end
+
+
 end

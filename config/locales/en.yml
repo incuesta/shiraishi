@@ -32,8 +32,13 @@
 en:
   hello: "Hello world"
 
-
-en:
   loan_mailer:
+
     new_approved_loan: 
-      subject: "Loan request was approved!"
+      subject: "Loan Request Approved!"
+
+    new_disbursed_loan:
+      subject: "Loan Disbursed!"
+
+    new_rejected_loan:
+      subject: "Loan Request Unable to Pass"
