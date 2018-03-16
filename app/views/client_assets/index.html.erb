@@ -1,0 +1,46 @@
+<div class="col-md-8 col-centered">
+    <!-- Panel Table -->
+    <div class="panel panel-default">
+
+      <div class="panel-heading panel-heading-custom">
+        <div class="panel_title_to_the_left">
+          Assets
+        </div>
+
+        <div class="panel_buttons_to_the_right">
+          <%= link_to 'New Client Asset', new_client_asset_path, class: 'btn btn-sm btn-success' %>
+        </div>
+      </div>
+
+
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+                <th>Asset</th>
+                <th>Description</th>
+
+
+              <!-- For the Action -->
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @client_assets.each do |ass| %>
+                <tr>
+                  <td><%= ass.name %></td>
+                  <td><%= ass.description %></td>
+                
+                 
+                  <td><%= link_to 'Show', ass %></td>
+                  <td><%= link_to 'Edit', edit_client_asset_path(ass) %></td>
+                  <td><%= link_to 'Destroy', ass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+    </div>
+    <!-- Table Panel End -->
+</div>

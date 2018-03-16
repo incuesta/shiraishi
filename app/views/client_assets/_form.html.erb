@@ -1,0 +1,33 @@
+<%= form_with(model: client_asset, local: true, html: {multipart: true}) do |form| %>
+  <% if client_asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(client_asset.errors.count, "error") %> prohibited this client_asset from being saved:</h2>
+
+      <ul>
+      <% client_asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: :client_asset_image %>
+    <span><%= File.basename(client_asset.image.url) if client_asset.image.present? %></span>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :client_asset_name, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :client_asset_description, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-lg btn-success' %>
+  </div>
+<% end %>

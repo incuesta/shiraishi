@@ -1,0 +1,31 @@
+<div class="row">
+
+	<!-- The Left side containing the Form -->
+	<div class="col-md-6 col-centered">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<span class="h4" >Edit Client Asset</span>
+
+					<div class="pull-right">
+						<%= link_to 'Show', @client_asset, class: 'btn btn-sm btn-success' %> |
+						<%= link_to 'Client profile', @client.client_profile, class: 'btn btn-sm btn-success' %>
+					</div>
+				</div>
+
+				<br />
+
+				<div class="row">
+					<div class="col-md-10 col-centered">
+						<%= render 'form', client_asset: @client_asset %>
+					</div>
+				</div>
+			</div>
+			<!-- Panel Heading End -->
+		</div>
+
+	</div>
+	<!-- The Left Side End -->
+
+</div>

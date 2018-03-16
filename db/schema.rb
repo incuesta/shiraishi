@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316072759) do
+ActiveRecord::Schema.define(version: 20180316113012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,16 @@ ActiveRecord::Schema.define(version: 20180316072759) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "client_assets", force: :cascade do |t|
+    t.bigint "client_id"
+    t.string "image"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_client_assets_on_client_id"
   end
 
   create_table "client_docs", force: :cascade do |t|
@@ -436,6 +446,7 @@ ActiveRecord::Schema.define(version: 20180316072759) do
   add_foreign_key "accountant_profiles", "accountants"
   add_foreign_key "accounting_books", "loans"
   add_foreign_key "accounting_entries", "accounting_books"
+  add_foreign_key "client_assets", "clients"
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "cr_entries", "accounting_entries"
   add_foreign_key "dr_entries", "accounting_entries"

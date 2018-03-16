@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :guarantors
+    # Client Assets
+    resources :client_assets
+
+
+
+
+    # Guarantors
+    resources :guarantors
+
+
+
+
     # ActivityLog - Audit Trail
     resources :activity_logs
 

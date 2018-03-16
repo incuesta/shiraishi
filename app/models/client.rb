@@ -16,6 +16,7 @@ class Client < ApplicationRecord
 
 
     has_many :guarantors, dependent: :destroy
+    has_many :client_assets, dependent: :destroy
 
 
 
