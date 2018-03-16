@@ -1,5 +1,5 @@
 class ClientProfilesController < ApplicationController
-  before_action :set_client_profile, only: [:show, :show_guarantors, :edit, :update, :destroy]
+  before_action :set_client_profile, only: [:show, :show_guarantors, :show_assets, :edit, :update, :destroy]
 
   # GET /client_profiles
   # GET /client_profiles.json
@@ -16,9 +16,15 @@ class ClientProfilesController < ApplicationController
   end
 
 
-  # GET /guarantors/1
+  # GET /client_profiles/1/show_guarantors
   def show_guarantors
     @guarantors = @client_profile.client.guarantors
+  end
+
+
+  # GET /client_profiles/1/show_assets
+  def show_assets
+    @client_assets = @client_profile.client.client_assets
   end
 
 

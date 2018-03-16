@@ -181,7 +181,11 @@ Rails.application.routes.draw do
     # Profile - Client
     resources :client_profiles do
       member do
+        # Shows the Client's Guarantors
         get :show_guarantors
+
+        # Shows the client's Assets
+        get :show_assets
       end
     end
 

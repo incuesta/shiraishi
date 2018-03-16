@@ -10,7 +10,7 @@
 
 							<div class="well-right">
 								<%= link_to 'Edit', edit_client_asset_path(@client_asset), class: 'btn btn-sm btn-success' %> |
-								<%= link_to 'Back', client_assets_path, class: 'btn btn-sm btn-success' %>
+								<%= link_to 'Back', show_assets_client_profile_path(@client_asset.client.client_profile), class: 'btn btn-sm btn-success' %>
 							</div>
 						</div>
 
