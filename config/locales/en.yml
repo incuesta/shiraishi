@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+
+en:
+  loan_mailer:
+    new_approved_loan: 
+      subject: "Loan request was approved!"

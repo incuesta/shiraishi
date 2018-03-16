@@ -262,6 +262,11 @@ class LoansController < ApplicationController
 
       respond_to do | format |
         if request_valid && @loan.update(loan_params_origin)
+
+            # Send a notification
+            approved_mail = LoanMailer.new_approved_loan @loan
+            approved_mail.deliver_now
+
             format.js { render "loans/approve_the_loan.js.erb" }
         else
             format.js { render "loans/invalid_loan_request.js.erb" }
