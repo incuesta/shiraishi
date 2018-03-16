@@ -6,4 +6,8 @@ class LoanInstallment < ApplicationRecord
 	def self.states
 		{paid: 'paid', unpaid: 'unpaid'}
 	end
+
+	def self.overdued_installments
+		where("'to' < :now and state = :state", {now: Date.current.yesterday, state: self.states[:unpaid]} )
+	end
 end

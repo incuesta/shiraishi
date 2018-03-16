@@ -35,8 +35,16 @@ class Loan < ApplicationRecord
 
 
 
+	# Join Statements
 	scope :list_with_loan_type_and_client, lambda { 
 		joins(:loan_type, :client)
+	}
+
+
+
+	# This will return Loans that have unpaid installment numbering more than 3
+	scope :red_listed_loans, lambda {
+		where id: red_listed_loans_array
 	}
 
 
@@ -46,6 +54,8 @@ class Loan < ApplicationRecord
 	scope :rejected_loans, lambda { where status: 'rejected' }
 	scope :disbursed_loans, lambda { where status: 'disbursed' }
 	scope :undisbursed_loans, lambda { where ["status='draft' or status='approved' or status='rejected'"] }
+
+
 
 
 
@@ -109,5 +119,38 @@ class Loan < ApplicationRecord
 	    (principal_amt >= minimum && principal_amt <= maximum) && required_documents == submitted_documents
 	end
 
-	
+
+
+
+
+	# Loans where unpaid installments are greater than 3 months
+	# Returns the id
+	def self.red_listed_loans_array
+		 loans = disbursed_loans
+
+		 red_listed_loans = []
+		
+
+		 loans.each do |loan|
+
+		 	count = 0
+		 	
+		 	loan.loan_installment_container.loan_installments.each do |installment|
+
+		 		if installment.state == LoanInstallment.states[:unpaid] && installment.to < Date.current.yesterday
+		 			count += 1
+		 		end
+
+		 	end
+
+		 	if count >= 3
+		 		red_listed_loans << loan.id
+		 	end
+
+		 end
+
+		 red_listed_loans
+	end
+
+
 end

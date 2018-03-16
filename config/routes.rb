@@ -118,6 +118,10 @@ Rails.application.routes.draw do
 
           # For Loan Disbursion
           get :approved_loans_for_disbursion
+
+
+          # Red Listed Loans
+          get :red_listed_loans
         end
 
 

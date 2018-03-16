@@ -143,6 +143,18 @@ class LoansController < ApplicationController
 
 
 
+  # These are loans whose unpaid installments exceeds 3
+  # GET /loans/red_listed_loans
+  def red_listed_loans
+    sort_and_search Loan.red_listed_loans
+
+    respond_to do |format|
+      format.html { render 'index' }
+    end
+  end
+
+
+
 
   # GET /loans/1
   # GET /loans/1.json

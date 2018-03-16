@@ -2,6 +2,13 @@ class LoanInstallmentContainer < ApplicationRecord
 	has_many :loan_installments, dependent: :destroy
 
 	belongs_to :loan
+
+
+
+  # Joins with loan_installments table
+  scope :with_installments, lambda {
+      joins(:loan_installment)
+  }
 	
 
 
