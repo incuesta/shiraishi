@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+    post 'data_stores/backup_from_dump'
+    post 'data_stores/restore_from_dump'
+
+
+    # Kekekeke
+    post 'data_stores/capture_db'
+    post 'data_stores/restore_db'
+
+
+    get 'data_stores/scheduled_backup'
+    get 'data_stores/manual_backup'
+
+    
+
     # Client Assets
     resources :client_assets
 

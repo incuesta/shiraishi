@@ -1,0 +1,61 @@
+
+<div class="row">
+		<div class="col-md-8 col-centered">
+
+				<div class="well well-custom">
+
+						<div class="well-header">
+							<div class="well-title">
+								Manual Cloud Storage
+							</div>
+
+							<div class="well-right">
+								<%= link_to 'Heroku Dashboard', 'https://dashboard.heroku.com/apps', class: 'btn btn-sm btn-info' %> |
+								<%= link_to 'Heroku CLI', 'https://devcenter.heroku.com/articles/heroku-cli', class: 'btn btn-sm btn-info' %>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-4" style="margin-bottom: 25px;">
+							   <!-- Show this if no profile Image -->
+							    <%= image_tag("cloud_200x200.png", alt: "cloud") %>
+
+							  
+							</div>
+
+							<div class="col-md-8" style="margin-top: 25px;">
+								<table class="table borderless">
+
+									<tr>
+										<td><strong>Cloud Storage</strong></td>
+										<td>This web application implements Heroku and Amazon cloud storage Services. Aside from scheduled automatic backups, manually triggered backups can be invoked by clicking the following buttons</td>
+									</tr>
+
+									<tr>
+									  	<td><strong>Backup Database</strong></td>
+									  	<td>
+
+									  		<%= link_to 'Capture DB State', @capture_db_state_link, method: :post, class: 'btn btn-lg btn-success' %>
+
+										</td>
+									</tr>
+
+									<tr>
+										<td><strong>Restore Database</strong></td>
+										<td>
+											<%= link_to 'Restore DB State', @restore_db_state_link, method: :post, class: 'btn btn-lg btn-success' %>
+
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+				</div>
+
+
+		</div>
+</div>
+
+

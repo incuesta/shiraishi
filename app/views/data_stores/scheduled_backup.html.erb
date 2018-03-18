@@ -1,0 +1,64 @@
+
+<div class="row">
+		<div class="col-md-8 col-centered">
+
+				<div class="well well-custom">
+
+						<div class="well-header">
+							<div class="well-title">
+								Time-Based Cloud Storage
+							</div>
+
+							<div class="well-right">
+								<%= link_to 'Heroku Dashboard', 'https://dashboard.heroku.com/apps', class: 'btn btn-sm btn-info' %> |
+								<%= link_to 'Heroku CLI', 'https://devcenter.heroku.com/articles/heroku-cli', class: 'btn btn-sm btn-info' %>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-4" style="margin-bottom: 25px;">
+							   <!-- Show this if no profile Image -->
+							    <%= image_tag("cloud_time_200x200.png", alt: "cloud") %>
+
+							  
+							</div>
+
+							<div class="col-md-8" style="margin-top: 25px;">
+								<table class="table borderless">
+
+									<tr>
+										<td><strong>Cloud Storage</strong></td>
+										<td>This web application implements Heroku and Amazon cloud storage Services.</td>
+									</tr>
+
+									<tr>
+									  	<td><strong>Scheduled Backups</strong></td>
+									  	<td>
+
+									  		<p>Backup task are automatically invoked according to a set time.</p>
+
+									  		<p>By default. Backups are scheduled to run automatically at 02:00 GMT+8</p>
+
+										</td>
+									</tr>
+
+									<tr>
+										<td><strong>Heroku CLI</strong></td>
+										<td>
+											<p>To set a different time, Using Heroku CLI, key in the following command</p>
+											<pre><code>heroku pg:backups:schedule DATABASE_URL --at '02:00 America/Los_Angeles' --app app_name</code></pre>
+										</td>
+
+									</tr>
+								</table>
+							</div>
+						</div>
+
+				</div>
+
+
+		</div>
+</div>
+
+
