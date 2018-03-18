@@ -190,7 +190,11 @@ class LoansController < ApplicationController
   # POST /loans
   # POST /loans.json
   def create
-    @loan = current_client.loans.build(loan_params)
+    if current_client
+      @loan = current_client.loans.build(loan_params)
+    elsif current_admin || current_loan_manager || current_accountant
+      @loan = Loan.new(loan_params)
+    end
 
     respond_to do |format|
       if @loan.save
@@ -374,7 +378,7 @@ class LoansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params_origin
-      params.require(:loan).permit(:string_id, :loan_type_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :net_loan, :net_interest, :notes, :fully_paid, loan_doc_ids: [])
+      params.require(:loan).permit(:client_id, :string_id, :loan_type_id, :application_date, :approved_date, :disbursement_date, :status, :principal_amount, :from, :to, :net_loan, :net_interest, :notes, :fully_paid, loan_doc_ids: [])
     end
 
 
@@ -386,7 +390,9 @@ class LoansController < ApplicationController
       principal = params_hash[:principal_amount]      
       interest = LoanType.find(params_hash[:loan_type_id]).rate * principal.to_d
 
-      params_hash[:string_id] = Loan.identification_string(current_client) unless @loan
+      client = (current_client if current_client) || Client.find(params_hash[:client_id])
+
+      params_hash[:string_id] = Loan.identification_string(client) unless @loan
       params_hash[:application_date] = Time.zone.now
       params_hash[:from] = Time.zone.now
       params_hash[:to] = Time.zone.now.next_year

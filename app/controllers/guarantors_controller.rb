@@ -24,7 +24,11 @@ class GuarantorsController < ApplicationController
   # POST /guarantors
   # POST /guarantors.json
   def create
-    @guarantor = current_client.guarantors.build(guarantor_params)
+    if current_client
+      @guarantor = current_client.guarantors.build(guarantor_params)
+    else
+      @guarantor = Guarantor.new(guarantor_params)
+    end
 
     respond_to do |format|
       if @guarantor.save
@@ -84,6 +88,6 @@ class GuarantorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guarantor_params
-      params.require(:guarantor).permit(:image, :last_name, :first_name, :middle_name, :sex, :birth_date, :address, :city, :zip_code, :civil_status, :mobile, :company, :job_title)
+      params.require(:guarantor).permit(:client_id, :image, :last_name, :first_name, :middle_name, :sex, :birth_date, :address, :city, :zip_code, :civil_status, :mobile, :company, :job_title)
     end
 end
