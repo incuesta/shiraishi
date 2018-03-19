@@ -24,15 +24,22 @@
 
                       <div class="panel_buttons_to_the_right" id="the_buttons">
 
-                          <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed] %> 
-                          
+                          <% if current_admin || current_loan_manager || current_accountant %>
 
-                          <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved], approved_date: Date.current}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] || @loan.status == Loan.statuses[:draft] %> 
+                              <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed] %> 
+                              
 
-                          |
+                              <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved], approved_date: Date.current}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] || @loan.status == Loan.statuses[:draft] %> 
 
-                          <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
-                          <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
+                              |
+
+                              <%= link_to 'Loans', loans_path, class: "btn btn-sm btn-success"  %>
+
+                              |
+
+                          <% end %>
+
+                          <%= link_to "Requester's Profile", client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %>
 
                       </div>
 
@@ -171,6 +178,27 @@
                                 </tr>
                                 <!-- Loan Type End -->
 
+
+                                <!-- Show this only for Clients -->
+                                <% if current_client %>
+                                      <tr>
+                                          <td>
+                                              <strong>Required documents:</strong>
+                                          </td>
+                                          <td>
+
+                                              <ul class="list-unstyled">
+                                                  <% @loan.loan_type.loan_docs.each do |loan_doc| %>
+                                                      <li><%= loan_doc.name %></li>
+                                                  <% end %>
+                                              </ul>
+
+                                          </td>
+                                        </tr>
+                                <% end %>
+
+
+
                                 <tr>
                                   <td><strong>Notes:</strong></td>
                                   <td><%= @loan.notes %></td>
@@ -210,32 +238,40 @@
 
                   <div id="submitted_document_form col-md-12">
                       <div id="first_child" style="line-height: 50px;"></div>
-                      <%= form_with url: {controller: 'loans', action: 'update_submitted_docs'}, scope: 'loan', method: :patch do | form | %>
 
-                            <div class="field form-group">
+                      <% if current_admin || current_loan_manager || current_accountant %>
+                          <%= form_with url: {controller: 'loans', action: 'update_submitted_docs'}, scope: 'loan', method: :patch do | form | %>
 
-                              <%= form.label 'Required Documents:' %>
+                                <div class="field form-group">
 
-                              <%= form.collection_check_boxes :loan_doc_ids, @loan.loan_type.loan_docs, :id, :name do | cb | %>
-                                  
-                                  <%= cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
-                                  
-                              <% end %>
+                                  <%= form.label 'Required Documents:' %>
 
-                            </div>
+                                  <%= form.collection_check_boxes :loan_doc_ids, @loan.loan_type.loan_docs, :id, :name do | cb | %>
+                                      
+                                      <%= cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text } %> 
+                                      
+                                  <% end %>
+
+                                </div>
 
 
 
-                            <div class="actions">
-                              <%= form.submit 'Update submitted documents', class:"btn btn-md btn-success" %>
-                            </div>
+                                <div class="actions">
+                                  <%= form.submit 'Update submitted documents', class:"btn btn-md btn-success" %>
+                                </div>
 
-                            <br/>
-                            <hr/>
+                                <br/>
+                                <hr/>
 
-                            <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, data: {confirm: 'This will overwrite previous calculation, continue?'}, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-success") %> 
+                                <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, data: {confirm: 'This will overwrite previous calculation, continue?'}, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-success") %> 
+
+                          <% end %>
+                          <!-- Form end -->
 
                       <% end %>
+                      <!-- If end -->
+
+
 
 
                     </div>

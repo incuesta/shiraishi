@@ -6,7 +6,7 @@ class LoansController < ApplicationController
   helper_method :sort_order_param, :sort_column_param, :search_param
 
 
-
+  layout :resolve_layout, only: [:show]
 
 
 
@@ -433,5 +433,7 @@ class LoansController < ApplicationController
     def search_param
       params[:loans][:search] if params[:loans] || nil
     end
+    
+
     
 end

@@ -66,4 +66,13 @@ class ApplicationController < ActionController::Base
 	end
 
 
+
+	# Clients uses Public Layout
+	def resolve_layout
+      if current_admin || current_loan_manager || current_accountant
+        'application'
+      else
+        'public'  # show Public Layout to Client
+      end
+    end
 end

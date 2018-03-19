@@ -1,0 +1,277 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <%= image_tag "ecco_symbol_white_50.png", style: "margin-right: 15px;", id: "top"%>
+
+            <div class="navbar-brand"><%=link_to "ACGECCO", root_path, class: 'link-shiraishi brand' %></div>
+
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+            <!-- Left Links and Dropdowns -->
+            <ul class="nav navbar-nav">
+              
+
+
+
+
+              <!-- User Management -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Links 1 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                  <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
+                  <li><%= link_to "Admin Profiles", admin_profiles_path %></li>
+
+
+                  <li role="separator" class="divider"></li>
+
+
+                  <li><%= link_to "Loan Manager Sign in", new_loan_manager_session_path %></li>
+                  <li><%= link_to "Loan Manager Profiles", loan_manager_profiles_path %></li>
+
+
+                  <li role="separator" class="divider"></li>
+
+
+                  <li><%= link_to "Accountant Sign in", new_accountant_session_path %></li>
+                  <li><%= link_to "Accountant Profiles", accountant_profiles_path %></li>
+
+
+                  <li role="separator" class="divider"></li>
+
+
+                  <li><%= link_to "Member Sign in", new_client_session_path %></li>
+                  <li><%= link_to "Member Profiles", client_profiles_path %></li>
+
+
+                  <li role="separator" class="divider"></li>
+
+
+                  <li><%= link_to "Clients Activation Review", clients_account_activations_path %> </li>
+
+
+                  <li role="separator" class="divider"></li>
+                  
+                  
+                  <li><%= link_to "View User Logs", activity_logs_path %> </li>
+                 
+                </ul>
+              </li>
+              <!-- User Management End -->
+
+
+
+              
+
+              <!-- Accounting -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Link 2 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+
+                  <li><%= link_to 'Loans for Disbursion', approved_loans_for_disbursion_loans_path %></li>
+                  <li><%= link_to "Disbursed Loans", disbursed_loans_loans_path %></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to 'Show book entries', show_all_loan_entries_accounting_entries_path %></li>
+                  <li><%= link_to 'Show income summary', show_income_summary_accounting_entries_path %></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Red Listed Loans", red_listed_loans_loans_path %></li>
+
+                </ul>
+              </li>
+              <!-- Accounting End -->
+
+
+              
+              <!-- Loan Management -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Links 3 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                  <li><%= link_to "Define Loan Type", new_loan_type_path %></li>
+                  <li><%= link_to "List Defined Loan Types", loan_types_path %></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Define Required Documents", new_loan_doc_path %></li>
+                  <li><%= link_to "List Defined Loan Documents", loan_docs_path %></li>
+                  
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Apply new Loan", new_loan_path %></li>
+                  <li><%= link_to "List Loans", loans_path %></li>
+                  
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Requested Loans", requested_loans_loans_path %></li>
+                  <li><%= link_to "Approved Loans", approved_loans_loans_path %></li>
+                  <li><%= link_to "Rejected Loans", rejected_loans_loans_path %></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Disbursed Loans", disbursed_loans_loans_path %></li>
+                  <li><%= link_to "Undisbursed Loans", undisbursed_loans_loans_path %></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Red Listed Loans", red_listed_loans_loans_path %></li>
+                </ul>
+              </li>
+              <!-- Loan Managment End -->
+
+
+
+
+                <!-- Articles Management -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Links 4 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                  <li><%= link_to "Post New Article", new_article_path %></li>
+                  <li><%= link_to "List all Articles", articles_path %></li>
+
+                </ul>
+              </li>
+              <!-- Articles Management End -->
+
+
+
+
+              <!-- Reports -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Links 5 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+
+
+                  <li><%= link_to "User activity logs report", activity_logs_reports_path(format: :pdf) %></li>
+
+
+                  <li role="separator" class="divider"></li>
+                  
+
+                  <li><%= link_to "Income summary report", income_summary_reports_path(format: :pdf) %></li>
+
+
+                  <li role="separator" class="divider"></li>
+
+
+                  <li><%= link_to "Loan request report", requested_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Approved loans report", approved_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Rejected loans report", rejected_loans_reports_path(format: :pdf) %></li>
+
+                  <li role="separator" class="divider"></li>
+
+                  <li><%= link_to "Disbursed loans report", disbursed_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Undisbursed loans report", undisbursed_loans_reports_path(format: :pdf) %></li>
+                </ul>
+              </li>
+              <!-- Reports End -->
+
+
+              <!-- Backups -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Links 6 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Scheduled Backup", data_stores_scheduled_backup_path %></li>
+                  <li><%= link_to "Manual Backup", data_stores_manual_backup_path %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Heroku Dashboard", 'https://dashboard.heroku.com/apps' %></li>
+                </ul>
+              </li>
+              <!-- Backups End -->
+
+
+
+            </ul>
+            <!-- Left Links End -->
+
+
+            <!-- Search Bar -->
+           <!--  <form class="navbar-form navbar-left">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form> -->
+            <!-- Search Bar End -->
+
+
+
+            <!-- Right Links & Dropdown -->
+            <ul class="nav navbar-nav navbar-right">
+
+                  <!-- User Logout -->
+                  <li>
+                    <% if admin_signed_in? %>
+                        <%= link_to("Admin Sign Out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                      
+                    <% elsif loan_manager_signed_in? %>
+                        <%= link_to("Loan Manager Sign Out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                    <% elsif accountant_signed_in? %>
+                        <%= link_to("Accountant Sign Out", destroy_accountant_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                    <% elsif client_signed_in? %>
+                        <%= link_to("Member Sign Out", destroy_client_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                   
+                    <% else %>
+                        <%= link_to("Member Sign In", new_client_session_path)  %>
+                    <% end %>
+
+                  </li>
+                  <!-- User Logout End -->
+
+
+                  <% if current_admin || current_accountant || current_loan_manager || current_client %>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiles<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          
+
+                                <% if admin_signed_in? %>
+                                    <li><%= link_to "My Profile", current_admin.admin_profile %></li>
+                              
+                                <% elsif loan_manager_signed_in? %>
+                                    <li><%= link_to "My Profile", current_loan_manager.loan_manager_profile %></li>
+                                <% elsif accountant_signed_in? %>
+                                    <li><%= link_to "My Profile", current_accountant.accountant_profile %></li>
+                                <% elsif client_signed_in? %>
+                                    <li><%= link_to "My Profile", current_client.client_profile %></li>
+                                <% end %>
+                        </ul>
+                      </li>
+
+                  <% end %>
+
+
+            </ul>
+
+          </ul>
+          <!-- Right Links End -->
+
+
+        </div>
+        <!-- /.navbar-collapse -->
+
+
+    </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,39 @@
+<!-- Public Layout -->
+
+<!DOCTYPE html>
+<html>
+	  	<head>
+		    <title><%= "#{controller_name} #{action_name}" if controller_name.present? %></title>
+		    <%= csrf_meta_tags %>
+
+		    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  	</head>
+	<body>
+
+		<!-- Navigation -->
+		<%= render partial: 'layouts/public_navigation' %>
+		<!-- Navigation -->
+
+
+		<!-- Container -->
+		<div class="container col-md-12">
+			<!-- flash messages -->
+	      	<%= render partial: 'layouts/the_flash' %>
+			<!-- Flash message End -->
+
+			<h2>FYI This is the Public Layout</h2>
+		  	<!-- Yield -->
+		  	<%= yield %>
+		  	<!-- Yield End -->
+
+		  	<h2>FYI This is the Public Layout</h2>
+
+
+	  	</div>
+	  	<!-- Container End -->
+
+
+	  	<%= render partial: 'layouts/public_footer' %>
+	</body>
+</html>

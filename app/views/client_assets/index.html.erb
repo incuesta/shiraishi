@@ -35,7 +35,7 @@
                  
                   <td><%= link_to 'Show', ass %></td>
                   <td><%= link_to 'Edit', edit_client_asset_path(ass) %></td>
-                  <td><%= link_to 'Destroy', ass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <td><%= link_to('Destroy', ass, method: :delete, data: { confirm: 'Are you sure?' }) unless current_client %></td>
                 </tr>
             <% end %>
           </tbody>

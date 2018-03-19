@@ -301,12 +301,25 @@ Rails.application.routes.draw do
 
 
   	# Static Pages
-  	get 'pages/services'
-  	get 'pages/articles'
-  	get 'pages/organization'
-  	get 'pages/about'
-  	get 'pages/contacts'
-  	get 'pages/help'
+  	# get 'pages/services'
+  	# get 'pages/articles'
+  	# get 'pages/organization'
+  	# get 'pages/about'
+  	# get 'pages/contacts'
+  	# get 'pages/help'
+
+
+    resources :pages, path: 'finance', only: [:index] do
+      collection do
+        get :home
+        get :articles
+        get :services
+        get :organization
+        get :about
+        get :contacts
+        get :help
+      end
+    end
 
 
   	# Root

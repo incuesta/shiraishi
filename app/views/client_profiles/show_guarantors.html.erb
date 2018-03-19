@@ -40,7 +40,7 @@
              
               <td><%= link_to 'Show', guarantor %></td>
               <td><%= link_to 'Edit', edit_guarantor_path(guarantor) %></td>
-              <td><%= link_to 'Destroy', guarantor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to('Destroy', guarantor, method: :delete, data: { confirm: 'Are you sure?' }) unless current_client %></td>
             </tr>
         <% end %>
       </tbody>
