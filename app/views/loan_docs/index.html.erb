@@ -4,14 +4,16 @@
         <!-- Panel Table -->
         <div class="panel panel-default">
 
-          <div class="panel-heading">
-            Loan Documents
-            <div class="pull-right">
-              <%= link_to 'New Loan Doc', new_loan_doc_path %>
+          <div class="panel-heading panel-heading-custom">
+            <div class="panel_title_to_the_left">
+              Loan Documents
+            </div>
+            <div class="panel_buttons_to_the_right">
+              <%= link_to 'New Loan Doc', new_loan_doc_path, class: "btn btn-sm btn-success" %>
             </div>
           </div>
 
-
+          <div class="panel-body">
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -33,8 +35,8 @@
                     <% end %>
                   </tbody>
                 </table>
-
-        <br>
+          </div>
+          <!-- End Panel Body -->
 
         </div>
         <!-- Table Panel End -->

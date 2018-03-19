@@ -4,17 +4,16 @@
 	<div class="col-md-6 col-centered">
 
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="panel-title">
-					<span class="h4" >Edit Client Asset</span>
-
-					<div class="pull-right">
-						<%= link_to 'Show', @client_asset, class: 'btn btn-sm btn-success' %> |
-						<%= link_to 'Client profile', @client.client_profile, class: 'btn btn-sm btn-success' %>
-					</div>
+			<div class="panel-heading panel-heading-custom">
+				<div class="panel_title_to_the_left">
+					Edit Client Asset
 				</div>
 
-				<br />
+				<div class="panel_buttons_to_the_right">
+					<%= link_to 'Show', @client_asset, class: 'btn btn-sm btn-success' %> |
+					<%= link_to 'Client profile', @client.client_profile, class: 'btn btn-sm btn-success' %>
+				</div>
+			
 
 				<div class="row">
 					<div class="col-md-10 col-centered">

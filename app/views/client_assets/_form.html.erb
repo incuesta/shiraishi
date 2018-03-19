@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <% unless current_client %>
+    <div class="field form-group">
+      <%= form.label :client_id %>
+      <%= form.select :client_id, Client.all.map { |client|  [client.full_name, client.id]  }, {}, class: 'form-control' %>
+    </div>
+  <% end %>
+
   <div class="field form-group">
     <%= form.label :image %>
     <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: :client_asset_image %>

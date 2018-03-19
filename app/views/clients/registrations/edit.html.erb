@@ -3,17 +3,16 @@
 <!-- Class Row Start -->
 <div class="row">
 
-    <div class="col-md-5">
+    <div class="col-md-5 col-centered">
 
         <div class="panel panel-default">
 
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <h4>Update <%= resource_name.to_s.humanize %></h4>
+            <div class="panel-heading panel-heading-custom">
+                <div class="panel_title_to_the_left">
+                    Update <%= resource_name.to_s.humanize %>
                 </div>
 
-                <br />
-                <hr />
+            
             
 
                   <div class="panel-body">
@@ -84,7 +83,7 @@
 
 
 
-                      <%= link_to "Back", :back %>
+                      <%= link_to "Back", :back, class: "link-shiraishi" %>
 
                   </div>
                   <!-- End Panel Body -->

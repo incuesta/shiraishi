@@ -25,7 +25,11 @@ class ClientAssetsController < ApplicationController
   # POST /client_assets
   # POST /client_assets.json
   def create
-    @client_asset = current_client.client_assets.build(client_asset_params)
+    if current_client
+      @client_asset = current_client.client_assets.build(client_asset_params)
+    else
+      @client_asset = ClientAsset.new(client_asset_params)
+    end
 
     respond_to do |format|
       if @client_asset.save
@@ -87,6 +91,6 @@ class ClientAssetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_asset_params
-      params.require(:client_asset).permit(:image, :name, :description)
+      params.require(:client_asset).permit(:client_id, :image, :name, :description)
     end
 end
