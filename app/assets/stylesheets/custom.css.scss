@@ -3,6 +3,8 @@
 @import "bootstrap";
 
 
+
+
 .titleize 
 {
     font-size: 2em; 
@@ -38,6 +40,12 @@
 .kuroishi
 {
     color: #333333;
+}
+
+
+.shiraishi
+{
+    color: #FFFFFF !important;
 }
 
 
@@ -168,6 +176,14 @@ textarea
     background-color: #355667;
     color: #fff;
 }
+
+
+.well.well-custom-dark
+{
+    background-color: #202020;
+    color: #fff;
+}
+
 
 .well .well-title
 {
