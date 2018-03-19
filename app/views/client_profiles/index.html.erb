@@ -3,43 +3,50 @@
 <!-- Panel Table -->
 <div class="panel panel-default">
 
-  <div class="panel-heading panel-heading-custom">Client Profiles</div>
+  <div class="panel-heading panel-heading-custom">
+    <div class="panel_title_to_the_left">
+      Client Profiles
+    </div>
+
+  </div>
 
 
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User name</th>
+            <th>Image</th>
+            <th>Email</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Mobile</th>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>User name</th>
-          <th>Image</th>
-          <th>Email</th>
-          <th>Last Name</th>
-          <th>First Name</th>
-          <th>Mobile</th>
+            <!-- For the Action -->
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-          <!-- For the Action -->
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @client_profiles.each do |client_profile| %>
-            <% client = client_profile.client %>
-            <tr>
-              <td><%= client.user_name %></td>
-              <td><%= image_tag client_profile.image.img_32.url, alt: "#{client.user_name}.jpg" %></td>
-              <td><%= client.email %></td>
-              <td><%= client.last_name %></td>
-              <td><%= client.first_name %></td>
-              <td><%= client_profile.mobile %></td>
-             
-              <td><%= link_to 'Show', client_profile %></td>
-              <td><%= link_to 'Edit', edit_client_profile_path(client_profile) %></td>
-              <td><%= link_to 'Destroy', client_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
+        <tbody>
+          <% @client_profiles.each do |client_profile| %>
+              <% client = client_profile.client %>
+              <tr>
+                <td><%= client.user_name %></td>
+                <td><%= image_tag client_profile.image.img_32.url, alt: "#{client.user_name}.jpg" %></td>
+                <td><%= client.email %></td>
+                <td><%= client.last_name %></td>
+                <td><%= client.first_name %></td>
+                <td><%= client_profile.mobile %></td>
+               
+                <td><%= link_to 'Show', client_profile %></td>
+                <td><%= link_to 'Edit', edit_client_profile_path(client_profile) %></td>
+                <td><%= link_to 'Destroy', client_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!-- Table Responsive End -->
 
 </div>
 <!-- Table Panel End -->

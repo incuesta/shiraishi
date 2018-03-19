@@ -1,18 +1,24 @@
-<!-- Div Row -->
+<!-- Row Start -->
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
       
       <div class="panel panel-default">
 
           <div class="panel-heading panel-heading-custom">
-              <div class="panel_title_to_the_left">
-                  <strong>Guarantor</strong>
+
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="panel_title_to_the_left">
+                      Guarantor
+                  </div>
+                      
+                  <div class="panel_buttons_to_the_right">
+                    <%= link_to 'Update Guarantor', edit_guarantor_path(@guarantor), class: 'btn btn-sm btn-success' %> |
+                    <%= link_to 'Sponsored Client', @guarantor.client.client_profile, class: 'btn btn-sm btn-success' %>
+                  </div>
               </div>
-                  
-              <div class="panel_buttons_to_the_right">
-                <%= link_to 'Update Guarantor', edit_guarantor_path(@guarantor), class: 'btn btn-sm btn-success' %> |
-                <%= link_to 'Sponsored Client', @guarantor.client.client_profile, class: 'btn btn-sm btn-success' %>
-              </div>
+            </div>
+            <!-- Row End -->
           </div>
 
 
@@ -117,4 +123,4 @@
     </div>
     <!-- End of col-md-offset-2 -->
 </div>
-<!-- Div Row End -->
+<!-- Div Row End

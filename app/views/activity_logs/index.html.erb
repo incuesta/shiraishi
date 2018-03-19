@@ -8,40 +8,42 @@
 
   </div>
 
+    <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>User class</th>
+                        <th>User name</th>
+                        <th>Email</th>
+                        <th>Current sign in at</th>
+                        <th>Last sign in at</th>
+                        <th>Current sign in ip</th>
+                        <th>Last sign in ip</th>
+                        <th>Activity</th>
+                        <th colspan="3"></th>
+                    </tr>
+                </thead>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>User class</th>
-                <th>User name</th>
-                <th>Email</th>
-                <th>Current sign in at</th>
-                <th>Last sign in at</th>
-                <th>Current sign in ip</th>
-                <th>Last sign in ip</th>
-                <th>Activity</th>
-                <th colspan="3"></th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @activity_logs.each do |activity_log| %>
-                <tr>
-                    <td><%= activity_log.user_class %></td>
-                    <td><%= activity_log.user_name %></td>
-                    <td><%= activity_log.email %></td>
-                    <td><%= activity_log.current_sign_in_at %></td>
-                    <td><%= activity_log.last_sign_in_at %></td>
-                    <td><%= activity_log.current_sign_in_ip %></td>
-                    <td><%= activity_log.last_sign_in_ip %></td>
-                    <td><%= activity_log.note %></td>
-                    <td><%= link_to 'Show', activity_log %></td>
-                    <td><%= link_to 'Edit', edit_activity_log_path(activity_log) %></td>
-                    <td><%= link_to 'Destroy', activity_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+                <tbody>
+                    <% @activity_logs.each do |activity_log| %>
+                        <tr>
+                            <td><%= activity_log.user_class %></td>
+                            <td><%= activity_log.user_name %></td>
+                            <td><%= activity_log.email %></td>
+                            <td><%= activity_log.current_sign_in_at %></td>
+                            <td><%= activity_log.last_sign_in_at %></td>
+                            <td><%= activity_log.current_sign_in_ip %></td>
+                            <td><%= activity_log.last_sign_in_ip %></td>
+                            <td><%= activity_log.note %></td>
+                            <td><%= link_to 'Show', activity_log %></td>
+                            <td><%= link_to 'Edit', edit_activity_log_path(activity_log) %></td>
+                            <td><%= link_to 'Destroy', activity_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+    </div>
+    <!-- Table responsive end -->
 
 </div>
 <!-- Table Panel End

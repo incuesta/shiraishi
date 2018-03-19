@@ -29,38 +29,39 @@
     </div>
   </div>
 
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th><%= sortable_link 'Loan', 'string_id' %></th>
+                <th><%= sortable_link 'Type', 'loan_types.name' %></th>
+                <th><%= sortable_link 'Applicant', 'clients.last_name' %></th>
+                <th><%= sortable_link 'Application date', 'application_date' %></th>
+                <th><%= sortable_link 'Status', 'status' %></th>
+                <th><%= sortable_link 'Principal amount', 'principal' %></th>
+                <th>Notes</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
 
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th><%= sortable_link 'Loan', 'string_id' %></th>
-            <th><%= sortable_link 'Type', 'loan_types.name' %></th>
-            <th><%= sortable_link 'Applicant', 'clients.last_name' %></th>
-            <th><%= sortable_link 'Application date', 'application_date' %></th>
-            <th><%= sortable_link 'Status', 'status' %></th>
-            <th><%= sortable_link 'Principal amount', 'principal' %></th>
-            <th>Notes</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @loans.each do |loan| %>
-            <tr>
-              <td><%= loan.string_id %></td>
-              <td><%= loan.loan_type.name %></td>
-              <td><%= loan.client.full_name %></td>
-              <td><%= loan.application_date.to_date %></td>
-              <td><%= loan.status %></td>
-              <td><%= number_to_currency(loan.principal_amount, unit: "Php ") %></td>
-              <td><%= truncate(loan.notes, length: 15) { link_to "continue", loan } %></td>
-              <td><%= link_to 'Show', loan %></td>
-              <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-              <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
-
+            <tbody>
+              <% @loans.each do |loan| %>
+                <tr>
+                  <td><%= loan.string_id %></td>
+                  <td><%= loan.loan_type.name %></td>
+                  <td><%= loan.client.full_name %></td>
+                  <td><%= loan.application_date.to_date %></td>
+                  <td><%= loan.status %></td>
+                  <td><%= number_to_currency(loan.principal_amount, unit: "Php ") %></td>
+                  <td><%= truncate(loan.notes, length: 15) { link_to "continue", loan } %></td>
+                  <td><%= link_to 'Show', loan %></td>
+                  <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
+                  <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+    </div>
+    <!-- End Table Responsive -->
 </div>
 <!-- Table Panel End

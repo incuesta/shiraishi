@@ -9,15 +9,21 @@
       <div class="panel panel-default">
 
           <div class="panel-heading panel-heading-custom">
-              <div class="panel_title_to_the_left">
-                  <strong><%= loan_manager.user_name.capitalize %></strong>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="panel_title_to_the_left">
+                      <strong><%= loan_manager.user_name.capitalize %></strong>
+                  </div>
+                      
+                  <div class="panel_buttons_to_the_right">
+                    <%= link_to 'Update Profile', edit_loan_manager_profile_path(@loan_manager_profile), class: 'btn btn-sm btn-success' %> |
+                    <%= link_to 'Update Registration', edit_loan_manager_registration_path(loan_manager), class: 'btn btn-sm btn-success' %> |
+                    <%= link_to 'Back', loan_manager_profiles_path, class: 'btn btn-sm btn-success' %>
+                  </div>
               </div>
-                  
-              <div class="panel_buttons_to_the_right">
-                <%= link_to 'Update Profile', edit_loan_manager_profile_path(@loan_manager_profile), class: 'btn btn-sm btn-success' %> |
-                <%= link_to 'Update Registration', edit_loan_manager_registration_path(loan_manager), class: 'btn btn-sm btn-success' %> |
-                <%= link_to 'Back', loan_manager_profiles_path, class: 'btn btn-sm btn-success' %>
-              </div>
+              <!-- Col MD 12 End -->
+            </div>
+            <!-- Row End -->
           </div>
 
 

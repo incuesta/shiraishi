@@ -5,17 +5,21 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">
-					<span class="h4" >Update Admin Profile</span>
-
-					<div class="pull-right">
-						<%= link_to 'Show', @admin_profile %> |
-						<%= link_to 'Back', admin_profiles_path %>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel_title_to_the_left">
+							Update Admin Profile
+						</div>
+						<div class="panel_buttons_to_the_right">
+							<%= link_to 'Show', @admin_profile, class: 'btn btn-sm btn-success' %> |
+							<%= link_to 'Back', admin_profiles_path, class: 'btn btn-sm btn-success' %>
+						</div>
 					</div>
-				</div>
-				
-				<br/>
 
+				</div>
+
+				<hr>
+				
 				<div class="row">
 					<div class="col-md-10 col-centered">
 					

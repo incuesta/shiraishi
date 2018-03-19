@@ -10,15 +10,21 @@
       <div class="panel panel-default">
 
           <div class="panel-heading panel-heading-custom ">
-              <div class="panel_title_to_the_left">
-                  <strong><%= admin.user_name.capitalize %></strong>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="panel_title_to_the_left">
+                      <strong><%= admin.user_name.capitalize %></strong>
+                  </div>
+                      
+                  <div class="panel_buttons_to_the_right">
+                    <%= link_to 'Update Profile', edit_admin_profile_path(@admin_profile), class: 'btn btn-sm btn-success' %> |
+                    <%= link_to 'Update Registration', edit_admin_registration_path(admin), class: 'btn btn-sm btn-success' %> |
+                    <%= link_to 'Back', admin_profiles_path, class: 'btn btn-sm btn-success' %>
+                  </div>
               </div>
-                  
-              <div class="panel_buttons_to_the_right">
-                <%= link_to 'Update Profile', edit_admin_profile_path(@admin_profile), class: 'btn btn-sm btn-success' %> |
-                <%= link_to 'Update Registration', edit_admin_registration_path(admin), class: 'btn btn-sm btn-success' %> |
-                <%= link_to 'Back', admin_profiles_path, class: 'btn btn-sm btn-success' %>
-              </div>
+              <!-- col-md-12 End -->
+            </div>
+            <!-- Row End -->
           </div>
 
 

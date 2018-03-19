@@ -11,26 +11,37 @@
       <div class="panel panel-default">
 
           <div class="panel-heading panel-heading-custom">
-              <div class="panel-title">
-                  <strong><%= "#{client.user_name.capitalize}\'s Loan  Request" %></strong>
-                  
-                  <div class="pull-right" id="the_buttons">
+
+                <div class="row">
+
+                  <div class="col-md-12 col-centered-marginless">
 
 
+                      <div class="panel_title_to_the_left">
+                          <%= "#{client.user_name.capitalize}\'s Loan  Request" %>
+                      </div>
 
-                      <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed] %> 
-                      
 
-                      <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved], approved_date: Date.current}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] || @loan.status == Loan.statuses[:draft] %> 
+                      <div class="panel_buttons_to_the_right" id="the_buttons">
 
-                      |
+                          <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed] %> 
+                          
 
-                      <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
-                      <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
+                          <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved], approved_date: Date.current}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] || @loan.status == Loan.statuses[:draft] %> 
+
+                          |
+
+                          <%= link_to 'Show Client Profile', client_profile_path(client.client_profile), class: "btn btn-sm btn-success"   %> |
+                          <%= link_to 'Back', loans_path, class: "btn btn-sm btn-success"  %>
+
+                      </div>
+
 
                   </div>
-              </div>
-              <br/>
+                  <!-- Marginless Col Centered End -->
+
+                </div>
+                <!-- Row End -->
           </div>
 
 

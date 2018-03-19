@@ -60,12 +60,6 @@
 }
 
 
-.navbar-brand>img {
-
-  
-}
-
-
 
 textarea
 {
@@ -110,6 +104,13 @@ textarea
 }
 
 
+.col-centered-marginless
+{
+    float: none;
+    margin: 0 auto;
+}
+
+
 
 
 
@@ -150,6 +151,12 @@ textarea
     display: inline-block;
     float: right;
 }
+
+.panel_buttons_to_the_right > a
+{
+    margin: 5px 0 5px 0;
+}
+
 
 
 

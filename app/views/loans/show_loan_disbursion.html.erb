@@ -11,11 +11,16 @@
       <div class="panel panel-default">
 
           <div class="panel-heading panel-heading-custom">
-              <div class="panel-title">
-                  <strong><%= "#{client.user_name.capitalize}\'s Loan  Disbursion" %></strong>
-                  
-                  <div class="pull-right" id="the_buttons">
 
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="panel_title_to_the_left">
+                      <%= "#{client.user_name.capitalize}\'s Loan  Disbursion" %>
+                  </div>
+                  
+
+
+                  <div class="panel_buttons_to_the_right" id="the_buttons">
 
 
                       <%= image_tag('disbursed_thumbs_up.png', style: "display: inline-block;", class: "img-responsive") if @loan.status == Loan.statuses[:disbursed] %>
@@ -31,8 +36,11 @@
                       <%= link_to 'Back', disbursed_loans_loans_path, class: "btn btn-sm btn-success"  %>
 
                   </div>
+                  <!-- Panel Buttons to the Right End -->
               </div>
-              <br/>
+              <!-- Col MD 12 End -->
+             </div>
+             <!-- Row End -->
           </div>
 
 
@@ -249,7 +257,7 @@
                             <br/>
                             <hr/>
 
-                            <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, data: {confirm: 'This will overwrite previous calculation, continue?'}, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-success") %> 
+                            <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, data: {confirm: 'This will overwrite previous calculation, continue?'}, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-success", style:"margin-bottom: 15px;") %> 
 
                       <% end %>
 

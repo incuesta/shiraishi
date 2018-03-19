@@ -7,16 +7,17 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">
-					<span class="h4" >Accountant Profile</span>
+				<div class="row">
+					<div class="col-md-12">
+						<span class="panel_title_to_the_left" >Accountant Profile</span>
 
-					<div class="pull-right">
-						<%= link_to 'Show', @accountant_profile %> |
-						<%= link_to 'Back', accountant_profiles_path %>
+						<div class="panel_buttons_to_the_right">
+							<%= link_to 'Show', @accountant_profile, class: 'btn btn-sm btn-success' %> |
+							<%= link_to 'Back', accountant_profiles_path, class: 'btn btn-sm btn-success' %>
+						</div>
 					</div>
 				</div>
 
-				<br />
 
 				<div class="row">
 					<div class="col-md-10 col-centered">

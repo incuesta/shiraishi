@@ -18,10 +18,10 @@
 
 							<div class="col-md-6" style="margin-bottom: 25px;">
 							   <!-- Show this if no profile Image -->
-							    <%= image_tag("450x300.jpg", alt: "#{@client_asset.name}.jpg") unless @client_asset.image.present? %>
+							    <%= image_tag("450x300.jpg", alt: "#{@client_asset.name}.jpg", class: "img-responsive") unless @client_asset.image.present? %>
 
 							    <!-- Show this if there's a profile Image -->
-							    <%= image_tag @client_asset.image.img_450.url, alt: "#{@client_asset.name}.jpg", class: "center-block" if @client_asset.image.present? %>
+							    <%= image_tag(@client_asset.image.img_450.url, alt: "#{@client_asset.name}.jpg", class: "center-block img-responsive") if @client_asset.image.present? %>
 							</div>
 
 							<div class="col-md-4">

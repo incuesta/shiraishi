@@ -7,16 +7,15 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">
-					<span class="h4" >Loan Manager Profile</span>
-
-					<div class="pull-right">
-						<%= link_to 'Show', @loan_manager_profile %> |
-						<%= link_to 'Back', loan_manager_profiles_path %>
-					</div>
+				<div class="panel_title_to_the_left">
+					Loan Manager Profile
 				</div>
 
-				<br />
+				<div class="panel_buttons_to_the_right">
+					<%= link_to 'Show', @loan_manager_profile, class: 'btn btn-sm btn-success' %> |
+					<%= link_to 'Back', loan_manager_profiles_path, class: 'btn btn-sm btn-success' %>
+				</div>
+				
 			
 
 				<div class="row">

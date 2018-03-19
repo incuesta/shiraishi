@@ -3,28 +3,35 @@
         <div class="panel panel-default">
 
             <div class="panel-heading panel-heading-custom">
-              <div class="panel-title">
-                <td>Month number:</td>
-                <%= @loan_installment.installment_no %>
 
-                <div class="pull-right" id="the_buttons">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="panel_title_to_the_left">
+                    Month number:
+                    <%= @loan_installment.installment_no %>
 
+                  </div>
 
-                    <%= link_to("Set to unpaid", {controller: 'loan_installments', action: 'unpay_installment', loan_installment:  {state: LoanInstallment.states[:unpaid]}}, remote: true, method: :patch, id: 'loan_installment_unpaid_link', class: "btn btn-sm btn-success") if @loan_installment.state == LoanInstallment.states[:paid] %> 
-
-                    
-
-                    <%= link_to("Set to paid", {controller: 'loan_installments', action: 'pay_installment', loan_installment:  {state: LoanInstallment.states[:paid]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'loan_installment_paid_link', class: "btn btn-sm btn-success") if @loan_installment.state == LoanInstallment.states[:unpaid] %> 
-
-                    |
+                  <div class="panel_buttons_to_the_right" id="the_buttons">
 
 
-                    <%= link_to 'Edit', edit_loan_installment_path(@loan_installment), class:"btn btn-sm btn-success" %>
-                    <%= " | " if @loan_installment.loan_installment_container.loan.status == "disbursed" %>
-                    <%= link_to('Loan details', show_loan_disbursion_loan_path(@loan_installment.loan_installment_container.loan), class:"btn btn-sm btn-success") if @loan_installment.loan_installment_container.loan.status == "disbursed" %>
+                      <%= link_to("Set to unpaid", {controller: 'loan_installments', action: 'unpay_installment', loan_installment:  {state: LoanInstallment.states[:unpaid]}}, remote: true, method: :patch, id: 'loan_installment_unpaid_link', class: "btn btn-sm btn-success") if @loan_installment.state == LoanInstallment.states[:paid] %> 
+
+                      
+
+                      <%= link_to("Set to paid", {controller: 'loan_installments', action: 'pay_installment', loan_installment:  {state: LoanInstallment.states[:paid]}}, remote: true, data: {confirm: 'Are you sure?'}, method: :patch, id: 'loan_installment_paid_link', class: "btn btn-sm btn-success") if @loan_installment.state == LoanInstallment.states[:unpaid] %> 
+
+                      |
+
+
+                      <%= link_to 'Edit', edit_loan_installment_path(@loan_installment), class:"btn btn-sm btn-success" %>
+                      <%= " | " if @loan_installment.loan_installment_container.loan.status == "disbursed" %>
+                      <%= link_to('Loan details', show_loan_disbursion_loan_path(@loan_installment.loan_installment_container.loan), class:"btn btn-sm btn-success") if @loan_installment.loan_installment_container.loan.status == "disbursed" %>
+                  </div>
                 </div>
+                <!-- col-md-12 End -->
               </div>
-              <br/>
+              <!-- Row End -->
             </div>
 
             <div class="panel-body">
