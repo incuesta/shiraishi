@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+
+  
+
+
+
     post 'data_stores/backup_from_dump'
     post 'data_stores/restore_from_dump'
 
@@ -279,7 +284,19 @@ Rails.application.routes.draw do
 
 
     # Article
-  	resources :articles
+  	resources :articles do 
+        member do
+            get :new_article_section
+            post :create_article_section
+        end
+    end
+
+
+
+    # Section for Articles
+    resources :sections
+
+
 	
 
 
@@ -292,6 +309,6 @@ Rails.application.routes.draw do
   	get 'pages/help'
 
 
-	 # Root
-	 root 'pages#home'
+  	# Root
+  	root 'pages#home'
 end

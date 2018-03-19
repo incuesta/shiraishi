@@ -10,11 +10,11 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel_title_to_the_left">
-							Write an Article
+							Add an Article Section
 						</div>
 
 						<div class="panel_buttons_to_the_right">
-							<%= link_to 'articles', articles_path, class: "btn btn-sm btn-success" %>
+							<%= link_to 'Show', @article, class: "btn btn-sm btn-info" %>
 						</div>
 					</div>
 
@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class="col-md-10 col-centered">
 
-						<%= render 'form', article: @article %>					
+						<%= render 'section_form', section: @section %>					
 					</div>
 				</div>
 		</div>

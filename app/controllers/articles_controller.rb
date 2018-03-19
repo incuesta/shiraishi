@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:new_article_section, :create_article_section, :show, :edit, :update, :destroy]
+
+
+
+
 
   # GET /articles
   # GET /articles.json
@@ -12,13 +16,13 @@ class ArticlesController < ApplicationController
   def show
   end
 
+
+
+
+
   # GET /articles/new
   def new
     @article = Article.new
-  end
-
-  # GET /articles/1/edit
-  def edit
   end
 
   # POST /articles
@@ -37,6 +41,14 @@ class ArticlesController < ApplicationController
     end
   end
 
+
+
+
+
+  # GET /articles/1/edit
+  def edit
+  end
+
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
@@ -51,6 +63,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+
+
+
+
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
@@ -61,6 +77,35 @@ class ArticlesController < ApplicationController
     end
   end
 
+
+
+
+  # GET /articles/1/new_article_section
+  def new_article_section
+    @section = @article.sections.build
+
+  end
+
+
+  # post /articles/create_article_section
+  def create_article_section
+    @section = @article.sections.build(section_params)
+
+    respond_to do | format |
+      if @section.save
+        format.html { redirect_to @article, notice: "Subsection successfully created!" }
+      else
+        format.html { render 'new_article_section', notice: "Failed to create Subsection" }
+      end
+    end
+
+  end
+
+
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -69,6 +114,10 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:image, :title, :body)
+    end
+
+    def section_params
+      params.require(:section).permit(:image, :body)
     end
 end

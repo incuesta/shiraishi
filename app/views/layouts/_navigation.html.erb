@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <%= image_tag "ecco_symbol_white_50.png", style: "margin-right: 15px;"%>
+            <%= image_tag "ecco_symbol_white_50.png", style: "margin-right: 15px;", id: "top"%>
 
             <div class="navbar-brand"><%=link_to "ACGECCO", root_path, class: 'link-shiraishi brand' %></div>
 
@@ -142,6 +142,21 @@
 
 
 
+                <!-- Articles Management -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Articles <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                  <li><%= link_to "Post New Article", new_article_path %></li>
+                  <li><%= link_to "List all Articles", articles_path %></li>
+
+                </ul>
+              </li>
+              <!-- Articles Management End -->
+
+
+
+
               <!-- Reports -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Reports <span class="caret"></span></a>
@@ -206,36 +221,52 @@
             <!-- Right Links & Dropdown -->
             <ul class="nav navbar-nav navbar-right">
 
-              <!-- User Logout -->
-              <li>
-                <% if admin_signed_in? %>
-                    <%= link_to("Admin sign out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-                  
-                <% elsif loan_manager_signed_in? %>
-                    <%= link_to("Loan Manager sign out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-                <% elsif accountant_signed_in? %>
-                    <%= link_to("Accountant sign out", destroy_accountant_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-                <% elsif client_signed_in? %>
-                    <%= link_to("Member sign out", destroy_client_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-               
-                <% else %>
-                    <%= link_to("Member sign in", new_client_session_path)  %>
-                <% end %>
+                  <!-- User Logout -->
+                  <li>
+                    <% if admin_signed_in? %>
+                        <%= link_to("Admin Sign Out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                      
+                    <% elsif loan_manager_signed_in? %>
+                        <%= link_to("Loan Manager Sign Out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                    <% elsif accountant_signed_in? %>
+                        <%= link_to("Accountant Sign Out", destroy_accountant_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                    <% elsif client_signed_in? %>
+                        <%= link_to("Member Sign Out", destroy_client_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                   
+                    <% else %>
+                        <%= link_to("Member Sign In", new_client_session_path)  %>
+                    <% end %>
 
-              </li>
-              <!-- User Logout End -->
+                  </li>
+                  <!-- User Logout End -->
 
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Moar links <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Scheduled Backup", data_stores_scheduled_backup_path %></li>
-                  <li><%= link_to "Manual Backup", data_stores_manual_backup_path %></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </li>
+
+                  <% if current_admin || current_accountant || current_loan_manager || current_client %>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiles<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          
+
+                                <% if admin_signed_in? %>
+                                    <li><%= link_to "My Profile", current_admin.admin_profile %></li>
+                              
+                                <% elsif loan_manager_signed_in? %>
+                                    <li><%= link_to "My Profile", current_loan_manager.loan_manager_profile %></li>
+                                <% elsif accountant_signed_in? %>
+                                    <li><%= link_to "My Profile", current_accountant.accountant_profile %></li>
+                                <% elsif client_signed_in? %>
+                                    <li><%= link_to "My Profile", current_client.client_profile %></li>
+                                <% end %>
+                        </ul>
+                      </li>
+
+                  <% end %>
+
+
             </ul>
-            <!-- Right Links End -->
+
+          </ul>
+          <!-- Right Links End -->
 
 
         </div>

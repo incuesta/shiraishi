@@ -1,29 +1,58 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+    <div class="col-md-10 col-centered">   
+        <!-- Panel Table -->
+        <div class="panel panel-default">
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.body %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <div class="panel-heading panel-heading-custom">
+            <div class="panel_title_to_the_left">
+              Articles
+            </div>
 
-<br>
+            <div class="panel_buttons_to_the_right">
+                <%= link_to 'New Article', new_article_path, class: 'btn btn-sm btn-success' %>
+            </div>
+          </div>
 
-<%= link_to 'New Article', new_article_path %>
+          <div class="panel-body">
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Body</th>
+                        <th>Published at</th>
+                        <th colspan="3"></th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <% @articles.each do |article| %>
+                        <tr>
+                          <td><%= article.title %></td>
+                          <td><%= truncate(article.body, length: 50) { link_to '(click for more)', article } %></td>
+                          <td><%= article.created_at.to_date %></td>
+                          <td><%= link_to 'Show', article %></td>
+                          <td><%= link_to 'Edit', edit_article_path(article) %></td>
+                          <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <!-- End table responsive -->
+
+          </div>
+          <!-- End Panel Body -->
+
+        </div>
+        <!-- Table Panel End -->
+
+    </div>
+    <!-- End of col-md-8 -->
+</div>
+<!-- Row End -->

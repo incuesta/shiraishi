@@ -11,17 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :article_title %>
+  <div class="field form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: :article_image %>
+    <span><%= File.basename(article.image.url) if article.image.present? %></span>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :article_title, class:'form-control' %>
+  </div>
+
+  <div class="field form-group">
     <%= form.label :body %>
-    <%= form.text_area :body, id: :article_body %>
+    <%= form.text_area :body, id: :article_body, class:'form-control', rows: 10 %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-lg btn-success' %>
   </div>
 <% end %>

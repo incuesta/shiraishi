@@ -1,0 +1,28 @@
+<%= form_with(url: create_article_section_article_path(params[:id]), scope: :section, local: true) do |form| %>
+  <% if section.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(section.errors.count, "error") %> prohibited this section from being saved:</h2>
+
+      <ul>
+      <% section.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: :section_image %>
+    <span><%= File.basename(section.image.url) if section.image.present? %></span>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :section_body, class:'form-control', rows: 10 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-lg btn-success' %>
+  </div>
+<% end %>

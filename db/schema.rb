@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316113012) do
+ActiveRecord::Schema.define(version: 20180319073311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20180316113012) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "client_assets", force: :cascade do |t|
@@ -432,6 +433,15 @@ ActiveRecord::Schema.define(version: 20180316113012) do
     t.index ["string_id"], name: "index_loans_on_string_id", unique: true
   end
 
+  create_table "sections", force: :cascade do |t|
+    t.bigint "article_id"
+    t.string "image"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_sections_on_article_id"
+  end
+
   create_table "submitted_docs", force: :cascade do |t|
     t.bigint "loan_id"
     t.string "name"
@@ -459,6 +469,7 @@ ActiveRecord::Schema.define(version: 20180316113012) do
   add_foreign_key "loan_type_loan_docs", "loan_types"
   add_foreign_key "loans", "clients"
   add_foreign_key "loans", "loan_types"
+  add_foreign_key "sections", "articles"
   add_foreign_key "submitted_docs", "loan_docs"
   add_foreign_key "submitted_docs", "loans"
 end

@@ -1,14 +1,82 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+	<div class="col-md-10 col-centered">
 
-<p>
-  <strong>Body:</strong>
-  <%= @article.body %>
-</p>
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-custom">
+				<div class="row">
+					<div class="col-md-12">
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+						<div class="panel_title_to_the_left">
+							Title: <%= @article.title %>
+						</div>
+
+						<div class="panel_buttons_to_the_right">
+							<%= link_to 'Add Subsections', new_article_section_article_path(@article), class: "btn btn-sm btn-success" %> |
+							<%= link_to 'Edit', edit_article_path(@article), class: "btn btn-sm btn-success" %> |
+							<%= link_to 'Articles', articles_path, class: "btn btn-sm btn-success" %>
+						</div>
+
+					</div>
+					<!-- col-md-12 End -->
+				</div>
+				<!-- Row End -->
+			</div>
+
+			<div class="panel-body">
+				<div class="row">
+
+					<div class="col-md-12">
+
+						<%= image_tag(@article.image.img_450.url, alt: @article.title, class:"img-responsive col-centered") if @article.image? %>
+							
+					</div>
+
+
+					<div class="col-md-11 col-centered">
+						<%= @article.body %>
+					</div>
+
+
+				</div>
+
+
+
+				<% if @article.sections.any? %>
+					<div class="row" style="text-align: center;">
+						<% @article.sections.each do | section | %>
+							<hr>
+
+							
+							<%= link_to 'Edit section', edit_section_path(section), class: 'btn btn-sm btn-info' %>
+							<%= link_to 'Destroy', section, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-info' %>
+							
+
+							<div class="col-md-12">
+								<%= image_tag(section.image.img_450.url, alt: @article.title, class:"img-responsive col-centered") if section.image? %>
+
+							</div>
+
+
+							<div class="col-md-11 col-centered" style="text-align: left;">
+								<%= section.body %>
+							</div>
+
+						<% end %>
+						<!-- Each End -->
+					</div>
+					<!-- Row End -->
+				<% end %>
+				<!-- Sections End -->
+
+				
+			</div>
+			<!-- Panel Body End -->
+		</div>
+		<!-- Panel End -->
+		
+
+	</div>
+	<!-- col-md-10 End -->
+</div>
+<!-- End of Row -->
