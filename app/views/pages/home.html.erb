@@ -3,4 +3,7 @@
 <%= render 'layouts/carousel' %>
 
 
-<p><%= image_tag "victini_2", alt: "Hello Universe!" %></p>
+<%= image_tag "assessment.jpg", alt: 'Management Dashboard', class: "img-responsive col-centered my_banner" %>
+
+
+<%=  image_tag("victini_2", alt: "Hello Universe!") if Rails.env.development? %><

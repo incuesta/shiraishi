@@ -309,7 +309,7 @@ Rails.application.routes.draw do
   	# get 'pages/help'
 
 
-    resources :pages, path: 'finance', only: [:index] do
+    resources :pages, only: [:index] do
       collection do
         get :home
         get :articles
