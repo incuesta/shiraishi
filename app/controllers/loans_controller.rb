@@ -279,6 +279,11 @@ class LoansController < ApplicationController
       respond_to do | format |
         if request_valid && @loan.update(loan_params_origin)
 
+
+            # Record this in the Activity Log
+            record(pundit_user, 'Approved a Loan')
+
+
             # Send a notification
             approved_mail = LoanMailer.new_approved_loan @loan
             approved_mail.deliver_now
@@ -314,6 +319,11 @@ class LoansController < ApplicationController
       respond_to do | format |
         if (@loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed]) && @loan.update(loan_params_origin)
           
+
+          # Record this in the Activity Log
+          record(pundit_user, 'Disbursed a Loan')
+
+
           # If the status is disbursed, create an AccountingBook with Entries
           if @loan.status == Loan.statuses[:disbursed]
 

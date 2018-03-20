@@ -9,7 +9,7 @@ class ActivityLogsController < ApplicationController
   # GET /activity_logs
   # GET /activity_logs.json
   def index
-      @activity_logs = ActivityLog.all
+      @activity_logs = ActivityLog.order("created_at desc")
   end
 
   # GET /activity_logs/1

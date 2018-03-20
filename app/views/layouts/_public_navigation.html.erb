@@ -67,11 +67,11 @@
 
                 <!-- Articles Management -->
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Organization <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> About Us <span class="caret"></span></a>
                 <ul class="dropdown-menu">
 
-                  <li><%= link_to "Link", '#' %></li>
-                  <li><%= link_to "Link", '#' %></li>
+                  <li><%= link_to "Organization", organization_financing_index_path %></li>
+                  <li><%= link_to "Vision and Mission", vision_financing_index_path %></li>
 
                 </ul>
               </li>
@@ -81,24 +81,7 @@
 
 
               <!-- Reports -->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Contacts <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-
-
-
-                  <li><%= link_to "Link", '#' %></li>
-
-
-                  <li role="separator" class="divider"></li>
-                  
-
-                  <li><%= link_to "Link", '#' %></li>
-
-
-                 
-                </ul>
-              </li>
+              <li class="dropdown"><%= link_to 'Contacts', contacts_financing_index_path %></li>
               <!-- Reports End -->
 
 

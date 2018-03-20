@@ -29,13 +29,16 @@ class FinancingController < ApplicationController
 
 
     def services
-        @loan_types = LoanType.paginate(page: params[:page], per_page: 5)
+        @loan_types = LoanType.paginate(page: params[:page], per_page: 6)
     end
 
     def organization
     end
 
     def about
+    end
+
+    def vision
     end
 
     def contacts

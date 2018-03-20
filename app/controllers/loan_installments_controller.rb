@@ -106,6 +106,9 @@ class LoanInstallmentsController < ApplicationController
 
                 @loan_installment.update(loan_installment_params)
 
+                # Record this in the Activity Log
+                record(pundit_user, 'Accepted Payment')
+
 
                 ab = @loan.accounting_book
 

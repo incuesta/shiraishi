@@ -329,6 +329,7 @@ Rails.application.routes.draw do
         get :services
         get :organization
         get :about
+        get :vision
         get :contacts
         get :help
         get :featured_article
