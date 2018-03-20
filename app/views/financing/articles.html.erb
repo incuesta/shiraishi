@@ -1,0 +1,61 @@
+
+<div class="row" >
+	<div class="col-md-12">
+
+		<!-- Pagination -->
+		<div class="center_pagination">
+			<%= will_paginate @articles %>
+		</div>
+
+		<% @articles.each do | article | %>
+				<div class="row">
+						<div class="col-md-10 col-centered">
+
+								<div class="well">
+
+										<div class="well-header">
+											<div class="well-title" style="text-align: center;">
+												<%= article.title %>
+												<small class="text-muted" style="margin-left: 25px;"><%= article.created_at.to_date %></small>
+											</div>
+
+											<div class="well-right">
+												<%= link_to 'Show', show_article_financing_path(article), class: 'btn btn-sm btn-success' %> 
+											</div>
+										</div>
+
+										<div class="row">
+
+											<div class="col-md-6" style="margin-bottom: 25px;">
+											   <!-- Show this if no profile Image -->
+											    <%= image_tag("450x300.jpg", alt: "#{article.title}.jpg", class: "img-responsive") unless article.image.present? %>
+
+											    <!-- Show this if there's a profile Image -->
+											    <%= image_tag(article.image.img_200.url, alt: "#{article.title}.jpg", class: "center-block img-responsive") if article.image.present? %>
+											</div>
+
+											<div class="col-md-6">
+												<blockquote style="font-size: 1em;">
+													<%= truncate(article.body, length: 300) { link_to 'continue reading', '#', class: "ikumai" } %>
+														
+												</blockquote>
+											</div>
+										</div>
+
+								</div>
+
+						</div>
+				</div>
+				<!-- row -->
+
+				
+		<% end %>
+		<!-- End each -->
+
+		<!-- Pagination -->
+		<div class="center_pagination">
+			<%= will_paginate @articles %>
+		</div>
+
+	</div>
+</div>

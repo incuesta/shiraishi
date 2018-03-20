@@ -1,0 +1,118 @@
+
+
+<div class="row">
+
+	<!-- Pagination -->
+	<div class="center_pagination">
+		<%= will_paginate @loan_types %>
+	</div>
+
+
+	<% @loan_types.each do | loan_type | %>
+
+
+			<div class="col-md-6 col-centered">
+		        <div class="panel panel-default">
+
+		            <div class="panel-heading panel-heading-custom">
+		              <div class="panel-title">
+		                <td>Name:</td>
+		                <%= loan_type.name %>
+
+		                <% if current_admin || current_loan_manager || current_accountant %>
+			                <div class="pull-right">
+			                    <%= link_to 'Edit', edit_loan_type_path(loan_type), class:"btn btn-sm btn-info" %> |
+			                    <%= link_to 'Back', :back, class:"btn btn-sm btn-info" %>
+			                </div>
+		                <% end %>
+		              </div>
+		              <br/>
+		            </div>
+
+		            <div class="panel-body">
+		                <div class="row">
+		                    <div class="col-md-10 col-centered">
+		                      <table class="table">
+		                              <tr>
+		                                <td><strong>Code:</strong></td>
+		                                <td><%= loan_type.code %></td>
+		                              </tr>
+
+		                              <tr>
+		                                <td><strong>Interest mode:</strong></td>
+		                                <td><%= loan_type.interest_mode %></td>
+		                              </tr>
+
+		                              <tr>
+		                                <td><strong>Rate:</strong></td>
+		                                <td><%= number_to_percentage(loan_type.rate * 100, precision: 0) %></td>
+		                              </tr>
+
+		                              <tr>
+		                                <td><strong>Duration:</strong></td>
+		                                <td><%= loan_type.duration %> months</td>
+		                              </tr>
+
+
+		                              <tr>
+		                                <td><strong>Minimum:</strong></td>
+		                                <td><%= number_to_currency(loan_type.minimum, unit: "Php ") %></td>
+		                              </tr>
+
+		                              <tr>
+		                                <td><strong>Maximum:</strong></td>
+		                                <td><%= number_to_currency(loan_type.maximum, unit: "Php ") %></td>
+		                              </tr>
+
+
+
+		                              <tr>
+		                                <td><strong>Repayment method:</strong></td>
+		                                <td><%= loan_type.repayment_method %></td>
+		                              </tr>
+		                              <tr>
+		                                <td>
+		                                    <strong>Required documents:</strong>
+		                                </td>
+		                                <td>
+
+		                                    <ul class="list-unstyled">
+		                                        <% loan_type.loan_docs.each do |loan_doc| %>
+		                                            <li><%= loan_doc.name %></li>
+		                                        <% end %>
+		                                    </ul>
+
+		                                </td>
+		                              </tr>
+
+
+		                              
+		                              
+		                        </table>
+		                        <!-- Table End -->
+
+
+		                        
+
+		                    </div>
+		                    <!-- Panel End -->
+		              </div>
+		              <!-- Row End -->
+		          </div>
+		          <!-- Panel Body End -->
+		          
+
+		        </div>
+		        <!-- Panel End -->
+		    </div>
+		    <!-- col-centered end -->
+	<% end %>
+	<!-- LoanType each end -->
+
+
+	<!-- Pagination -->
+	<div class="center_pagination">
+		<%= will_paginate @loan_types %>
+	</div>
+</div>
+<!-- End of row -->

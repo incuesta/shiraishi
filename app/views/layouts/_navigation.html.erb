@@ -90,8 +90,8 @@
 
                   <li role="separator" class="divider"></li>
 
-                  <li><%= link_to 'Show book entries', show_all_loan_entries_accounting_entries_path %></li>
-                  <li><%= link_to 'Show income summary', show_income_summary_accounting_entries_path %></li>
+                  <li><%= link_to 'Show Book Entries', show_all_loan_entries_accounting_entries_path %></li>
+                  <li><%= link_to 'Show Income Summary', show_income_summary_accounting_entries_path %></li>
 
                   <li role="separator" class="divider"></li>
 
@@ -118,7 +118,7 @@
                   
                   <li role="separator" class="divider"></li>
 
-                  <li><%= link_to "Apply new Loan", new_loan_path %></li>
+                  <li><%= link_to "New Loan Request", new_loan_path %></li>
                   <li><%= link_to "List Loans", loans_path %></li>
                   
                   <li role="separator" class="divider"></li>
@@ -164,26 +164,26 @@
 
 
 
-                  <li><%= link_to "User activity logs report", activity_logs_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "User Activty Logs Report", activity_logs_reports_path(format: :pdf) %></li>
 
 
                   <li role="separator" class="divider"></li>
                   
 
-                  <li><%= link_to "Income summary report", income_summary_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Income Summary Report", income_summary_reports_path(format: :pdf) %></li>
 
 
                   <li role="separator" class="divider"></li>
 
 
-                  <li><%= link_to "Loan request report", requested_loans_reports_path(format: :pdf) %></li>
-                  <li><%= link_to "Approved loans report", approved_loans_reports_path(format: :pdf) %></li>
-                  <li><%= link_to "Rejected loans report", rejected_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Loan Request Report", requested_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Approved Loans Report", approved_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Rejected Loans Report", rejected_loans_reports_path(format: :pdf) %></li>
 
                   <li role="separator" class="divider"></li>
 
-                  <li><%= link_to "Disbursed loans report", disbursed_loans_reports_path(format: :pdf) %></li>
-                  <li><%= link_to "Undisbursed loans report", undisbursed_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Disbursed Loans Report", disbursed_loans_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Undisbursed Loans Report", undisbursed_loans_reports_path(format: :pdf) %></li>
                 </ul>
               </li>
               <!-- Reports End -->
@@ -234,7 +234,7 @@
                         <%= link_to("Member Sign Out", destroy_client_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
                    
                     <% else %>
-                        <%= link_to("Member Sign In", new_client_session_path)  %>
+                        <%= link_to("Manager Sign In", new_loan_manager_session_path)  %>
                     <% end %>
 
                   </li>

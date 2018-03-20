@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Clients::UnlocksController < Devise::UnlocksController
+
+  layout 'public'
+
+  
   # GET /resource/unlock/new
   # def new
   #   super

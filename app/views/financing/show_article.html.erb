@@ -1,0 +1,58 @@
+		
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="row">
+			<h3><center><%= @article.title %></center></h3>
+			<p><center><%= @article.created_at.to_date %></center></p>
+
+			<hr>
+
+			<div class="col-md-12">
+
+				<%= image_tag(@article.image.img_450.url, alt: @article.title, class:"img-responsive col-centered") if @article.image? %>
+					
+			</div>
+
+
+			<div class="col-md-10 col-centered">
+				<%= @article.body %>
+			</div>
+
+		</div>
+		<!-- Row end -->
+
+
+		<% if @article.sections.any? %>
+			<div class="row" style="text-align: center;">
+				<% @article.sections.each do | section | %>
+					<br>
+
+					<% if current_admin || current_loan_manager || current_accountant %>
+						<%= link_to 'Edit section', edit_section_path(section), class: 'btn btn-sm btn-info' %>
+						<%= link_to 'Destroy', section, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-info' %>
+					<% end %>
+					
+
+					<div class="col-md-12">
+						<%= image_tag(section.image.img_450.url, alt: @article.title, class:"img-responsive col-centered") if section.image? %>
+
+					</div>
+
+
+					<div class="col-md-10 col-centered" style="text-align: left;">
+						<%= section.body %>
+					</div>
+
+				<% end %>
+				<!-- Each End -->
+			</div>
+			<!-- Row End -->
+		<% end %>
+		<!-- Sections End -->
+
+
+	</div>
+	<!-- col-md-10 End -->
+</div>
+<!-- Row -->

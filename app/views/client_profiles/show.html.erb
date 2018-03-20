@@ -19,8 +19,10 @@
                   <div class="panel_buttons_to_the_right">
                     <%= link_to 'Guarantors', show_guarantors_client_profile_path(@client_profile), class: 'btn btn-sm btn-success' %> |
                     <%= link_to 'Assets', show_assets_client_profile_path(@client_profile), class: 'btn btn-sm btn-success' %>  |
-                    <%= link_to 'Update Profile', edit_client_profile_path(@client_profile), class: 'btn btn-sm btn-success' %> |
-                    <%= link_to 'Update Registration', edit_client_registration_path(client), class: 'btn btn-sm btn-success' %>
+                    <%= link_to 'Update Profile', edit_client_profile_path(@client_profile), class: 'btn btn-sm btn-success' %> 
+                    <%= "|" if current_client %>
+
+                    <%= link_to('Update Registration', edit_client_registration_path(client), class: 'btn btn-sm btn-success') if current_client %>
                   </div>
                 </div>
             </div>

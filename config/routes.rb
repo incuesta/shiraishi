@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   
 
 
-
     post 'data_stores/backup_from_dump'
     post 'data_stores/restore_from_dump'
 
@@ -318,6 +317,25 @@ Rails.application.routes.draw do
         get :about
         get :contacts
         get :help
+      end
+    end
+
+
+    # This is for the Public Pages
+    resources :financing, only: [:index] do
+      collection do
+        get :home
+        get :articles
+        get :services
+        get :organization
+        get :about
+        get :contacts
+        get :help
+        get :featured_article
+      end
+
+      member do
+        get :show_article
       end
     end
 

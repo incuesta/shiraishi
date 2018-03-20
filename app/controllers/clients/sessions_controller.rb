@@ -8,6 +8,9 @@ class Clients::SessionsController < Devise::SessionsController
   #   super
   # end
   
+  layout 'public'
+
+
 
   #POST /resource/sign_in
   def create
