@@ -11,40 +11,55 @@
 				<div class="row">
 						<div class="col-md-10 col-centered">
 
-								<div class="well">
+								<div class="panel panel-default">
 
-										<div class="well-header">
-											<div class="well-title" style="text-align: center;">
-												<%= article.title %>
-												<small class="text-muted" style="margin-left: 25px;"><%= article.created_at.to_date %></small>
-											</div>
+									
 
-											<div class="well-right">
-												<%= link_to 'Show', show_article_financing_path(article), class: 'btn btn-sm btn-success' %> 
+										<div class="panel-heading panel-heading-custom-public">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="panel_title_to_the_left" style="text-align: center;">
+														<%= article.title %>
+													</div>
+
+													<div class="panel_buttons_to_the_right">
+														<%= link_to 'Show', show_article_financing_path(article), class: 'btn btn-sm btn-default' %> 
+													</div>
+												</div>
 											</div>
+											<!-- Row End -->
+
 										</div>
+										<!-- Panel Heading End -->
 
-										<div class="row">
+										<div class="panel-body">
 
 											<div class="col-md-6" style="margin-bottom: 25px;">
 											   <!-- Show this if no profile Image -->
 											    <%= image_tag("450x300.jpg", alt: "#{article.title}.jpg", class: "img-responsive") unless article.image.present? %>
 
 											    <!-- Show this if there's a profile Image -->
-											    <%= image_tag(article.image.img_200.url, alt: "#{article.title}.jpg", class: "center-block img-responsive") if article.image.present? %>
+											    <%= image_tag(article.image.img_450.url, alt: "#{article.title}.jpg", class: "center-block img-responsive") if article.image.present? %>
 											</div>
 
 											<div class="col-md-6">
 												<blockquote style="font-size: 1em;">
-													<%= truncate(article.body, length: 300) { link_to 'continue reading', '#', class: "ikumai" } %>
+													<%= truncate(article.body, length: 300) { link_to 'continue reading', show_article_financing_path(article), class: "ikumai" } %>
 														
 												</blockquote>
 											</div>
 										</div>
+										<!-- Panel Body End -->
+
+										<div class="panel-footer">
+											<div class="date_right_small"><%= article.created_at.to_date %></div>
+										</div>
 
 								</div>
+								<!-- End Panel -->
 
 						</div>
+						<!-- End col-md-10 -->
 				</div>
 				<!-- row -->
 

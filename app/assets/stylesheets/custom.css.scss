@@ -3,6 +3,21 @@
 @import "bootstrap";
 
 
+.date_right_small
+{
+    margin-left: 25px; 
+    color: #8c8c8c; 
+    font-size: 0.9em;
+    display: inline-block;
+}
+
+.clear-fix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
 blockquote.custom 
 {
     font-size: 1.1em;
@@ -158,9 +173,28 @@ textarea
     color: white;*/
 }
 
+
+
+
+.panel-default > .panel-heading-custom-public
+{
+    background:  #a4978e;
+    color: #FFFFFF;
+}
+
+
+
+
+
 .panel-footer.panel-footer-custom-info
 {
     background:  #D9EDF6;
+}
+
+
+.panel-footer.panel-footer-custom-1
+{
+    background:  #525b56;
 }
 
 
@@ -207,6 +241,14 @@ textarea
 }
 
 
+
+.well.well-custom-public
+{
+    background-color: #a4978e;
+    color: #333333;
+}
+
+
 .well .well-title
 {
     font-size: 1.5em;
@@ -250,8 +292,8 @@ textarea
 
 .navbar-default.nav-custom
 {
-    background-color: #505050;
-    border-color: #505050;
+    background-color: #525b56;
+    border-color: #525b56;
 }
 
 .dropdown-menu > li > a:hover,
