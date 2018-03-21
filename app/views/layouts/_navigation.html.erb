@@ -36,41 +36,40 @@
                 <ul class="dropdown-menu">
 
                   <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
-                  <li><%= link_to "Admin Profiles", admin_profiles_path %></li>
+                  <li><%= link_to("Admin Profiles", admin_profiles_path) if current_admin %></li>
 
 
                   <li role="separator" class="divider"></li>
 
 
                   <li><%= link_to "Loan Manager Sign in", new_loan_manager_session_path %></li>
-                  <li><%= link_to "Loan Manager Profiles", loan_manager_profiles_path %></li>
+                  <li><%= link_to("Loan Manager Profiles", loan_manager_profiles_path) if current_admin %></li>
 
 
                   <li role="separator" class="divider"></li>
 
 
                   <li><%= link_to "Accountant Sign in", new_accountant_session_path %></li>
-                  <li><%= link_to "Accountant Profiles", accountant_profiles_path %></li>
+                  <li><%= link_to("Accountant Profiles", accountant_profiles_path) if current_admin %></li>
 
 
                   <li role="separator" class="divider"></li>
 
 
                   <li><%= link_to "Member Sign in", new_client_session_path %></li>
-                  <li><%= link_to "Member Profiles", client_profiles_path %></li>
+                  <li><%= link_to("Member Profiles", client_profiles_path) if current_admin || current_accountant || current_loan_manager %></li>
 
 
-                  <li role="separator" class="divider"></li>
+                  <%  if current_admin || current_accountant || current_loan_manager %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to("Clients Activation Review", clients_account_activations_path) %> </li>
+                  <% end %>
 
-
-                  <li><%= link_to "Clients Activation Review", clients_account_activations_path %> </li>
-
-
-                  <li role="separator" class="divider"></li>
+                  <% if current_admin %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to("View User Logs", activity_logs_path) %> </li>
+                  <% end %>
                   
-                  
-                  <li><%= link_to "View User Logs", activity_logs_path %> </li>
-                 
                 </ul>
               </li>
               <!-- User Management End -->

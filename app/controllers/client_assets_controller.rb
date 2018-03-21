@@ -1,6 +1,11 @@
 class ClientAssetsController < ApplicationController
   before_action :set_client_asset, only: [:show, :edit, :update, :destroy]
 
+
+
+  layout :resolve_layout, only: [:index, :show, :new, :edit]
+
+
   # GET /client_assets
   # GET /client_assets.json
   def index

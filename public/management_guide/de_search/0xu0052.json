@@ -1,0 +1,16 @@
+[
+	{ "s": "REASON", "p": [26, 14] },
+	{ "s": "RECEIVE", "p": [52, 7] },
+	{ "s": "RECEIVED", "p": [54, 38, 26, 14] },
+	{ "s": "REFERS", "p": [40] },
+	{ "s": "REGISTERED", "p": [46] },
+	{ "s": "REGISTERING", "p": [7] },
+	{ "s": "REGISTRATION", "p": [41, 4, 29, 17, 42, 21] },
+	{ "s": "REJECTION", "p": [16] },
+	{ "s": "REQUEST", "p": [54, 38] },
+	{ "s": "REQUESTS", "p": [16] },
+	{ "s": "RESEND", "p": [54, 38, 26, 14] },
+	{ "s": "RESENDING", "p": [14] },
+	{ "s": "RESPONSIBLE", "p": [28] },
+	{ "s": "REVIEW", "p": [46] }
+]

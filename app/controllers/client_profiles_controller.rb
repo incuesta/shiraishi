@@ -2,7 +2,7 @@ class ClientProfilesController < ApplicationController
   before_action :set_client_profile, only: [:show, :show_guarantors, :show_assets, :edit, :update, :destroy]
 
 
-  layout :resolve_layout, only: [:show]
+  layout :resolve_layout, only: [:show, :new, :edit, :show_guarantors, :show_assets]
 
   # GET /client_profiles
   # GET /client_profiles.json

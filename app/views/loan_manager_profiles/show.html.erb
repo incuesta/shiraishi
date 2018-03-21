@@ -17,8 +17,11 @@
                       
                   <div class="panel_buttons_to_the_right">
                     <%= link_to 'Update Profile', edit_loan_manager_profile_path(@loan_manager_profile), class: 'btn btn-sm btn-success' %> |
-                    <%= link_to 'Update Registration', edit_loan_manager_registration_path(loan_manager), class: 'btn btn-sm btn-success' %> |
-                    <%= link_to 'Back', loan_manager_profiles_path, class: 'btn btn-sm btn-success' %>
+                    <%= link_to 'Update Registration', edit_loan_manager_registration_path(loan_manager), class: 'btn btn-sm btn-success' %>
+                    <% if current_admin %>
+                       |
+                      <%= link_to 'Loan Manger Profiles', loan_manager_profiles_path, class: 'btn btn-sm btn-success' %>
+                    <% end %>
                   </div>
               </div>
               <!-- Col MD 12 End -->

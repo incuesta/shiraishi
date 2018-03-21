@@ -15,7 +15,7 @@
       <% end %>
 
       <div class="form-group">
-        <%= form.label :image %>
+        <%= form.label :image, 'Profile Image' %>
         <%= form.file_field :image, accept: "image/jpg, image/jpeg, image/png, image/gif", id: "#{shiraishi.class.to_s.underscore}_image" %>
         <span><%= File.basename(shiraishi.image.url) if shiraishi.image.present? %></span>
       </div>
@@ -27,7 +27,7 @@
 
       <div class="form-group">
         <%= form.label :birth_date %>
-        <%= form.datetime_select :birth_date, {}, class:'kuroishi', id: "#{shiraishi.class.to_s.underscore}_birth_date", selected: 18.years.ago, end_year: 100.years.ago.year, start_year: 18.years.ago.year %>
+        <%= form.datetime_select :birth_date, {selected: 18.years.ago, end_year: 100.years.ago.year, start_year: 18.years.ago.year}, id: "#{shiraishi.class.to_s.underscore}_birth_date", class:'kuroishi' %>
       </div>
 
       <div class="form-group">

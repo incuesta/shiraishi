@@ -1,6 +1,12 @@
 class GuarantorsController < ApplicationController
   before_action :set_guarantor, only: [:show, :edit, :update, :destroy]
 
+
+
+  layout :resolve_layout, only: [:new, :edit, :show, :index]
+
+
+
   # GET /guarantors
   # GET /guarantors.json
   def index

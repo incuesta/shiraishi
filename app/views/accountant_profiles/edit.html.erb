@@ -12,8 +12,13 @@
 						<span class="panel_title_to_the_left" >Accountant Profile</span>
 
 						<div class="panel_buttons_to_the_right">
-							<%= link_to 'Show', @accountant_profile, class: 'btn btn-sm btn-success' %> |
-							<%= link_to 'Back', accountant_profiles_path, class: 'btn btn-sm btn-success' %>
+							<%= link_to 'Show', @accountant_profile, class: 'btn btn-sm btn-success' %>
+
+							<% if current_admin %>
+								 |
+								<%= link_to 'Back', accountant_profiles_path, class: 'btn btn-sm btn-success' %>
+
+							<% end %>
 						</div>
 					</div>
 				</div>

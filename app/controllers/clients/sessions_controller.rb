@@ -41,4 +41,9 @@ class Clients::SessionsController < Devise::SessionsController
         new_client_profile_path
       end
   end
+
+  def after_sign_out_path_for(resource)
+      # Create a Profile first
+      home_financing_index_path
+  end
 end

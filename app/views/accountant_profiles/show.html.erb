@@ -18,8 +18,14 @@
                     
                 <div class="panel_buttons_to_the_right">
                   <%= link_to 'Update Profile', edit_accountant_profile_path(@accountant_profile), class: 'btn btn-sm btn-success' %> |
-                  <%= link_to 'Update Registration', edit_accountant_registration_path(accountant), class: 'btn btn-sm btn-success' %> |
-                  <%= link_to 'Back', accountant_profiles_path, class: 'btn btn-sm btn-success' %>
+                  <%= link_to 'Update Registration', edit_accountant_registration_path(accountant), class: 'btn btn-sm btn-success' %> 
+
+                  <% if current_admin %>
+                    |
+                    <%= link_to 'Back', accountant_profiles_path, class: 'btn btn-sm btn-success' %>
+
+                  <% end %>
+                  
                 </div>
               </div>
               <!-- col-md-12 End -->
