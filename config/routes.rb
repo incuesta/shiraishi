@@ -204,6 +204,9 @@ Rails.application.routes.draw do
 
         # Shows the client's Assets
         get :show_assets
+
+        # Shows the client's Loans
+        get :show_loan_requests
       end
     end
 

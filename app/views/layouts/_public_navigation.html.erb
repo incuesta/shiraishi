@@ -80,12 +80,26 @@
 
 
 
-              <!-- Reports -->
+              <!-- Contacts -->
               <li class="dropdown"><%= link_to 'Contacts', contacts_financing_index_path %></li>
-              <!-- Reports End -->
+              <!-- Contacts End -->
 
 
-              <!-- Backups -->
+              <!-- Loans -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Loans <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Send a Request", new_loan_path %></li>
+                  <% if current_client %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to "My Loan Requests", show_loan_requests_client_profile_path(current_client.client_profile) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <!-- Loans End -->
+
+
+              <!-- Help -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -94,7 +108,7 @@
                   <li><%= link_to "Quick Start", '#' %></li>
                 </ul>
               </li>
-              <!-- Backups End -->
+              <!-- Help End -->
 
 
 
@@ -151,6 +165,7 @@
                                     <li><%= link_to "My Profile", current_accountant.accountant_profile %></li>
                                 <% elsif client_signed_in? %>
                                     <li><%= link_to "My Profile", current_client.client_profile %></li>
+                                    <li><%= link_to "My Loan Requests", show_loan_requests_client_profile_path(current_client.client_profile) %></li>
                                 <% end %>
                         </ul>
                       </li>

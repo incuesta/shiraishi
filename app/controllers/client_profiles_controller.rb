@@ -1,8 +1,13 @@
 class ClientProfilesController < ApplicationController
-  before_action :set_client_profile, only: [:show, :show_guarantors, :show_assets, :edit, :update, :destroy]
+  before_action :set_client_profile, only: [:show, :show_guarantors, :show_assets, :show_loan_requests, :edit, :update, :destroy]
 
 
-  layout :resolve_layout, only: [:show, :new, :edit, :show_guarantors, :show_assets]
+  layout :resolve_layout, only: [:show, :new, :edit, :show_guarantors, :show_assets, :show_loan_requests]
+
+
+    # Param Getters for Sorting
+  helper_method :sort_order_param, :sort_column_param, :search_param
+
 
   # GET /client_profiles
   # GET /client_profiles.json
@@ -30,6 +35,12 @@ class ClientProfilesController < ApplicationController
     @client_assets = @client_profile.client.client_assets
   end
 
+
+  # GET /client_profiles/1/show_loan_request
+  def show_loan_requests
+    loans = @client_profile.client.loans
+    sort_and_search loans
+  end
 
 
 
@@ -121,4 +132,35 @@ class ClientProfilesController < ApplicationController
     def client_profile_params
         params.require(:client_profile).permit(:image, :sex, :birth_date, :address, :city, :zip_code, :civil_status, :mobile, :telephone, :company, :department, :employee_category, :job_title, :manager, :enabled)
     end
+
+
+
+    # Refactored Index Search and Sorting
+    def sort_and_search(loans)
+      if search_param
+        @loans = loans.list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}").simple_search search_param
+      else
+        @loans = loans.list_with_loan_type_and_client.order("#{sort_column_param} #{sort_order_param}")
+      end
+    end
+
+
+
+    # Url params for Sorting
+    def sort_column_param
+      params[:sort_column] || 'application_date'
+    end
+
+    def sort_order_param
+      params[:sort_order] || 'desc'
+    end
+
+
+
+
+    # Url params for Simple Search
+    def search_param
+      params[:loans][:search] if params[:loans] || nil
+    end
+
 end

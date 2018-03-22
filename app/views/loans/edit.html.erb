@@ -8,8 +8,19 @@
 					<span class="h4" >Edit the Loan Request</span>
 
 					<div class="pull-right">
+						<% if current_client %>
+							<%= link_to 'Available Services', services_financing_index_path, class: "btn btn-sm btn-info" %>
+							|
+						<% end %>
+
+
 						<%= link_to 'Show', @loan, class: "btn btn-sm btn-info" %>
-						<%= link_to 'Back', loans_path, class: "btn btn-sm btn-info" %>
+
+						<% if current_admin || current_loan_manager || current_accountant %>
+
+							|
+							<%= link_to 'Back', loans_path, class: "btn btn-sm btn-info" %>
+						<% end %>
 					</div>
 				</div>
 

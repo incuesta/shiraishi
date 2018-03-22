@@ -5,15 +5,23 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading panel-heading-custom">
-				<div class="panel-title">
-					<span class="h4" >Apply for a Loan</span>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel_title_to_the_left" >Apply for a Loan</div>
 
-					<div class="pull-right">
-						<%= link_to 'Back', loans_path, class: "btn btn-sm btn-info" %>
+						<div class="panel_buttons_to_the_right">
+
+							<% if current_client %>
+								<%= link_to 'Available Services', services_financing_index_path, class: "btn btn-sm btn-info" %>
+								
+							<% end %>
+
+							<% if current_admin || current_accountant || current_loan_manager %>
+								<%= link_to 'Back', loans_path, class: "btn btn-sm btn-info" %>
+							<% end %>
+						</div>
 					</div>
 				</div>
-
-				<br/>
 				
 			</div>
 

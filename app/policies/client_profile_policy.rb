@@ -40,7 +40,7 @@ class ClientProfilePolicy < ApplicationPolicy
 
 	# Allow only Client to update his OWN
 	def destroy?
-		(@user.instance_of?(Client) && client_profile.client == @user) || @user.instance_of?(Admin)	
+		loan_officers_only
 	end
 
 

@@ -2,7 +2,7 @@ class LoanManagerProfilePolicy < ApplicationPolicy
   	
 
 	def index?
-		@user.instance_of?(LoanManager) || @user.instance_of?(Admin)
+		@user.instance_of?(Admin)
 	end
 
 

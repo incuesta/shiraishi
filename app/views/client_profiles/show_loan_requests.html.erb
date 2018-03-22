@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-12">
+
+      <!-- Panel Table  -->
+      <div class="panel panel-default">
+
+        <div class="panel-heading panel-heading-custom-public">
+          <div class="row">
+                <div class="col-md-7 titleize">My Loan Requests</div>
+
+                <div class="col-md-3 search_box">
+
+                    <!-- This is for the Simple Search -->
+                    <%= form_with url: @search_path, local: true, method: :get, scope: 'loans', class: 'form-inline' do | form | %>
+                          <div class="form-group">
+                            <%= form.text_field :search, class:'form-control' %>
+                          </div>
+                        <%= form.submit 'Search', name: nil, class: 'btn btn-sm btn-default' %>
+                    <% end %>
+                    <!-- Simple Search End -->
+
+
+                    <!-- Link to Advanced Search -->
+                    <%= link_to 'Advance search', new_loan_search_path, class: 'link-shiraishi' %>
+
+
+                </div>
+
+                <div class="col-md-2">
+                  <%= link_to 'New Request', new_loan_path, class: 'btn btn-sm btn-default pull-right' %>
+                </div>
+          </div>
+        </div>
+
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th><%= sortable_link 'Type', 'loan_types.name' %></th>
+                      <th><%= sortable_link 'Applicant', 'clients.last_name' %></th>
+                      <th><%= sortable_link 'Application date', 'application_date' %></th>
+                      <th><%= sortable_link 'Status', 'status' %></th>
+                      <th><%= sortable_link 'Principal amount', 'principal' %></th>
+                      <th>Notes</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @loans.each do |loan| %>
+                      <tr>
+                        <td><%= loan.loan_type.name %></td>
+                        <td><%= loan.client.full_name %></td>
+                        <td><%= loan.application_date.to_date %></td>
+                        <td><%= loan.status %></td>
+                        <td><%= number_to_currency(loan.principal_amount, unit: "Php ") %></td>
+                        <td><%= truncate(loan.notes, length: 15) { link_to "continue", loan } %></td>
+                        <td><%= link_to 'Show', loan  %></td>
+                        <td><%= link_to('Edit', edit_loan_path(loan))  if loan.status == Loan.statuses[:draft] %></td>
+                        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } if current_admin || current_loan_manager || current_accountant %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+              </table>
+          </div>
+          <!-- End Table Responsive -->
+      </div>
+      <!-- Table Panel End -->
+
+  </div>
+  <!-- End col-md-10 -->
+</div>
+<!-- End Row -->

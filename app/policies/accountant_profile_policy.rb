@@ -2,7 +2,7 @@ class AccountantProfilePolicy < ApplicationPolicy
   	
 
 	def index?
-		@user.instance_of?(Accountant) || @user.instance_of?(Admin)
+		@user.instance_of?(Admin)
 	end
 
 

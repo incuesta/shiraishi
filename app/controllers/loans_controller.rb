@@ -6,7 +6,7 @@ class LoansController < ApplicationController
   helper_method :sort_order_param, :sort_column_param, :search_param
 
 
-  layout :resolve_layout, only: [:show]
+  layout :resolve_layout, only: [:show, :new, :edit]
 
 
 
@@ -15,6 +15,8 @@ class LoansController < ApplicationController
   def index
     sort_and_search(Loan.all)
     @search_path = loans_path
+
+    authorize Loan
   end
 
 
@@ -28,6 +30,7 @@ class LoansController < ApplicationController
     sort_and_search(Loan.requested_loans)
     @search_path = requested_loans_loans_path
     
+    authorize Loan
 
     respond_to do | format |
         format.html { render 'index' }
@@ -51,6 +54,8 @@ class LoansController < ApplicationController
     sort_and_search(Loan.approved_loans)
     @search_path = approved_loans_loans_path
     
+    authorize Loan
+
     respond_to do | format |
         format.html { render 'index' }
         
@@ -73,6 +78,9 @@ class LoansController < ApplicationController
   def approved_loans_for_disbursion
     sort_and_search(Loan.approved_loans)
     @search_path = approved_loans_for_disbursion_loans_path
+
+    authorize Loan
+
     render 'approved_loans_for_disbursion'
   end
 
@@ -83,6 +91,8 @@ class LoansController < ApplicationController
   def rejected_loans
     sort_and_search(Loan.rejected_loans)
     @search_path = rejected_loans_loans_path
+
+    authorize Loan
 
     respond_to do | format |
         format.html { render 'index' }
@@ -106,6 +116,8 @@ class LoansController < ApplicationController
     sort_and_search(Loan.disbursed_loans)
     @search_path = disbursed_loans_loans_path
 
+    authorize Loan
+
      respond_to do | format |
         format.html { render 'disbursed_loans' }
         
@@ -127,6 +139,8 @@ class LoansController < ApplicationController
   def undisbursed_loans
     sort_and_search(Loan.undisbursed_loans)
     @search_path = undisbursed_loans_loans_path
+
+    authorize Loan
     
     respond_to do | format |
         format.html { render 'index' }
@@ -148,6 +162,8 @@ class LoansController < ApplicationController
   def red_listed_loans
     sort_and_search Loan.red_listed_loans
 
+    authorize Loan
+
     respond_to do |format|
       format.html { render 'index' }
     end
@@ -160,6 +176,7 @@ class LoansController < ApplicationController
   # GET /loans/1.json
   def show
     @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
+    authorize @loan
   end
 
 
@@ -167,6 +184,7 @@ class LoansController < ApplicationController
   # This page will have a disbursion button
   def show_loan_disbursion
     @loan_installments = @loan.loan_installment_container.loan_installments unless @loan.loan_installment_container.nil?
+    authorize Loan
   end
 
 
@@ -175,6 +193,8 @@ class LoansController < ApplicationController
   def show_accounting_for_loan
     @accounting_book = @loan.accounting_book
     @accounting_entries = @accounting_book.accounting_entries
+
+    authorize Loan
   end
 
 
@@ -185,6 +205,8 @@ class LoansController < ApplicationController
   def new
     @loan = Loan.new
     @loan_types = LoanType.all
+
+    authorize Loan
   end
 
   # POST /loans
@@ -195,6 +217,8 @@ class LoansController < ApplicationController
     elsif current_admin || current_loan_manager || current_accountant
       @loan = Loan.new(loan_params)
     end
+
+    authorize Loan
 
     respond_to do |format|
       if @loan.save
@@ -214,11 +238,15 @@ class LoansController < ApplicationController
   # GET /loans/1/edit
   def edit
     @loan_types = LoanType.all
+    authorize Loan
   end
 
   # PATCH/PUT /loans/1
   # PATCH/PUT /loans/1.json
   def update
+
+    authorize Loan
+
     respond_to do |format|
       if @loan.update(loan_params)
 
@@ -239,6 +267,9 @@ class LoansController < ApplicationController
   # DELETE /loans/1.json
   def destroy
     @loan.destroy
+
+    authorize Loan
+
     respond_to do |format|
       format.html { redirect_to loans_url, notice: 'Loan was successfully destroyed.' }
       format.json { head :no_content }
@@ -250,18 +281,19 @@ class LoansController < ApplicationController
 
 
   def compute_installments
-        set_loan
+    set_loan
 
-        @loan_installment_container = @loan.create_loan_installment_container!
+    @loan_installment_container = @loan.create_loan_installment_container!
+    
+    # Generate some Loan Installments
+    @loan_installments = @loan_installment_container.calculate
 
+    authorize Loan
 
-        # Generate some Loan Installments
-        @loan_installments = @loan_installment_container.calculate
-
-        respond_to do | format | 
-            format.html { render 'loan_installments/index' }
-            format.js { render 'loan_installments/computed_installments.js.erb' }
-        end
+    respond_to do | format | 
+        format.html { render 'loan_installments/index' }
+        format.js { render 'loan_installments/computed_installments.js.erb' }
+    end
   end
 
 
@@ -271,34 +303,39 @@ class LoansController < ApplicationController
   # Sets the status of the Loan to "approved"
   # PATCH /loans/approve_the_loan/1
   def approve_the_loan
-      set_loan
+    set_loan
 
-      # Evaluate validity of request
-      request_valid = @loan.evaluate_request
+    authorize Loan
 
-      respond_to do | format |
-        if request_valid && @loan.update(loan_params_origin)
+    # Evaluate validity of request
+    request_valid = @loan.evaluate_request
 
-
-            # Record this in the Activity Log
-            record(pundit_user, 'Approved a Loan')
+    respond_to do | format |
+      if request_valid && @loan.update(loan_params_origin)
 
 
-            # Send a notification
-            approved_mail = LoanMailer.new_approved_loan @loan
-            approved_mail.deliver_now
+          # Record this in the Activity Log
+          record(pundit_user, 'Approved a Loan')
 
-            format.js { render "loans/approve_the_loan.js.erb" }
-        else
-            format.js { render "loans/invalid_loan_request.js.erb" }
-        end
+
+          # Send a notification
+          approved_mail = LoanMailer.new_approved_loan @loan
+          approved_mail.deliver_now
+
+          format.js { render "loans/approve_the_loan.js.erb" }
+      else
+          format.js { render "loans/invalid_loan_request.js.erb" }
       end
+    end
   end
 
   # Sets the status of the Loan to "rejected"
   # PATCH /loans/reject_the_loan/1
   def reject_the_loan
       set_loan
+
+      authorize Loan
+
       respond_to do | format |
         if @loan.update(loan_params_origin)
 
@@ -316,6 +353,9 @@ class LoansController < ApplicationController
   # PATCH /loans/reject_the_loan/1
   def disburse_the_loan
       set_loan
+
+      authorize Loan
+
       respond_to do | format |
         if (@loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed]) && @loan.update(loan_params_origin)
           
@@ -367,6 +407,9 @@ class LoansController < ApplicationController
 # PATCH /loans/update_submitted_docs/1
   def update_submitted_docs
       set_loan
+
+      authorize Loan
+      
       respond_to do | format | 
           if @loan.update(loan_params_origin)
             format.js { render "loans/update_submitted_docs.js.erb" }
