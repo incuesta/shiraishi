@@ -67,11 +67,11 @@ class LoanPolicy < ApplicationPolicy
 	end
 
 	def new?
-		@user.present?
+		@user.present? && @user.public_send("#{@user.class.name.underscore}_profile").present?
 	end
 
 	def create?
-		@user.present?
+		@user.present? && @user.public_send("#{@user.class.name.underscore}_profile").present?
 	end
 
 	def edit?

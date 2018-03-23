@@ -34,7 +34,15 @@ class Client < ApplicationRecord
 
 
 
+    # Unactivated account. Activate first before being able to use.
     def active_for_authentication?
         super && self.golden_key.enabled?
     end
+
+    def inactive_message
+        "Please wait for a Loan Officer to Activate your Account"
+    end
+
+
+    
 end

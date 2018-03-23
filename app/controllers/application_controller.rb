@@ -30,8 +30,12 @@ class ApplicationController < ActionController::Base
 
   	rescue_from Pundit::NotAuthorizedError, with: :yah_not_authorized_brother
 
-	def yah_not_authorized_brother
-	  	redirect_to request.referrer || root_path, notice: "You're not authorized to do that"
+	def yah_not_authorized_brother(exception)
+		policy_name = exception.policy.class.to_s.underscore
+
+	   	flash[:error] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+
+	  	redirect_to request.referrer || root_path
 	end
 
 
@@ -75,4 +79,5 @@ class ApplicationController < ActionController::Base
         'public'  # show Public Layout to Client
       end
     end
+ 	
 end

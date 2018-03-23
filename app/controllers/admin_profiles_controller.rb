@@ -101,7 +101,7 @@ class AdminProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_profile
-      @admin_profile = AdminProfile.where(id: params[:id]).first
+      @admin_profile = AdminProfile.find(params[:id])
 
 
       # # require same Admin

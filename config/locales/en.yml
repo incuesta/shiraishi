@@ -42,3 +42,11 @@ en:
 
     new_rejected_loan:
       subject: "Loan Request Unable to Pass"
+
+
+en:
+ pundit:
+   default: 'You cannot perform this action.'
+   admin_profile_policy:
+     edit?: 'You cannot edit this profile!'
+     show?: 'You cannot see this profile!'

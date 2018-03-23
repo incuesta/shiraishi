@@ -5,7 +5,7 @@ class AdminProfilePolicy < ApplicationPolicy
 	end
 
 	def show?
-		@user.instance_of? Admin 
+		@user.instance_of?(Admin)  && admin_profile.admin == @user
 	end
 
 	def new?
@@ -17,14 +17,20 @@ class AdminProfilePolicy < ApplicationPolicy
 	end
 
 	def edit?
-		@user.instance_of? Admin 
+		@user.instance_of?(Admin) && admin_profile.admin == @user
 	end
 
 	def update?
-		@user.instance_of? Admin 
+		@user.instance_of?(Admin) && admin_profile.admin == @user
 	end
 
 	def destroy?
-		@user.instance_of? Admin 
+		@user.instance_of?(Admin) && admin_profile.admin == @user
 	end
+
+
+	private
+		def admin_profile
+			record
+		end
 end
