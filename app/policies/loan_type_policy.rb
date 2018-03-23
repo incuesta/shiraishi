@@ -1,7 +1,5 @@
-class ArticlePolicy < ApplicationPolicy
- 	
-
- 	def index?
+class LoanTypePolicy < ApplicationPolicy
+	def index?
 	    loan_officers_only
 	end
 
@@ -38,21 +36,5 @@ class ArticlePolicy < ApplicationPolicy
 	end
 
 
-
-	def new_article_section?
-		loan_officers_only
-	end
-
-	def create_article_section?
-		loan_officers_only
-	end
-
-
-
-	private
-
-		def article
-			record
-		end
-
+	
 end

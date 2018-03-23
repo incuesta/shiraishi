@@ -46,7 +46,9 @@ en:
 
 en:
  pundit:
-   default: 'You cannot perform this action.'
-   admin_profile_policy:
-     edit?: 'You cannot edit this profile!'
-     show?: 'You cannot see this profile!'
+    default: "You're not authorized to perform this action! Please sign in and complete your profile."
+    admin_profile_policy:
+      edit?: 'You cannot edit this profile!'
+      show?: 'You cannot see this profile!'
+    loan_policy:
+      new?: "Please complete your profile first"

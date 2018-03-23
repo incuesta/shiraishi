@@ -52,4 +52,15 @@ class ApplicationPolicy
       scope
     end
   end
+
+
+  def loan_officers_only
+      (@user.instance_of?(Admin) || @user.instance_of?(Accountant) || @user.instance_of?(LoanManager))  && has_profile?
+  end
+
+
+  def has_profile?
+      @user.public_send("#{@user.class.name.underscore}_profile").present?
+  end
+
 end

@@ -67,11 +67,11 @@ class LoanPolicy < ApplicationPolicy
 	end
 
 	def new?
-		@user.present? && @user.public_send("#{@user.class.name.underscore}_profile").present?
+		@user.present? && has_profile?
 	end
 
 	def create?
-		@user.present? && @user.public_send("#{@user.class.name.underscore}_profile").present?
+		@user.present? && has_profile?
 	end
 
 	def edit?
@@ -89,12 +89,10 @@ class LoanPolicy < ApplicationPolicy
 
 	private
 
-		def loan_officers_only
-			@user.instance_of?(Admin) || @user.instance_of?(Accountant) || @user.instance_of?(LoanManager)
-		end
-
 
 		def loan
 			record
 		end
+
+
 end

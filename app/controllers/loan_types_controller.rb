@@ -5,28 +5,38 @@ class LoanTypesController < ApplicationController
   # GET /loan_types.json
   def index
     @loan_types = LoanType.all
+
+    authorize LoanType
   end
 
   # GET /loan_types/1
   # GET /loan_types/1.json
   def show
+
+    authorize LoanType
   end
 
   # GET /loan_types/new
   def new
     @loan_type = LoanType.new
     @loan_docs = LoanDoc.all
+
+    authorize LoanType
   end
 
   # GET /loan_types/1/edit
   def edit
     @loan_docs = LoanDoc.all
+
+    authorize LoanType
   end
 
   # POST /loan_types
   # POST /loan_types.json
   def create
     @loan_type = LoanType.new(loan_type_params)
+
+    authorize LoanType
 
     respond_to do |format|
       if @loan_type.save
@@ -42,6 +52,9 @@ class LoanTypesController < ApplicationController
   # PATCH/PUT /loan_types/1
   # PATCH/PUT /loan_types/1.json
   def update
+
+    authorize LoanType
+
     respond_to do |format|
       if @loan_type.update(loan_type_params)
         format.html { redirect_to @loan_type, notice: 'Loan type was successfully updated.' }
@@ -57,6 +70,9 @@ class LoanTypesController < ApplicationController
   # DELETE /loan_types/1.json
   def destroy
     @loan_type.destroy
+
+    authorize LoanType
+    
     respond_to do |format|
       format.html { redirect_to loan_types_url, notice: 'Loan type was successfully destroyed.' }
       format.json { head :no_content }
