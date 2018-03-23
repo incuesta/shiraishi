@@ -7,11 +7,14 @@ class DataStoresController < ApplicationController
 
 
 
-  	def scheduled_backup	
+  	def scheduled_backup
+  		authorize :data_store	
  	end
 
 
  	def manual_backup
+ 		authorize :data_store
+ 		
  		@capture_db_state_link = 'localhost:3000/data_stores/capture_db'
  		@restore_db_state_link = 'localhost:3000/data_stores/restore_db'
 

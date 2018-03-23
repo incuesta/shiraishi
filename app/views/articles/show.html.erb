@@ -12,8 +12,12 @@
 						</div>
 
 						<div class="panel_buttons_to_the_right">
-							<%= link_to 'Add Subsections', new_article_section_article_path(@article), class: "btn btn-sm btn-success" %> |
-							<%= link_to 'Edit', edit_article_path(@article), class: "btn btn-sm btn-success" %> |
+
+							<% if loan_officers? %>
+								<%= link_to 'Add Subsections', new_article_section_article_path(@article), class: "btn btn-sm btn-success" %> |
+								<%= link_to 'Edit', edit_article_path(@article), class: "btn btn-sm btn-success" %> |
+							<% end %>
+
 							<%= link_to 'Articles', articles_path, class: "btn btn-sm btn-success" %>
 						</div>
 
@@ -47,9 +51,10 @@
 						<% @article.sections.each do | section | %>
 							<hr>
 
-							
-							<%= link_to 'Edit section', edit_section_path(section), class: 'btn btn-sm btn-info' %>
-							<%= link_to 'Destroy', section, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-info' %>
+							<% if loan_officers? %>
+								<%= link_to 'Edit section', edit_section_path(section), class: 'btn btn-sm btn-info' %>
+								<%= link_to 'Destroy', section, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-info' %>
+							<% end %>
 							
 
 							<div class="col-md-12">

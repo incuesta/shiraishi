@@ -11,11 +11,14 @@ class AccountingEntriesController < ApplicationController
   # GET /accounting_entries.json
   def index
     @accounting_entries = AccountingEntry.all
+
+    authorize AccountingEntry
   end
 
   # GET /accounting_entries/1
   # GET /accounting_entries/1.json
   def show
+    authorize AccountingEntry
   end
 
 
@@ -23,12 +26,16 @@ class AccountingEntriesController < ApplicationController
   # Shows the journal of all loans
   def show_all_loan_entries
     @loans = Loan.disbursed_loans.paginate(page: params[:page], per_page: 2)
+
+    authorize AccountingEntry
   end
 
 
   # Shows income summary
   def show_income_summary
     @loans = Loan.disbursed_loans.paginate(page: params[:page], per_page: 5)
+
+    authorize AccountingEntry
   end
 
 
@@ -38,6 +45,8 @@ class AccountingEntriesController < ApplicationController
   # GET /accounting_entries/new
   def new
     @accounting_entry = AccountingEntry.new
+
+    authorize AccountingEntry
   end
 
 
@@ -45,6 +54,8 @@ class AccountingEntriesController < ApplicationController
   # POST /accounting_entries.json
   def create
     @accounting_entry = AccountingEntry.new(accounting_entry_params)
+
+    authorize AccountingEntry
 
     respond_to do |format|
       if @accounting_entry.save
@@ -63,11 +74,14 @@ class AccountingEntriesController < ApplicationController
 
   # GET /accounting_entries/1/edit
   def edit
+    authorize AccountingEntry
   end
 
   # PATCH/PUT /accounting_entries/1
   # PATCH/PUT /accounting_entries/1.json
   def update
+    authorize AccountingEntry
+
     respond_to do |format|
       if @accounting_entry.update(accounting_entry_params)
         format.html { redirect_to show_accounting_for_loan_loan_path(@accounting_entry.accounting_book.loan), notice: 'Accounting entry was successfully updated.' }
@@ -87,6 +101,9 @@ class AccountingEntriesController < ApplicationController
   # DELETE /accounting_entries/1.json
   def destroy
     @accounting_entry.destroy
+
+    authorize AccountingEntry
+    
     respond_to do |format|
       format.html { redirect_to accounting_entries_url, notice: 'Accounting entry was successfully destroyed.' }
       format.json { head :no_content }

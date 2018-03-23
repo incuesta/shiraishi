@@ -35,8 +35,11 @@
                           <td><%= truncate(article.body, length: 50) { link_to '(click for more)', article } %></td>
                           <td><%= article.created_at.to_date %></td>
                           <td><%= link_to 'Show', article %></td>
-                          <td><%= link_to 'Edit', edit_article_path(article) %></td>
-                          <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+                          <% if loan_officers? %>
+                            <td><%= link_to 'Edit', edit_article_path(article) %></td>
+                            <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                          <% end %>
                         </tr>
                       <% end %>
                     </tbody>

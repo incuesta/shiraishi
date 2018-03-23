@@ -8,12 +8,16 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.order("created_at desc")
+
+    authorize Article
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+
+    authorize Article
   end
 
 
@@ -23,12 +27,16 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+
+    authorize Article
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+
+    authorize Article
 
     respond_to do |format|
       if @article.save
@@ -47,11 +55,14 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    authorize Article
   end
 
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    authorize Article
+
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -70,6 +81,8 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
+    authorize Article
+
     @article.destroy
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
@@ -82,13 +95,16 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/new_article_section
   def new_article_section
-    @section = @article.sections.build
+    authorize Article
 
+    @section = @article.sections.build
   end
 
 
   # post /articles/create_article_section
   def create_article_section
+    authorize Article
+
     @section = @article.sections.build(section_params)
 
     respond_to do | format |

@@ -24,4 +24,10 @@ module ApplicationHelper
     	# Return a Link
 		link_to "#{title} <span class='#{icon}'></span>".html_safe, {controller: controller_name, action: action_name, sort_column: column, sort_order: direction}.merge(additional_url_params)
 	end
+
+
+	# True if they are Authorized
+	def loan_officers?
+		!!current_admin || !!current_loan_manager || !!current_accountant
+	end
 end

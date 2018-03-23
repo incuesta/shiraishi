@@ -5,11 +5,14 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @sections = Section.all
+
+    authorize Section
   end
 
   # GET /sections/1
   # GET /sections/1.json
   def show
+    authorize Section
   end
 
 
@@ -18,12 +21,15 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     @section = Section.new
+    authorize Section
   end
 
   # POST /sections
   # POST /sections.json
   def create
     @section = Section.new(section_params)
+
+    authorize Section
 
     respond_to do |format|
       if @section.save
@@ -40,12 +46,15 @@ class SectionsController < ApplicationController
 
     # GET /sections/1/edit
   def edit
+    authorize Section
   end
 
 
   # PATCH/PUT /sections/1
   # PATCH/PUT /sections/1.json
   def update
+    authorize Section
+
     respond_to do |format|
       if @section.update(section_params)
         format.html { redirect_to @section.article, notice: 'Section was successfully updated.' }
@@ -64,6 +73,8 @@ class SectionsController < ApplicationController
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
+    authorize Section
+    
     @section.destroy
     respond_to do |format|
       format.html { redirect_to @section.article, notice: 'Section was successfully destroyed.' }
