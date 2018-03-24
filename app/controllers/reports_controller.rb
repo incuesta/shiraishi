@@ -165,4 +165,24 @@ class ReportsController < ApplicationController
 	  end
 
 
+	  # GET /reports/clients_list
+	  def clients_list
+	  	#authorize :report
+
+	    @clients = Client.order("created_at desc")
+	    
+	    respond_to do | format |
+	        
+	        format.pdf do
+	            issuer = ("#{pundit_user.last_name} #{pundit_user.first_name}" if pundit_user) || "ACGECCO"
+
+	            clients_pdf = ClientsListPdf.new(@clients, view_context, issuer, "Members List", action_name)
+
+	            send_data clients_pdf.render, filename: 'clients_list.pdf', type: 'application/pdf', disposition: 'inline'
+	          
+	        end
+	    end
+	  end
+
+
 end

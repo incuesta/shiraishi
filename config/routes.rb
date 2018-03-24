@@ -53,6 +53,10 @@ Rails.application.routes.draw do
 
             # Get User Logs
             get :activity_logs
+
+
+            # Get Members List
+            get :clients_list
         end
     end
 
