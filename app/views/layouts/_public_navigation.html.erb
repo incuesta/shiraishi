@@ -93,7 +93,7 @@
                   
                   <% if current_client && current_client.client_profile %>
                     <li role="separator" class="divider"></li>
-                    <li><%= link_to("My Loan Requests", show_loan_requests_client_profile_path(current_client.client_profile) ) %></li>
+                    <li><%= link_to("My Loan Requests", show_loan_requests_client_profile_path(current_client.client_profile.id) ) unless current_client.client_profile.nil? %></li>
                   <% end %>
 
                 </ul>
@@ -159,15 +159,27 @@
                           
 
                                 <% if admin_signed_in? %>
-                                    <li><%= link_to "My Profile", current_admin.admin_profile %></li>
+
+                                    <% path = (current_admin.admin_profile if current_admin.admin_profile) || new_admin_profile_path %>
+                                    
+                                    <li><%= link_to "My Profile", path %></li>
+                                    
                               
                                 <% elsif loan_manager_signed_in? %>
-                                    <li><%= link_to "My Profile", current_loan_manager.loan_manager_profile %></li>
+
+                                    <% path = (current_loan_manager.loan_manager_profile if current_loan_manager.loan_manager_profile) || new_loan_manager_profile_path %>
+                                    <li><%= link_to "My Profile", path %></li>
+
                                 <% elsif accountant_signed_in? %>
-                                    <li><%= link_to "My Profile", current_accountant.accountant_profile %></li>
+
+                                    <% path = (current_accountant.accountant_profile if current_accountant.accountant_profile) || new_accountant_profile_path %>
+                                    <li><%= link_to "My Profile", path %></li>
+
                                 <% elsif client_signed_in? %>
-                                    <li><%= link_to "My Profile", current_client.client_profile %></li>
-                                    <li><%= link_to("My Loan Requests", show_loan_requests_client_profile_path(current_client.client_profile) ) if current_client.client_profile %></li>
+
+                                    <% path = (current_client.client_profile if current_client.client_profile) || new_client_profile_path %>
+                                    <li><%= link_to "My Profile", path %></li>
+
                                 <% end %>
                         </ul>
                       </li>

@@ -39,10 +39,6 @@ class Client < ApplicationRecord
         super && self.golden_key.enabled?
     end
 
-    def inactive_message
-        "Please wait for a Loan Officer to Activate your Account"
-    end
-
 
     
 end

@@ -17,7 +17,9 @@
 			                <div class="panel-body">
 
 									<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-									  <%= devise_error_messages! %>
+									  <div class='kuroishi'>
+				                        <%= devise_error_messages! %>
+				                      </div>
 
 									  <div class="field form-group">
 									    <%= f.label :email%><br />

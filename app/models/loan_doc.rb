@@ -9,4 +9,5 @@ class LoanDoc < ApplicationRecord
 	has_many :loans, through: :submitted_docs
 
 
+	validates :name, presence: true
 end

@@ -62,7 +62,7 @@ class ClientProfilesController < ApplicationController
         format.html { redirect_to @client_profile, notice: 'Client profile was successfully created.' }
         format.json { render :show, status: :created, location: @client_profile }
       else
-        format.html { render :new }
+        format.html { render :new, layout: 'public'}
         format.json { render json: @client_profile.errors, status: :unprocessable_entity }
       end
     end

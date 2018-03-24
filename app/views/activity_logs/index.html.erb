@@ -26,6 +26,7 @@
 
                 <tbody>
                     <% @activity_logs.each do |activity_log| %>
+                        <% user = ActivityLog.find_user activity_log.user_class, activity_log.user_id %>
                         <tr>
                             <td><%= activity_log.user_class %></td>
                             <td><%= activity_log.user_name %></td>
@@ -35,8 +36,16 @@
                             <td><%= activity_log.current_sign_in_ip %></td>
                             <td><%= activity_log.last_sign_in_ip %></td>
                             <td><%= activity_log.note %></td>
-                            <td><%= link_to 'Show', activity_log %></td>
-                            <td><%= link_to 'Edit', edit_activity_log_path(activity_log) %></td>
+
+                            <% if user.public_send("#{user.class.name.underscore}_profile") %>
+
+                                <td><%= link_to 'Show', activity_log %></td>
+                                <td><%= link_to 'Edit', edit_activity_log_path(activity_log) %></td>
+
+                            <% else %>
+                                <td colspan="2">No Profile</td>
+                            <% end %>
+
                             <td><%= link_to 'Destroy', activity_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                         </tr>
                     <% end %>

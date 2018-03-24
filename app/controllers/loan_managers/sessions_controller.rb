@@ -9,14 +9,17 @@ class LoanManagers::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    record current_loan_manager, "Signed In"
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    loan_manager = current_loan_manager
+    super
+    record loan_manager, "Signed Out"
+  end
 
   # protected
 

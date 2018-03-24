@@ -9,14 +9,17 @@ class Accountants::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    record current_accountant, "Signed In"
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    accountant = current_accountant
+    super
+    record accountant, "Signed Out"
+  end
 
   # protected
 
