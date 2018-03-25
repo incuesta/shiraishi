@@ -171,11 +171,19 @@
 
                   <li><%= link_to "Members List", clients_list_reports_path(format: :pdf) %></li>
 
+                  <li role="separator" class="divider"></li>
+
+
+                  <li><%= link_to "Available Loan Services", loan_types_list_reports_path(format: :pdf) %></li>
+
+                  <li><%= link_to "Policies for Loan", loan_policies_list_reports_path(format: :pdf) %></li>
+
 
                   <li role="separator" class="divider"></li>
                   
 
                   <li><%= link_to "Income Summary Report", income_summary_reports_path(format: :pdf) %></li>
+                  <li><%= link_to "Installment Journal", loan_journal_entries_reports_path(format: :pdf) %></li>
 
 
                   <li role="separator" class="divider"></li>

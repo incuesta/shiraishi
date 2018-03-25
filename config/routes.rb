@@ -47,8 +47,20 @@ Rails.application.routes.draw do
             get :undisbursed_loans
 
 
+            # Get Members List
+            get :loan_types_list
+
+
+            # Get Loan Policies List
+            get :loan_policies_list
+
+
             # Accounting, pdf version of accounting_entries#show_income_summary
             get :income_summary
+
+
+            # Loan Installments Journal for each Loan
+            get :loan_journal_entries
 
 
             # Get User Logs

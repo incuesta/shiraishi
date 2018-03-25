@@ -52,7 +52,7 @@ class Loan < ApplicationRecord
 	scope :requested_loans, lambda { where status: 'draft' }
 	scope :approved_loans, lambda { where status: 'approved' }
 	scope :rejected_loans, lambda { where status: 'rejected' }
-	scope :disbursed_loans, lambda { where status: 'disbursed' }
+	scope :disbursed_loans, lambda { where(status: 'disbursed').order("disbursement_date desc") }
 	scope :undisbursed_loans, lambda { where ["status='draft' or status='approved' or status='rejected'"] }
 
 

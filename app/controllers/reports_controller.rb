@@ -185,4 +185,52 @@ class ReportsController < ApplicationController
 	  end
 
 
+	  def loan_types_list
+	  	@loan_types = LoanType.all
+
+	  	respond_to do |format|
+	  		format.pdf do
+	  			issuer = ("#{pundit_user.last_name} #{pundit_user.first_name}" if pundit_user) || "ACGECCO"
+
+	            loan_types_pdf = LoanTypesPdf.new(@loan_types, view_context, issuer, "List of Loan Services", action_name)
+
+	            send_data loan_types_pdf.render, filename: 'loan_services.pdf', type: 'application/pdf', disposition: 'inline'
+	          
+	  		end
+	  	end
+	  end
+
+
+	  def loan_policies_list
+	  	@loan_types = LoanType.all
+
+	  	respond_to do |format|
+	  		format.pdf do
+	  			issuer = ("#{pundit_user.last_name} #{pundit_user.first_name}" if pundit_user) || "ACGECCO"
+
+	            loan_policies_pdf = LoanPoliciesPdf.new(@loan_types, view_context, issuer, "Policies for Loans", action_name)
+
+	            send_data loan_policies_pdf.render, filename: 'loan_policies.pdf', type: 'application/pdf', disposition: 'inline'
+	          
+	  		end
+	  	end
+	  end
+
+
+	  def loan_journal_entries
+	  	@loans = Loan.disbursed_loans
+
+	  	respond_to do |format|
+	  		format.pdf do
+	  			issuer = ("#{pundit_user.last_name} #{pundit_user.first_name}" if pundit_user) || "ACGECCO"
+
+	            loan_journal_entries_pdf = LoanJournalEntriesPdf.new(@loans, view_context, issuer, "Loan Installments", action_name)
+
+	            send_data loan_journal_entries_pdf.render, filename: 'loan_installments.pdf', type: 'application/pdf', disposition: 'inline'
+	          
+	  		end
+	  	end
+	  end
+
+
 end
