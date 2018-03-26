@@ -33,7 +33,15 @@
             <% loan_manager = loan_manager_profile.loan_manager %>
             <tr>
               <td><%= loan_manager.user_name %></td>
-              <td><%= image_tag loan_manager_profile.image.img_32.url, alt: "#{loan_manager.user_name}.jpg" %></td>
+              <td>
+
+                  <% if loan_manager_profile.image.present? %>
+                    <%= image_tag loan_manager_profile.image.img_32.url, alt: "#{loan_manager.user_name}.jpg" %>
+                  <% else %>
+                    <%= image_tag 'user_icon_1_32.png', alt: "#{loan_manager.user_name}.jpg" %>
+                  <% end %>
+
+              </td>
               <td><%= loan_manager.email %></td>
               <td><%= loan_manager.last_name %></td>
               <td><%= loan_manager.first_name %></td>

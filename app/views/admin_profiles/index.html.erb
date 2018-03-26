@@ -26,7 +26,14 @@
               <% admin = admin_profile.admin %>
               <tr>
                 <td><%= admin.user_name %></td>
-                <td><%= image_tag admin_profile.image.img_32.url, alt: "#{admin.user_name}.jpg" %></td>
+                <td>
+                  <% if admin_profile.image.present? %>
+                    <%= image_tag admin_profile.image.img_32.url, alt: "#{admin.user_name}.jpg" %>
+                  <% else %>
+                    <%= image_tag 'user_icon_1_32.png', alt: "#{admin.user_name}.jpg" %>
+                  <% end %>
+
+                </td>
                 <td><%= admin.email %></td>
                 <td><%= admin.last_name %></td>
                 <td><%= admin.first_name %></td>

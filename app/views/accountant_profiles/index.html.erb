@@ -32,7 +32,15 @@
             <% accountant = accountant_profile.accountant %>
             <tr>
               <td><%= accountant.user_name %></td>
-              <td><%= image_tag accountant_profile.image.img_32.url, alt: "#{accountant.user_name}.jpg" %></td>
+              <td>
+                
+                  <% if accountant_profile.image.present? %>
+                    <%= image_tag accountant_profile.image.img_32.url, alt: "#{accountant.user_name}.jpg" %>
+                  <% else %>
+                    <%= image_tag 'user_icon_1_32.png', alt: "#{accountant.user_name}.jpg" %>
+                  <% end %>
+
+              </td>
               <td><%= accountant.email %></td>
               <td><%= accountant.last_name %></td>
               <td><%= accountant.first_name %></td>

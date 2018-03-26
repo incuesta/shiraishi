@@ -32,7 +32,14 @@
               <% client = client_profile.client %>
               <tr>
                 <td><%= client.user_name %></td>
-                <td><%= image_tag client_profile.image.img_32.url, alt: "#{client.user_name}.jpg" %></td>
+                <td>
+
+                    <% if client_profile.image.present? %>
+                      <%= image_tag client_profile.image.img_32.url, alt: "#{client.user_name}.jpg" %>
+                    <% else %>
+                      <%= image_tag 'user_icon_1_32.png', alt: "#{client.user_name}.jpg" %>
+                    <% end %>
+                </td>
                 <td><%= client.email %></td>
                 <td><%= client.last_name %></td>
                 <td><%= client.first_name %></td>
