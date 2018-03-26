@@ -88,11 +88,14 @@
 					        </tr>
 
 
-
-
 				    	</tbody>
 
 		  			</table>
+
+		  			<div>
+		  				<p>Disbursed Fund Expenditure: <%= number_to_currency loan.net_loan, unit: "Php " %></p>
+				  		<p>Payback + Interest Income: <%= number_to_currency(principal_paid + interest_paid, unit: "Php ") %></p>
+		  			</div>
 
 		  		</div>
 

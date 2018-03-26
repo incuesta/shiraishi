@@ -137,7 +137,7 @@ class LoanInstallmentsController < ApplicationController
   end
 
 
-  # Set the status to paid
+  # Set the status to unpaid
   def unpay_installment
     set_loan_installment
     @loan_installment.update(loan_installment_params)

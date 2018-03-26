@@ -257,7 +257,7 @@
                             <br/>
                             <hr/>
 
-                            <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, data: {confirm: 'This will overwrite previous calculation, continue?'}, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-success", style:"margin-bottom: 15px;") %> 
+                            <%= link_to("Compute installments", {controller: 'loans', action: 'compute_installments'}, remote: true, data: {confirm: 'This will overwrite previous calculations. Continue?'}, method: :post, id: 'installment_computation_link', class: "btn btn-md btn-success", style:"margin-bottom: 15px;") %> 
 
                       <% end %>
 
