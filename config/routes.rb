@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   
 
 
-    post 'data_stores/backup_from_dump'
-    post 'data_stores/restore_from_dump'
+    get 'data_stores/backup_from_dump'
+    get 'data_stores/restore_from_dump'
 
 
     # Kekekeke
-    post 'data_stores/capture_db'
-    post 'data_stores/restore_db'
+    get 'data_stores/capture_db'
+    get 'data_stores/restore_db'
 
 
     get 'data_stores/scheduled_backup'
