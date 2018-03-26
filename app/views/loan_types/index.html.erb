@@ -39,7 +39,7 @@
                         <td><%= loan_type.repayment_method %></td>
                         <td><%= link_to 'Show', loan_type %></td>
                         <td><%= link_to 'Edit', edit_loan_type_path(loan_type) %></td>
-                        <td><%= link_to 'Destroy', loan_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= link_to 'Destroy', loan_type, method: :delete, data: { confirm: 'Are you sure?' } if system_user? %></td>
                       </tr>
                     <% end %>
                   </tbody>
