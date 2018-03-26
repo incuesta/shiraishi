@@ -240,9 +240,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
                           <!-- Profile Image -->
-                          <% user_profile = pundit_user.public_send("#{pundit_user.class.name.underscore}_profile") %>
+                          <% user_profile = pundit_user.public_send("#{pundit_user.class.name.underscore}_profile") if pundit_user.public_send("#{pundit_user.class.name.underscore}_profile") %>
 
-                          <% if user_profile.image.present? %>
+                          <% if user_profile && user_profile.image.present? %>
                             <%= image_tag( user_profile.image.img_32.url, alt: 'Profile') %>
 
                           <% else %>
