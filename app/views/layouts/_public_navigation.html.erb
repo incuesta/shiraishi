@@ -132,32 +132,27 @@
             <!-- Right Links & Dropdown -->
             <ul class="nav navbar-nav navbar-right">
 
-                  <!-- User Logout -->
-                  <li>
-                    <% if admin_signed_in? %>
-                        <%= link_to("Admin Sign Out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-                      
-                    <% elsif loan_manager_signed_in? %>
-                        <%= link_to("Loan Manager Sign Out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-                    <% elsif accountant_signed_in? %>
-                        <%= link_to("Accountant Sign Out", destroy_accountant_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-                    <% elsif client_signed_in? %>
-                        <%= link_to("Member Sign Out", destroy_client_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
-                   
-                    <% else %>
-                        <%= link_to("Member Sign In", new_client_session_path)  %>
-                    <% end %>
-
-                  </li>
-                  <!-- User Logout End -->
-
-
+                  <!-- User Profile -->
                   <% if current_admin || current_accountant || current_loan_manager || current_client %>
                       <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiles<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+                          <!-- Profile Image -->
+                          <% user_profile = pundit_user.public_send("#{pundit_user.class.name.underscore}_profile") %>
+
+                          <% if user_profile.image.present? %>
+                            <%= image_tag( user_profile.image.img_32.url, alt: 'Profile') %>
+
+                          <% else %>
+                            <%= image_tag( 'user_icon_1_white_32.png', alt: 'Profile') %>
+
+                          <% end %>
+                          <!-- End Profile Image -->
+
+                          <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           
-
+                                <!-- Link to Profiles -->
                                 <% if admin_signed_in? %>
 
                                     <% path = (current_admin.admin_profile if current_admin.admin_profile) || new_admin_profile_path %>
@@ -181,10 +176,38 @@
                                     <li><%= link_to "My Profile", path %></li>
 
                                 <% end %>
+                                <!-- End Link to Profiles -->
+
+
+                                <li role="separator" class="divider"></li>
+
+
+                                 <!-- User Logout -->
+                                <li>
+                                  <% if admin_signed_in? %>
+                                      <%= link_to("Admin Sign Out", destroy_admin_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                                    
+                                  <% elsif loan_manager_signed_in? %>
+                                      <%= link_to("Loan Manager Sign Out", destroy_loan_manager_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                                  <% elsif accountant_signed_in? %>
+                                      <%= link_to("Accountant Sign Out", destroy_accountant_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                                  <% elsif client_signed_in? %>
+                                      <%= link_to("Member Sign Out", destroy_client_session_path, method: :delete, data: {confirm: 'Confirm sign out?'} )  %>
+                                 
+                                  <% else %>
+                                      <%= link_to("Manager Sign In", new_loan_manager_session_path)  %>
+                                  <% end %>
+
+                                </li>
+                                <!-- User Logout End -->
+
+
                         </ul>
                       </li>
-
+                  <% else %>
+                      <li><%= link_to("Member Sign In", new_client_session_path)  %></li>
                   <% end %>
+                  <!-- End User Profile -->
 
 
             </ul>
