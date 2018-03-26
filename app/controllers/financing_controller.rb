@@ -23,7 +23,11 @@ class FinancingController < ApplicationController
         @article = Article.last
 
         respond_to do | format |
-            format.html { render 'show_article'  }
+            if @article
+                format.html { render 'show_article'  }
+            else
+                format.html { redirect_to home_financing_index_path, notice: 'No articles' }
+            end
         end
     end
 
