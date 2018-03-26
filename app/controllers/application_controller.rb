@@ -2,6 +2,12 @@ class ApplicationController < ActionController::Base
   	protect_from_forgery with: :exception
 
 
+
+
+  	helper_method :system_user?, :pundit_user
+
+
+  	
   	include Pundit
 
 	
@@ -23,6 +29,11 @@ class ApplicationController < ActionController::Base
 
 	# Alias because Pundit uses the current_method name
 	#alias_method :current_user, :the_users
+
+
+	def system_user?
+		!!current_admin && current_admin.is_system
+	end
   
   
   

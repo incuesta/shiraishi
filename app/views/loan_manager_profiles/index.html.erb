@@ -41,7 +41,10 @@
              
               <td><%= link_to 'Show', loan_manager_profile %></td>
               <td><%= link_to 'Edit', edit_loan_manager_profile_path(loan_manager_profile) %></td>
-              <td><%= link_to 'Destroy', loan_manager_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+              <% if system_user? %>
+                <td><%= link_to 'Destroy', loan_manager_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
             </tr>
         <% end %>
       </tbody>

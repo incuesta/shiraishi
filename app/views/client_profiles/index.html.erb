@@ -40,7 +40,11 @@
                
                 <td><%= link_to 'Show', client_profile %></td>
                 <td><%= link_to 'Edit', edit_client_profile_path(client_profile) %></td>
-                <td><%= link_to 'Destroy', client_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+                <% if system_user? %>
+                  <td><%= link_to 'Destroy', client_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+                <% end %>
               </tr>
           <% end %>
         </tbody>

@@ -40,7 +40,10 @@
 							        <td><%= loan_installment.state %></td>
 							        <td><%= link_to 'Show', loan_installment %></td>
 							        <td><%= link_to 'Edit', edit_loan_installment_path(loan_installment) %></td>
-							        <td><%= link_to 'Destroy', loan_installment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+							        <% if system_user? %>
+							        	<td><%= link_to 'Destroy', loan_installment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+							        <% end %>
 							      </tr>
 							    <% end %>
 							  </tbody>
