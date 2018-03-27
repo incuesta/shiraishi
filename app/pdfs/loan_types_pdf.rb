@@ -21,7 +21,7 @@ class LoanTypesPdf < Prawn::Document
 
 
 	def header_image
-		image @view.asset_url("report_header.png"), height: 75, position: :center
+		image "#{Rails.root}/app#{ActionController::Base.helpers.asset_path('rejected.png')}", height: 75, position: :center
 	end
 
 
