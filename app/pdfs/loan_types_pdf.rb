@@ -21,8 +21,7 @@ class LoanTypesPdf < Prawn::Document
 
 
 	def header_image
-		# image "#{Rails.root}/app/pdfs/report_header.png", height: 75, position: :center
-		image "report_header.png", height: 75, position: :center
+		image "#{Rails.root}/app/pdfs/report_header.png", height: 75, position: :center
 	end
 
 

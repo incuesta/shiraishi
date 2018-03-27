@@ -24,7 +24,7 @@ class LoanInstallmentPdf < Prawn::Document
 
 				grid([0,0], [4,8]).bounding_box() do
 
-					image "#{Rails.root}/app/assets/images/report_header.png", height: 75, position: :center
+					image "#{Rails.root}/app/pdfs/report_header.png", height: 75, position: :center
 				end
 
 
