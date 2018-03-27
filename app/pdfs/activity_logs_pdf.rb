@@ -21,7 +21,7 @@ class ActivityLogsPdf < Prawn::Document
 
 
 	def header_image
-		image "#{Rails.root}/app/pdfs/report_header.png", height: 75, position: :center
+		image "#{Rails.root}/app/pdfs/victini_1.png", height: 75, position: :center
 	end
 
 
