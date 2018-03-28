@@ -1,1 +1,1 @@
-<%= link_to "Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved],  approved_date: Date.current}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success" %> 
+<%= link_to "Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved],  approved_date: Date.current}}, remote: true, method: :patch, data: {confirm: 'Approve the Loan?'}, id: 'loan_approval_link', class: "btn btn-sm btn-warning" %> 

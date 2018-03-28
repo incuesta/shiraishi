@@ -339,6 +339,10 @@ class LoansController < ApplicationController
       respond_to do | format |
         if @loan.update(loan_params_origin)
 
+          # Record this in the Activity Log
+          record(pundit_user, 'Rejected a Loan')
+
+
           # Send a notification
           rejected_mail = LoanMailer.new_rejected_loan @loan
           rejected_mail.deliver_now

@@ -2,7 +2,7 @@
 	<%= image_tag 'checklist_incomplete.png', width: '150', class: 'img-responsive' %>
 
 	<h5><strong><%= "Loan type's conditions aren't fully met:" %></strong></h5>
-	<ul>
+	<ul class="hirate">
 			<li>Maximum: <%= number_to_currency(@loan.loan_type.maximum, unit: 'Php ') %></li>
 			<li>Minimum: <%= number_to_currency(@loan.loan_type.minimum, unit: 'Php ') %></li>
 			<li>Required:

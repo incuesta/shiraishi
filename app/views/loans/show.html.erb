@@ -26,12 +26,26 @@
 
                           <% if current_admin || current_loan_manager || current_accountant %>
 
-                              <%= link_to("Reject request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:disbursed] %> 
+                              <%= link_to("Reject Request", {controller: 'loans', action: 'reject_the_loan', loan:  {status: Loan.statuses[:rejected]}}, remote: true, method: :patch, id: 'loan_rejection_link', class: "btn btn-sm btn-info") if @loan.status == Loan.statuses[:approved] || @loan.status == Loan.statuses[:draft] %> 
+
+                              <% if @loan.status == Loan.statuses[:rejected] %>
+                                <div id="rejected-icon"><%= image_tag 'thumbs_down.png'%> Rejected</div>
+                              <% end %>
+
                               
+                              <%= '|' unless @loan.status == Loan.statuses[:disbursed] %>
 
-                              <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved], approved_date: Date.current}}, remote: true, method: :patch, id: 'loan_approval_link', class: "btn btn-sm btn-success", data: {confirm: 'Approve the Loan?'}) if @loan.status == Loan.statuses[:rejected] || @loan.status == Loan.statuses[:draft] %> 
 
-                              |
+                              <%= link_to("Approve the Loan", {controller: 'loans', action: 'approve_the_loan', loan:  {status: Loan.statuses[:approved], approved_date: Date.current}}, remote: true, method: :patch, data: {confirm: 'Approve the Loan?'}, id: 'loan_approval_link', class: "btn btn-sm btn-warning") if @loan.status == Loan.statuses[:rejected] || @loan.status == Loan.statuses[:draft] %> 
+
+
+                              <% if @loan.status == Loan.statuses[:approved] %>
+                                <div id="approved-icon"><%= image_tag 'thumbs_up.png'%> Approved</div>
+                              <% end %>
+
+
+                              <%= '|' unless @loan.status == Loan.statuses[:disbursed] %>
+
 
                               <%= link_to 'Loans', loans_path, class: "btn btn-sm btn-success"  %>
 

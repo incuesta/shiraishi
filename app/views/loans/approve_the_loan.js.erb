@@ -3,5 +3,9 @@
 $('div.loan_status').children().first().replaceWith("<%= j render 'approve_the_loan' %>");
 
 
-// Show the reject button
-$('#the_buttons').children().first().replaceWith("<%= j render partial: 'btn_reject' %>");
+// Show approved icon
+$('#loan_approval_link').replaceWith("<%= j render partial: 'approved' %>");
+
+
+// Show reject button
+$('#rejected-icon').replaceWith("<%= j render partial: 'btn_reject' %>")
