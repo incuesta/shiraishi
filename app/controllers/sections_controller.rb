@@ -4,7 +4,7 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.all
+    @sections = Section.order("position asc")
 
     authorize Section
   end
@@ -21,6 +21,7 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     @section = Section.new
+    @section_count = Section.count + 1
     authorize Section
   end
 
@@ -36,6 +37,8 @@ class SectionsController < ApplicationController
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
         format.json { render :show, status: :created, location: @section }
       else
+        @section_count = Section.count + 1
+
         format.html { render :new }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
@@ -46,6 +49,8 @@ class SectionsController < ApplicationController
 
     # GET /sections/1/edit
   def edit
+    article = @section.article
+    @section_count = article.sections.count
     authorize Section
   end
 
@@ -60,6 +65,7 @@ class SectionsController < ApplicationController
         format.html { redirect_to @section.article, notice: 'Section was successfully updated.' }
         format.json { render :show, status: :ok, location: @section }
       else
+        @section_count = article.sections.count
         format.html { render :edit }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
@@ -93,6 +99,6 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:article_id, :image, :body)
+      params.require(:section).permit(:article_id, :image, :body, :position)
     end
 end

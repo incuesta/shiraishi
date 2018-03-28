@@ -9,7 +9,7 @@ class FinancingController < ApplicationController
 
     # get financings/articles
     def articles
-        @articles = Article.order("created_at desc").paginate(page: params[:page], per_page: 5)
+        @articles = Article.order("position asc").paginate(page: params[:page], per_page: 5)
     end
 
     # get financings/1/show_article
@@ -20,7 +20,7 @@ class FinancingController < ApplicationController
     # get financings/featured_article
     # Really, just getting the latest
     def featured_article
-        @article = Article.last
+        @article = Article.find_by_position 1
 
         respond_to do | format |
             if @article

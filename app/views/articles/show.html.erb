@@ -48,13 +48,16 @@
 
 				<% if @article.sections.any? %>
 					<div class="row" style="text-align: center;">
-						<% @article.sections.each do | section | %>
+						<% @article.sections.order("position asc").each do | section | %>
 							<hr>
 
 							<% if loan_officers? %>
 								<%= link_to 'Edit section', edit_section_path(section), class: 'btn btn-sm btn-info' %>
 								<%= link_to 'Destroy', section, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-info' %>
 							<% end %>
+
+
+							<p class="paruru-grey"><%= "Section Position: #{section.position}" %></p>
 							
 
 							<div class="col-md-12">
@@ -77,6 +80,10 @@
 				
 			</div>
 			<!-- Panel Body End -->
+
+			<div class="panel-footer">
+				<center class="paruru-grey"><%= "Article Position: #{@article.position}" %></center>
+			</div>
 		</div>
 		<!-- Panel End -->
 		

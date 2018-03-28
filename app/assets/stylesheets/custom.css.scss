@@ -3,6 +3,8 @@
 @import "bootstrap";
 
 
+
+
 #approved-icon
 {
     color: green !important;
@@ -90,6 +92,14 @@ p.publications
 .table.borderless td, .table.borderless th
 {
     border: none;
+}
+
+
+.paruru-grey
+{
+    color: #8c8c8c;
+    font-weight: bold;
+    margin: 8px;
 }
 
 
@@ -234,6 +244,7 @@ textarea
 {
     background:  #525b56;
 }
+
 
 
 

@@ -68,6 +68,10 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 
+# For Positioning
+gem 'acts_as_list', '~> 0.9.11'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

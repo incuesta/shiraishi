@@ -3,4 +3,7 @@ class Section < ApplicationRecord
 
 
   	mount_uploader :image, ImageUploader
+
+
+  	acts_as_list scope: :article
 end

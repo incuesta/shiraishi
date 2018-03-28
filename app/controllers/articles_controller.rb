@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.order("created_at desc")
+    @articles = Article.order("position asc")
 
     authorize Article
   end
@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @article_count = Article.count + 1
 
     authorize Article
   end
@@ -43,6 +44,8 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
+        @article_count = Article.count + 1
+
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
@@ -55,6 +58,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    @article_count = Article.count
     authorize Article
   end
 
@@ -68,6 +72,8 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
+        @article_count = Article.count
+
         format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
@@ -98,6 +104,7 @@ class ArticlesController < ApplicationController
     authorize Article
 
     @section = @article.sections.build
+    @section_count = @article.sections.count + 1
   end
 
 
@@ -111,6 +118,7 @@ class ArticlesController < ApplicationController
       if @section.save
         format.html { redirect_to @article, notice: "Subsection successfully created!" }
       else
+        @section_count = @article.sections.count + 1
         format.html { render 'new_article_section', notice: "Failed to create Subsection" }
       end
     end
@@ -130,7 +138,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:image, :title, :body)
+      params.require(:article).permit(:image, :title, :body, :position)
     end
 
     def section_params

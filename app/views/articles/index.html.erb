@@ -24,6 +24,7 @@
                         <th>Title</th>
                         <th>Body</th>
                         <th>Published at</th>
+                        <th>Position</th>
                         <th colspan="3"></th>
                       </tr>
                     </thead>
@@ -34,6 +35,7 @@
                           <td><%= article.title %></td>
                           <td><%= truncate(article.body, length: 50) { link_to '(click for more)', article } %></td>
                           <td><%= article.created_at.to_date %></td>
+                          <td><%= article.position %></td>
                           <td><%= link_to 'Show', article %></td>
 
                           <% if loan_officers? %>
