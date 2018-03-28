@@ -5,6 +5,7 @@ class FinancingController < ApplicationController
 
 
     def home
+        @articles = Article.order("position asc").limit(3)
     end
 
     # get financings/articles

@@ -4,6 +4,24 @@
 
 
 
+<div class="row">
+	<div class="col-md-12" style="margin: 35px 0 15px 0;">
+
+		<% @articles.each do |article| %>
+			<div class="col-md-4">
+				<h3><%= article.title %></h3>
+				<p><%= truncate(article.body, length: 200) { link_to 'continue reading', show_article_financing_path(article), class: "ikumai" } %></p>
+			</div>
+		<% end %>
+
+	</div>
+	<!-- col-md-12 End -->
+</div>
+<!-- div.row End -->
+
+
+
+
 <%= image_tag "financing.jpg", alt: 'Management Dashboard', class: "img-responsive col-centered my_banner" %>
 
 
