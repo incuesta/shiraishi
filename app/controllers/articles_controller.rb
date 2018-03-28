@@ -142,6 +142,6 @@ class ArticlesController < ApplicationController
     end
 
     def section_params
-      params.require(:section).permit(:image, :body)
+      params.require(:section).permit(:image, :body, :position)
     end
 end
