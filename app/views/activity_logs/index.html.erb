@@ -45,8 +45,8 @@
                             <% else %>
                                 <td colspan="2">No Profile</td>
                             <% end %>
+                            <td><%= link_to('Destroy', activity_log, method: :delete, data: { confirm: 'Are you sure?' }) if system_user? %></td>
 
-                            <td><%= link_to 'Destroy', activity_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                         </tr>
                     <% end %>
                 </tbody>

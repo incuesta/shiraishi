@@ -81,7 +81,7 @@ class DataStoresController < ApplicationController
  	private
 
  		def set_app_name
- 			@app_name = "cuesta"
+ 			@app_name = "acgecco"
  		end
 
 
