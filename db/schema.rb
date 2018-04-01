@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328122309) do
+ActiveRecord::Schema.define(version: 20180401143936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -247,6 +247,25 @@ ActiveRecord::Schema.define(version: 20180328122309) do
     t.index ["user_name"], name: "index_clients_on_user_name", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "commenter"
+    t.string "commenter_class"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "conversation_id"
+    t.index ["commenter"], name: "index_comments_on_commenter"
+    t.index ["conversation_id"], name: "index_comments_on_conversation_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "subject", default: "My New Conversation"
+    t.index ["client_id"], name: "index_conversations_on_client_id"
+  end
+
   create_table "cr_entries", force: :cascade do |t|
     t.bigint "accounting_entry_id"
     t.string "description"
@@ -461,6 +480,7 @@ ActiveRecord::Schema.define(version: 20180328122309) do
   add_foreign_key "accounting_entries", "accounting_books"
   add_foreign_key "client_assets", "clients"
   add_foreign_key "client_profiles", "clients"
+  add_foreign_key "conversations", "clients"
   add_foreign_key "cr_entries", "accounting_entries"
   add_foreign_key "dr_entries", "accounting_entries"
   add_foreign_key "golden_keys", "clients"

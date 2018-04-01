@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+    # Client's conversations
+    resources :conversations, only: [:create, :destroy] do
 
-  
+        resources :comments, only: [:create, :destroy]
+
+    end
 
 
     get 'data_stores/backup_from_dump'

@@ -6,7 +6,7 @@ class Client < ApplicationRecord
 
 
 
-	has_one :client_profile, dependent: :destroy
+	  has_one :client_profile, dependent: :destroy
 
     has_one :golden_key, dependent: :destroy # the Model to Enable or disable an Account
 
@@ -17,6 +17,9 @@ class Client < ApplicationRecord
 
     has_many :guarantors, dependent: :destroy
     has_many :client_assets, dependent: :destroy
+
+
+    has_many :conversations
 
 
 

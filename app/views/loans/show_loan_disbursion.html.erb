@@ -133,17 +133,16 @@
                                 </tr>
 
 
-                                <% if @loan.disbursement_date %>
+                              
                                   <tr>
                                     <td><strong>Disbursement date:</strong></td>
-                                    <td><%= @loan.disbursement_date %></td>
+                                    <td id="disbursement_date"><%= (@loan.disbursement_date if @loan.disbursement_date) || "------" %></td>
                                   </tr>
 
                                   <tr>
                                     <td><strong>Maturation date:</strong></td>
-                                    <td><%= @loan.disbursement_date + @loan.loan_type.duration.months %></td>
+                                    <td id="maturation_date"><%= (@loan.disbursement_date + @loan.loan_type.duration.months if @loan.disbursement_date) || "------" %></td>
                                   </tr>
-                                <% end %>
 
 
                                 <tr>

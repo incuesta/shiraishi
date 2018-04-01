@@ -3,7 +3,21 @@
 $('div.loan_status').children().first().replaceWith("<%= j render 'disburse_the_loan' %>");
 
 
+// Show Accounting Button
 $('div.show_accounting').append("<%= j link_to('See accounting entry', show_accounting_for_loan_loan_path(@loan), id: 'show_accounting_link', style: 'margin-top: 25px;', class: 'btn btn-md btn-success') %>");
 
 
+// Replace the button with a thumbs up image
 $('#loan_disbursion_link').replaceWith("<%= j image_tag 'disbursed_thumbs_up.png', class: 'img-responsive', style: 'display: inline-block;' %>");
+
+
+
+
+
+// Replace the <td>
+
+
+$('#disbursement_date').replaceWith("<td><%= j @loan.disbursement_date.to_s %></td>")
+
+
+$('#maturation_date').replaceWith("<td><%= j (@loan.disbursement_date + @loan.loan_type.duration.months).to_s %></td>")
