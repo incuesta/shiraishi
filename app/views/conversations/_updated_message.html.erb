@@ -1,0 +1,9 @@
+<span class="shiraishi update_message" style="font-size: 1.2em;">Updated!</span>
+
+<script>
+	$('.update_message').hide().fadeIn(500, function() {
+		$(this).fadeOut(5000, function () {
+			$(this).remove();
+		});
+	});
+</script>

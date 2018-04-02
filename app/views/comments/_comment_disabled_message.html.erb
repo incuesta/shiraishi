@@ -1,0 +1,9 @@
+<span class="disabled_message hirate" style="font-size: 1.2em;">Conversation had been Closed!</span>
+
+<script>
+	$('.disabled_message').hide().fadeIn(500, function() {
+		$(this).fadeOut(5000, function () {
+			$(this).remove();
+		});
+	});
+</script>

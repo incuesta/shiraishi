@@ -90,11 +90,12 @@
 
 						<div id="conversation">
 							<% if current_client && current_client.conversations.present? %>
-								<% @conversation = current_client.conversations.last %>
+								<% @conversation = current_client.conversations.all.last %>
 
 								<div class="panel panel-default">
 									<div class="panel-heading panel-heading-custom-public">
-										<div class="panel-title"><%= "Subject: #{@conversation.subject}" if @conversation %></div>
+										<div class="panel_left"><%= "Subject: #{@conversation.subject}" if @conversation %></div>
+										<span><%= '(Closed/Resolved)' if @conversation.is_close %></span>
 									</div>
 									<!-- Well Header -->
 
@@ -124,6 +125,10 @@
 												<%= form.submit 'Post', class: 'btn btn-sm btn-success' %>
 												|
 												<%= link_to 'Refresh', contacts_financing_index_path, class: 'link-keyaki' %>
+
+												<div id="message" style="margin-top: 15px;">
+													
+												</div>
 											</div>
 										<% end %>
 										<!-- Form End -->

@@ -3,7 +3,11 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading panel-heading-custom-public">
-				<div class="panel_title_to_the_left"><%= "Subject: #{@conversation.subject}" %></div>
+				<div class="panel_title_to_the_left">
+					<%= "Subject: #{@conversation.subject}" %>
+				</div>
+
+				<span><%= '(Closed/Resolved)' if @conversation.is_close %></span>
 
 				<div class="panel_buttons_to_the_right"><%= link_to "By #{@conversation.client.user_name}", @conversation.client.client_profile, class: 'btn btn-sm btn-success' %></div>
 			</div>

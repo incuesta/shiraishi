@@ -65,7 +65,8 @@
 $(".golden_key-check").bind('change', function(){
   
 
-  bool = this.checked ? 1 : 0;
+    bool = this.checked ? 1 : 0;
+    
     $.ajax({
       url: "account_activations/"+ this.value,
       type: 'PATCH',

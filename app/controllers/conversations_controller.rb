@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
 
-	before_action :set_conversation, only: [:show, :destroy]
+	before_action :set_conversation, only: [:show, :close_conversation, :destroy]
 
 
 	def index
@@ -21,6 +21,16 @@ class ConversationsController < ApplicationController
 				format.js { render 'conversations' }
 				format.html { redirect_to contacts_financing_index_path, notice: 'Conversation started!' }
 			end
+		end
+	end
+
+
+	# This uses AJAXY PATCH from a check box
+	def close_conversation
+		@conversation.update(is_close: params[:is_close])
+
+		respond_to do | format |
+			format.js { render 'close_conversation' }
 		end
 	end
 

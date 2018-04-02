@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     # Client's conversations
     resources :conversations do
 
+        member do
+          patch :close_conversation
+        end
+
         resources :comments
 
     end

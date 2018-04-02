@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
 		authorize Comment
 
 		respond_to do | format |
-			if @comment.save
+			if !@conversation.is_close && @comment.save
 
 				if current_client
 					format.html { redirect_to contacts_financing_index_path, notice: 'Comment Posted!' }
@@ -30,6 +30,8 @@ class CommentsController < ApplicationController
 				end
 
 				format.js { render "comments/client_comment" }
+			else
+				format.js { render "comments/unable_to_comment" }
 			end
 
 		end
