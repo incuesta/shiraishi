@@ -5,6 +5,17 @@ module ApplicationHelper
 	end
 
 
+	# 1 Comment only
+	def render_comment_for(comment)
+		render partial: "comments/comment", locals: {comment: comment}
+	end
+
+	# All Comments
+	def render_comments_for(comments)
+		render partial: "comments/comments", locals: {comments: comments}
+	end
+
+
 	def sortable_link(title, column)
 		
 		title ||= column.titleize

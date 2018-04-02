@@ -4,79 +4,87 @@
 
 		<!-- The Container -->
 		<div class="row">
-			<div class="col-md-10 col-centered">
+			<div class="col-md-11 col-centered">
 
 				<div>
 					<%= image_tag 'report_header.PNG', alt: 'ACGECCO', class: 'img-responsive col-centered' %>
 				</div>
 
 				<!-- The Body -->
-				<div>
+				<div class="row">
 
 					<h3><center>Contacts</center></h3>
 					<br>
 
-					<h4><cetner>Contact us</cetner></h4>
-
-					<p>
-						We welcome your suggestions and comments on our services. This unit is dedicated to handle complaints, opinions and appreciations from the public.
-					</p>
-
-					<br>
-
 					<div class="col-md-5">
+						<h4>Contact us</h4>
 
-						<blockquote>
-							<table class="table">
-								<tbody>
-									<tr>
-										<td>Telephone</td>
-										<td>689-4500</td>
-									</tr>
+						<p class="justify_me">
+							We welcome your suggestions and comments on our services. This unit is dedicated to handle complaints, opinions and appreciations from the public.
+						</p>
 
-									<tr>
-										<td>Fax</td>
-										<td>689-4532</td>
-									</tr>
+						<br>
 
-									<tr>
-										<td>Email</td>
-										<td>feedback@antipolo.ph</td>
-									</tr>
+						<div class="col-md-5">
 
-								</tbody>
-							</table>
-							
-						</blockquote>
+							<blockquote>
+								<table class="table">
+									<tbody>
+										<tr>
+											<td>Telephone</td>
+											<td>689-4500</td>
+										</tr>
 
+										<tr>
+											<td>Fax</td>
+											<td>689-4532</td>
+										</tr>
+
+										<tr>
+											<td>Email</td>
+											<td>feedback@antipolo.ph</td>
+										</tr>
+
+									</tbody>
+								</table>
+								
+							</blockquote>
+
+						</div>
+						<!-- End col-md-5 -->
 					</div>
-					<!-- End col-md-5 -->
 					
 
 
-				</div>
-				<!-- Body End -->
+				
+					<!-- Named Anchor -->
+					<a name="comments_section" id="comments_section"></a>
+
 
 				
-				<!-- Named Anchor -->
-				<a name="comments_section" id="comments_section"></a>
 
-
-				<!-- Comments -->
-				<div class="row">
-
-					<div class="col-md-5">
+					<!-- Comments -->
+					<div class="col-md-6" style="margin-left: 45px;">
 						<% if current_client %>
-							<%= form_with model: Conversation.new, local: true do | form | %>
-								<div class="form-group">
-									<%= form.label :subject, 'Start a Conversation' %>
-									<%= form.text_field :subject, class: 'form-control', placeholder: 'Subject' %>
-								</div>
+							<div class="row">
+								<div class="col-md-5">
+									<h4>Message Us:</h4>
 
-								<div class="form-group">
-									<%= form.submit class: 'btn btn-sm btn-info' %>
+									<%= form_with model: Conversation.new, local: true do | form | %>
+										<div class="form-group">
+											<%= form.label :subject, 'Subject:' %>
+											<%= form.text_field :subject, class: 'form-control', placeholder: 'Subject' %>
+										</div>
+
+										<div class="form-group">
+											<%= form.submit class: 'btn btn-sm btn-info' %>
+										</div>
+									<% end %>
 								</div>
-							<% end %>
+							</div>
+						<% else %>
+							<h4>Message Us:</h4>
+							<%= link_to 'Sign In & Leave a Message', new_client_session_path, class: 'btn btn-lg btn-success' %>
 						<% end %>
 
 
@@ -86,33 +94,41 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading panel-heading-custom-public">
-										<div class="panel-title"><%= @conversation.subject if @conversation %></div>
+										<div class="panel-title"><%= "Subject: #{@conversation.subject}" if @conversation %></div>
 									</div>
 									<!-- Well Header -->
 
 									<div class="panel-body">
-										
-										<%= form_with model: [@conversation, @conversation.comments.new], local: true do | form | %>
+
+										<div id="comments">
+											<% if @conversation.comments.count > 0 %>
+													<% @conversation.comments.each do | comment | %>
+														
+															<%= render_comment_for(comment) %>
+											
+													<% end %>
+												
+											<% end %>
+										</div>
+										<!-- comments present end -->
+
+										<hr>
+
+										<%= form_with model: [@conversation, @conversation.comments.new] do | form | %>
 											<div class="form-group">
-												<%= form.label :body, 'Comment:' %>
-												<%= form.text_area :body, class: 'form-control', placeholder: 'Your Comment' %>
+												<%= form.label :body, 'Message:' %>
+												<%= form.text_area :body, class: 'form-control', placeholder: 'Your Message' %>
 											</div>
 
 											<div class="form-group">
-												<%= form.submit 'Post Comment', class: 'btn btn-sm btn-success' %>
+												<%= form.submit 'Post', class: 'btn btn-sm btn-success' %>
+												|
+												<%= link_to 'Refresh', contacts_financing_index_path, class: 'link-keyaki' %>
 											</div>
 										<% end %>
 										<!-- Form End -->
 
-										<% if @conversation.comments.count > 0 %>
-											<% @conversation.comments.each do | comment | %>
-
-												<div class="well">
-													<%= comment.body %>
-												</div>
-											<% end %>
-										<% end %>
-										<!-- comments present end -->
+										
 
 
 									</div>
@@ -127,10 +143,11 @@
 						<!-- Div, Conversation End -->
 
 					</div>
+					<!-- col-md-8 End -->
+					<!-- Comments -->
 
 				</div>
-
-				<!-- Comments -->
+				<!-- Row End -->
 
 
 			</div>

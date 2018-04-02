@@ -1,0 +1,51 @@
+<div class="row">
+	<div class="col-md-8 col-centered">
+
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-custom-public">
+				<div class="panel_title_to_the_left"><%= "Subject: #{@conversation.subject}" %></div>
+
+				<div class="panel_buttons_to_the_right"><%= link_to "By #{@conversation.client.user_name}", @conversation.client.client_profile, class: 'btn btn-sm btn-success' %></div>
+			</div>
+			<!-- Well Header -->
+
+			<div class="panel-body">
+
+				<div id="comments">
+					<% @comments.each do | comment | %>
+
+						<%= render_comment_for comment %>
+
+					<% end %>
+				</div>
+
+				<hr>
+
+				
+				<%= form_with model: [@conversation, @conversation.comments.new] do | form | %>
+					<div class="form-group">
+						<%= form.label :body, 'Message:' %>
+						<%= form.text_area :body, class: 'form-control', placeholder: 'Your Message' %>
+					</div>
+
+					<div class="form-group">
+						<%= form.submit 'Post', class: 'btn btn-sm btn-success' %>
+						|
+						<%= link_to 'Refresh', conversation_comments_path, class: 'link-keyaki' %>
+					</div>
+				<% end %>
+				<!-- Form End -->
+
+				
+
+
+			</div>
+			<!-- Panel Body End -->
+
+		</div>
+		<!-- Panel End -->
+
+	</div>
+	<!-- col-md-8 End -->
+</div>
+<!-- Row End -->

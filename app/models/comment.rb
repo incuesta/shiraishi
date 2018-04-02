@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
 	# Find the poster
 	def self.find_commenter(commenter_id, commenter_class)
 		case commenter_class
-			when UserClass.user_clases[:admin]
+			when UserClass.user_classes[:admin]
 				Admin.find commenter_id
 			when UserClass.user_classes[:loan_manager]
 				LoanManager.find commenter_id
@@ -15,6 +15,13 @@ class Comment < ApplicationRecord
 			else
 				Client.find commenter_id
 		end
+	end
+
+	# Return Poster Username
+	def self.poster_user_name(commenter_id, commenter_class)
+
+		user = find_commenter(commenter_id, commenter_class)
+		"#{user.user_name} (#{user.class.name.underscore})"
 	end
 
 

@@ -1,7 +1,20 @@
 class ConversationsController < ApplicationController
 
+	before_action :set_conversation, only: [:show, :destroy]
+
+
+	def index
+		@conversations = Conversation.order("created_at desc")
+
+		authorize Conversation
+	end
+
+
+
 	def create
 		@conversation = current_client.conversations.build(conversation_params)
+
+		authorize Conversation
 
 		respond_to do | format |
 			if @conversation.save
@@ -13,6 +26,14 @@ class ConversationsController < ApplicationController
 
 
 	def destroy
+		@conversation.destroy
+
+		authorize Conversation
+
+		respond_to do | format |
+			format.js {}
+			format.html { redirect_to conversations_path, notice: 'Conversation Deleted!' }
+		end 
 	end
 
 

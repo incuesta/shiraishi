@@ -59,6 +59,12 @@
                   <li><%= link_to "Member Sign in", new_client_session_path %></li>
                   <li><%= link_to("Member Profiles", client_profiles_path) if current_admin || current_accountant || current_loan_manager %></li>
 
+                  <!-- Client Inquiries -->
+                  <li>
+                    <%= link_to 'Member Inquiries', conversations_path if current_admin || current_accountant || current_loan_manager %>
+                  </li>
+                  <!-- Client Inquiries -->
+
 
                   <%  if current_admin || current_accountant || current_loan_manager %>
                     <li role="separator" class="divider"></li>
@@ -213,6 +219,8 @@
                 </ul>
               </li>
               <!-- Backups End -->
+
+              
 
 
 

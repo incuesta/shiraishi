@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
     # Client's conversations
-    resources :conversations, only: [:create, :destroy] do
+    resources :conversations do
 
-        resources :comments, only: [:create, :destroy]
+        resources :comments
 
     end
 

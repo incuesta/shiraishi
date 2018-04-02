@@ -135,17 +135,19 @@ class Loan < ApplicationRecord
 
 		 	count = 0
 		 	
-		 	loan.loan_installment_container.loan_installments.each do |installment|
+		 	if loan.loan_installment_container
+			 	loan.loan_installment_container.loan_installments.each do |installment|
 
-		 		if installment.state == LoanInstallment.states[:unpaid] && installment.to < Date.current.yesterday
-		 			count += 1
-		 		end
+			 		if installment.state == LoanInstallment.states[:unpaid] && installment.to < Date.current.yesterday
+			 			count += 1
+			 		end
 
-		 	end
+			 	end
 
-		 	if count >= 3
-		 		red_listed_loans << loan.id
-		 	end
+			 	if count >= 3
+			 		red_listed_loans << loan.id
+			 	end
+			 end
 
 		 end
 

@@ -1,0 +1,57 @@
+<div class="row">
+
+	<% if comment.commenter_class == UserClass.user_classes[:client] %>
+		<div class="col-md-10 pull-right">
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="panel_left">
+								<%= (Comment.poster_user_name comment.commenter, comment.commenter_class if comment.commenter) || "Anonymous" %>
+							</div>
+
+							<div class="panel_right">
+								<%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="panel-body">
+					<%= comment.body %>
+				</div>
+			</div>
+		</div>
+		<!-- col-md-10 End -->
+	<% else %>
+		<div class="col-md-10">
+			<div class="panel panel-info">
+
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="panel_left">
+								<%= (Comment.poster_user_name comment.commenter, comment.commenter_class if comment.commenter) || "Anonymous" %>
+							</div>
+
+							<div class="panel_right">
+								<%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="panel-body">
+					<%= comment.body %>
+				</div>
+			</div>
+		</div>
+		<!-- col-md-10 End -->
+	<% end %>
+	<!-- If End -->
+
+
+</div>

@@ -251,9 +251,19 @@ textarea
 }
 
 
+/*Same with panel_title_to_the_left*/
+.panel_left 
+{
+    display: inline-block;
+    font-size: 1.2em;
+}
 
-
-
+/*Same with panel_buttons_to_the_right but marginless*/
+.panel_right
+{
+    display: inline-block;
+    float: right;
+}
 
 .panel_title_to_the_left
 {
