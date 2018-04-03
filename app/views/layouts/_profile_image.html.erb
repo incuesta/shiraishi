@@ -1,0 +1,15 @@
+<!-- Profile Image -->
+<% user_profile = user.public_send("#{user.class.name.underscore}_profile") if user.public_send("#{user.class.name.underscore}_profile") %>
+
+<% if user_profile && user_profile.image.present? %>
+	<%= image_tag( user_profile.image.img_32.url, alt: 'Profile') %>
+<% else %>
+	<% unless dark_default %>
+		<%= image_tag( 'user_icon_1_white_32.png', alt: 'Profile') %>
+
+	<% else %>
+		<%= image_tag( 'user_icon_1_32.png', alt: 'Profile') %>
+
+	<% end %>
+<% end %>
+<!-- End Profile Image -->

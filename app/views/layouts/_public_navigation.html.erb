@@ -138,15 +138,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
                           <!-- Profile Image -->
-                          <% user_profile = pundit_user.public_send("#{pundit_user.class.name.underscore}_profile") if pundit_user.public_send("#{pundit_user.class.name.underscore}_profile") %>
-
-                          <% if user_profile && user_profile.image.present? %>
-                            <%= image_tag( user_profile.image.img_32.url, alt: 'Profile') %>
-
-                          <% else %>
-                            <%= image_tag( 'user_icon_1_white_32.png', alt: 'Profile') %>
-
-                          <% end %>
+                          <%= render_profile_image_for(pundit_user) %>
                           <!-- End Profile Image -->
 
                           <span ><strong><%= pundit_user.user_name.downcase %></strong></span>

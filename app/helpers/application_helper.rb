@@ -5,6 +5,13 @@ module ApplicationHelper
 	end
 
 
+	# render profile image for users
+	def render_profile_image_for(user, dark_default = false)
+
+        render partial: 'layouts/profile_image', locals: {user: user, dark_default: dark_default}
+	end
+
+
 	# 1 Comment only
 	def render_comment_for(comment)
 		render partial: "comments/comment", locals: {comment: comment}

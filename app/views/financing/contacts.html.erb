@@ -103,7 +103,7 @@
 
 										<div id="comments">
 											<% if @conversation.comments.count > 0 %>
-													<% @conversation.comments.each do | comment | %>
+													<% @conversation.comments.order("created_at asc").each do | comment | %>
 														
 															<%= render_comment_for(comment) %>
 											
