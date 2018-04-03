@@ -19,4 +19,8 @@ class PagesController < ApplicationController
 
   def help
   end
+
+  def quick_start
+
+  end
 end

@@ -344,6 +344,7 @@ Rails.application.routes.draw do
         get :about
         get :contacts
         get :help
+        get :quick_start
       end
     end
 
