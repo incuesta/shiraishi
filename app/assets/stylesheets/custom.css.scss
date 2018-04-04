@@ -387,4 +387,29 @@ textarea
 
 
 
+/*Use this styling only on mobile devices*/
+@media (max-width: 767px) 
+{
+  
+    .navbar-collapse .dropdown-menu > li > a:hover,
+    .navbar-collapse .dropdown-menu > li > a:focus 
+    {
+        color: #FFFFFF !important;
+        text-decoration: none;
+
+        /*This is green*/
+        background-color: #5FB65E !important;  /*change color of links in drop down here*/
+    }
+
+
+    .navbar-collapse .dropdown-menu > li > a
+    {
+        color: #e6e6e6 !important;
+        text-decoration: none;
+    }
+
+
+}
+
+
 
