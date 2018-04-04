@@ -84,3 +84,9 @@ Video.create(video_id: "263098254", host: "vimeo", title: "Backup using Heroku C
 
 # Manual Backups
 Video.create(video_id: "263098830", host: "vimeo", title: "Manual Backups", description: "Manual Backups", position: 16, tags: "backups")
+
+
+
+
+# Client Inquiries
+Video.create(video_id: "263105990", host: "vimeo", title: "Answering Client Inquiries", description: "Client Inquiries", position: 17, tags: "inquiries")
