@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+    # Video Tutorials etc
+    resources :videos
+
+
+
     # Client's conversations
     resources :conversations do
 

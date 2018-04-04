@@ -227,7 +227,13 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "Help", "/management_guide/index.htm" %></li>
                   <li role="separator" class="divider"></li>
-                  <li><%= link_to "Quick Start", quick_start_pages_path %></li>
+                  <li><%= link_to "Quick Start Videos", quick_start_pages_path %></li>
+                  
+                  <% if current_admin %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to "Add Videos", videos_path %></li>
+                  <% end %>
+
                 </ul>
               </li>
               <!-- Help End -->

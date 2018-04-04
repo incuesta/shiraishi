@@ -21,6 +21,6 @@ class PagesController < ApplicationController
   end
 
   def quick_start
-
+    @videos = Video.order("position asc").paginate(page: params[:page], per_page: 8)
   end
 end

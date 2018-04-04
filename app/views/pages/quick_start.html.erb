@@ -1,96 +1,51 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+
+			<!-- Pagination -->
+			<div class="center_pagination">
+				<%= will_paginate @videos %>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
 			
-
-			<!-- Admin Registration -->
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading panel-heading-custom">
-						Admin Registration
-					</div>
-					
-					<div class="panel-body">
-						
-							<div class="embed-responsive embed-responsive-16by9">
-								<iframe src="https://player.vimeo.com/video/261949242" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					<% @videos.each do |video| %>
+						<!-- Video-->
+						<div class="col-md-6">
+							<div class="panel panel-default">
+								<div class="panel-heading panel-heading-custom">
+									<%= video.title %>
+								</div>
+								
+								<div class="panel-body">
+									
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe src=<%= vimeo_url(video.video_id) %> frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+										</div>
+									
+								</div>
 							</div>
-						
-					</div>
+							<!-- Panel End -->
+						</div>
+						<!-- Video End -->
+
+					<% end %>
+
 				</div>
-				<!-- Panel End -->
+				<!-- col-md-12 -->
+
 			</div>
-			<!-- Admin Registration End -->
+			<!-- Row -->
 
 
-
-
-			<!-- Loan Manager Registration -->
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading panel-heading-custom">
-						Loan Manager Registration
-					</div>
-					
-					<div class="panel-body">
-						
-							<div class="embed-responsive embed-responsive-16by9">
-								<iframe src="https://player.vimeo.com/video/262998934" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-							</div>
-						
-					</div>
-				</div>
-				<!-- Panel End -->
+			<!-- Pagination -->
+			<div class="center_pagination">
+				<%= will_paginate @videos %>
 			</div>
-			<!-- Loan Manager Registration End -->
-
-
-
-			<!-- Accountant Registration Registration -->
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading panel-heading-custom">
-						Accountant Registration
-					</div>
-					
-					<div class="panel-body">
-						
-							<div class="embed-responsive embed-responsive-16by9">
-								<iframe src="https://player.vimeo.com/video/263001319" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-							</div>
-						
-					</div>
-				</div>
-				<!-- Panel End -->
-			</div>
-			<!-- Accountant Registration Registration End -->
-
-
-
-			<!-- Member / Client Registration -->
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading panel-heading-custom">
-						Member/Client Registration
-					</div>
-					
-					<div class="panel-body">
-						
-							<div class="embed-responsive embed-responsive-16by9">
-								<iframe src="https://player.vimeo.com/video/263001901" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-							</div>
-						
-					</div>
-				</div>
-				<!-- Panel End -->
-			</div>
-			<!-- Member / Client Registration End -->
-
 
 
 		</div>
-
 	</div>
-	<!-- End Row -->
 </div>
-<!-- End Container -->
+

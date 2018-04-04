@@ -1,0 +1,38 @@
+
+<div class="row">
+
+	<div class="col-md-8 col-centered">
+
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-custom">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel_title_to_the_left">
+							Add a Video
+						</div>
+
+						<div class="panel_buttons_to_the_right">
+							<%= link_to 'Videos', videos_path, class: "btn btn-sm btn-success" %>
+						</div>
+					</div>
+
+				</div>
+			
+
+				
+			</div>
+
+				<div class="row">
+					<div class="col-md-10 col-centered">
+
+						<%= render 'form', video: @video %>					
+					</div>
+				</div>
+		</div>
+		<!-- End Panel Heading -->
+		
+
+	</div>
+
+</div>

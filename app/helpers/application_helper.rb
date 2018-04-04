@@ -5,6 +5,12 @@ module ApplicationHelper
 	end
 
 
+	# Outputs Video URL String
+	def vimeo_url(video_id)
+		"https://player.vimeo.com/video/#{video_id}"
+	end
+
+
 	# render profile image for users
 	def render_profile_image_for(user, dark_default = false)
 

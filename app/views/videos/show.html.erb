@@ -1,0 +1,71 @@
+
+<div class="row">
+		<div class="col-md-10 col-centered">
+
+				<div class="well well-custom">
+
+						<div class="well-header">
+							<div class="well-title">
+								<%= @video.title %>
+							</div>
+
+							<div class="well-right">
+								<%= link_to 'Edit', edit_video_path(@video), class: 'btn btn-sm btn-success' %> |
+								<%= link_to 'Videos', videos_path, class: 'btn btn-sm btn-success' %>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-6" style="margin-bottom: 25px;">
+							   	<div class="embed-responsive embed-responsive-16by9" style="margin-left: 25px">
+
+									<iframe src=<%= vimeo_url(@video.video_id) %> frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+								</div>
+
+								
+							</div>
+
+							<div class="col-md-4" style="margin-left: 25px">
+								<table class="table borderless" >
+
+									<tr>
+									  <td><strong>Video ID:</strong></td>
+									  <td><%= @video.video_id %></td>
+									</tr>
+
+									<tr>
+									  <td><strong>Video URL:</strong></td>
+									  <td><%= vimeo_url(@video.video_id) %></td>
+									</tr>
+
+									<tr>
+									  <td><strong>Video:</strong></td>
+									  <td><%= @video.title %></td>
+									</tr>
+
+									<tr>
+									  <td><strong>Description:</strong></td>
+									  <td><%= @video.description %></td>
+									</tr>
+
+									<tr>
+									  <td><strong>Position:</strong></td>
+									  <td><%= @video.position %></td>
+									</tr>
+
+									<tr>
+									  <td><strong>Tags:</strong></td>
+									  <td><%= @video.tags %></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+				</div>
+
+
+		</div>
+</div>
+
