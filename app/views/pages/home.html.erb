@@ -3,7 +3,30 @@
 <%= render 'layouts/carousel' %>
 
 
-<%= image_tag "assessment.jpg", alt: 'Management Dashboard', class: "img-responsive col-centered my_banner" %>
+
+<div class="container">
+<div class="row">
+	<div class="col-md-12 my_banner well">
+		<div class="col-md-7">
+			<%= image_tag "assessment.jpg", alt: 'Management Dashboard', class: "img-responsive col-centered" %>
+			
+		</div>
+
+		<div class="col-md-5">
+
+
+				<h4>Welcome to the "Management Area".</h4>
+				<p>See guides to quickly get started.</p>
+
+			<%= link_to "Quick Start Guides", quick_start_pages_path, class: 'btn btn-lg btn-success' %>
+		</div>
+	</div>
+</div>
+</div>
+
 
 
 <%=  image_tag("victini_2", alt: "Hello Universe!") if Rails.env.development? %><
+
+
+
