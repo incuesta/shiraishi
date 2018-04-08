@@ -35,6 +35,7 @@ class LoanTypesController < ApplicationController
   # POST /loan_types.json
   def create
     @loan_type = LoanType.new(loan_type_params)
+    @loan_docs = LoanDoc.all
 
     authorize LoanType
 
@@ -52,8 +53,9 @@ class LoanTypesController < ApplicationController
   # PATCH/PUT /loan_types/1
   # PATCH/PUT /loan_types/1.json
   def update
-
+    @loan_docs = LoanDoc.all
     authorize LoanType
+    
 
     respond_to do |format|
       if @loan_type.update(loan_type_params)
