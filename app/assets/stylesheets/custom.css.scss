@@ -3,6 +3,15 @@
 @import "bootstrap";
 
 
+/* Make the cards in financing#services responsive height-wise  */
+.services-card
+{
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+
 .justify_me
 {
     text-align: justify;
