@@ -1,2 +1,138 @@
-<h1>Pages#organization</h1>
-<p>Find me in app/views/pages/organization.html.erb</p>
+<style>
+	.rounded-wrapper 
+	{ 
+		background: #223E4A;
+		border: 2px solid #223E4A;
+	    border-radius: 15px;
+	   	color: #ffffff;
+	   	padding-bottom: 45px;
+	}
+
+
+	@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+	ul {
+	    text-align:center;
+	    padding-top:20px;
+	    height:60px;
+	    width:100%;
+	}
+
+	ul li {
+	    
+	    display:inline;
+	    padding-right:15px;
+	    float:left;
+	}
+
+	.banner_shiraishi {
+	    font-family: 'Audiowide', cursive;
+	    padding:0;
+	    margin:0;
+	    float:right;
+	    color: #ffffff;
+	    font-size: 1.5em;
+	}
+
+
+	ul li a {
+	    text-decoration:none;
+	    color: #ffffff !important;
+	}
+
+	ul li a:hover {
+	    color:#ffffff;
+	    text-decoration:none;
+	}
+
+
+	ul {
+	    font-size: 1.5em;
+	}
+
+	.menu {
+		margin-bottom: 25px;
+	}
+
+	.foot {
+		color: #ffffff;
+	}
+
+	.dropdown ul li a {
+		color: #333333 !important;
+	}
+
+</style>
+
+
+<div class="container-fluid">
+	<div class="row">
+
+		<div class="col-md-10 col-centered">
+
+
+
+			<div class="menu col-md-11 col-centered">
+				<ul>
+				    <li><%= link_to 'Home', root_path %></li>
+				    <li><%= link_to 'About', organization_financing_index_path %></li>
+				    <li><%= link_to 'News/Articles', articles_financing_index_path %></li>
+				    <div class="banner_shiraishi">ACGECCO</div>
+				</ul>
+
+				<hr>
+			</div>
+
+
+			<div class="rounded-wrapper">
+
+				<br>
+
+				<h3>
+
+					<!-- Dropdown -->
+				<div class="dropdown" style="margin: 15px;">
+				  <button class="btn btn-default dropdown-toggle btn btn-lg btn-success col-centered" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    Managment Area
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu col-md-3" aria-labelledby="dropdownMenu1" style="height: 100px;">
+			    		<li><%= link_to "Admin Sign In", new_admin_session_path %></li>
+
+
+                        <li role="separator" class="divider"></li>
+
+
+                        <li><%= link_to "Loan Manager Sign In", new_loan_manager_session_path %></li>
+
+
+                        <li role="separator" class="divider"></li>
+
+
+                        <li><%= link_to "Accountant Sign In", new_accountant_session_path %></li>
+
+				  </ul>
+				</div>
+
+				<!-- Dropdown -->
+
+				</h3>
+
+				
+
+
+				<%= render 'layouts/carousel_landing' %>
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<div class="foot"><h3><center>©2018 ACGECCO</center></h3></div>
+

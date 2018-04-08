@@ -1,0 +1,94 @@
+<!-- Carousel for the Landing Page -->
+
+
+
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<!-- Wrapper for slides -->
+<div class="carousel-inner">
+  
+    <div class="item active">
+        <div class="holder col-sm-8">
+          <%= image_tag 'banner_lending_management.jpg', class: 'img-responsive' %>
+        </div>
+        <div class="col-sm-4">
+          <div class="carousel-caption">
+              <h3>Management</h3>
+              <p class="justify_me">This is the landing area for Loan Administration. </p>
+              <%= link_to 'Quick Start Videos', quick_start_pages_path, class: 'btn btn-lg btn-default' %> 
+          </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="holder col-sm-8">
+          <%= image_tag 'banner_acgecco.jpg', class: 'img-responsive' %>
+        </div>
+        <div class="col-sm-4">
+          <div class="carousel-caption">
+              <h3>ACGECCO</h3>
+              <p class="justify_me">The City Cooperative and Livelihood Office contributes to the City’s human development efforts through the cooperative movement and the creation of employment and business opportunities through livelihood training programs aimed at improving the quality of life by reducing poverty incidence and the promotion of self-reliance among the City’s constituents.</p>
+              <%= link_to 'Public Area', home_financing_index_path, class: 'btn btn-lg btn-default' %>  
+          </div>
+        </div>
+    </div>
+</div>
+<div class="controllers col-sm-8 col-xs-12">
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    </ol> 
+</div>
+
+
+<style>
+.carousel-caption {
+  position: relative;
+  left: 0%;
+  right: 0%;
+  bottom: 0px;
+  z-index: 10;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: #ffffff;
+  text-shadow: none;
+  & .btn {
+    text-shadow: none; // No shadow for button elements in carousel-caption
+  }
+}
+
+.carousel {
+    position: relative;
+    margin-top: 25px;
+}
+
+.controllers {
+    position: absolute;
+    top: 0px;
+    height: 340px;
+}
+
+.carousel-control.left, 
+.carousel-control.right {
+    background-image: none;
+}
+
+</style>
+
+<script>
+
+    $(window).bind("load resize slid.bs.carousel", function() {
+      var imageHeight = $(".active .holder").height();
+      $(".controllers").height( imageHeight );
+      console.log("Slid");
+    });
+
+</script>

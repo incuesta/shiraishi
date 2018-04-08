@@ -32,7 +32,7 @@
 
               <!-- Home -->
               <li>
-                <%= link_to 'Home', home_financing_index_path %>
+                <%= link_to 'Home', management_path %>
               </li>
               <!-- Home End -->
 
@@ -106,6 +106,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Quick Start Video & FAQs", help_financing_index_path %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Temp Link to Management", management_path %></li>
                 </ul>
               </li>
               <!-- Help End -->

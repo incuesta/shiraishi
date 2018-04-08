@@ -1,6 +1,7 @@
-<div class='yeah_baby msg'>
+<div class='yeah_baby msg' style="font-family: roboto;">
 	<%= image_tag 'checklist_incomplete.png', width: '150', class: 'img-responsive' %>
 
+	<h3 style="font-family: georgia;"><strong><%= "DSS says..." %></strong></h3>
 	<h5><strong><%= "Loan type's conditions aren't fully met:" %></strong></h5>
 	<ul class="hirate">
 			<li>Maximum: <%= number_to_currency(@loan.loan_type.maximum, unit: 'Php ') %></li>

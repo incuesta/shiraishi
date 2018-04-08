@@ -373,7 +373,8 @@ Rails.application.routes.draw do
       end
     end
 
+    get '/management', to: 'pages#organization'
 
   	# Root
-  	root 'pages#home'
+  	root 'financing#home'
 end
