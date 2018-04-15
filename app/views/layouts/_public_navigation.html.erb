@@ -94,7 +94,7 @@
                   <% if current_client && current_client.client_profile %>
                     <li role="separator" class="divider"></li>
                     <% profile_id = (current_client.client_profile.present?)? current_client.client_profile.id : 0 %>
-                    <li><%= link_to("My Loan Requests", show_loan_requests_client_profile_path(profile_id) %></li>
+                    <li><%= link_to("My Loan Requests", show_loan_requests_client_profile_path(profile_id)) %></li>
                     
                   <% end %>
 
