@@ -115,8 +115,23 @@ class Loan < ApplicationRecord
 	    required_documents = loan_type.loan_docs.sort
 	    submitted_documents = loan_docs.sort unless loan_docs.nil?
 
+	    errors = []
 
-	    (principal_amt >= minimum && principal_amt <= maximum) && required_documents == submitted_documents
+	    if principal_amt < minimum
+	    	errors << "Principal is below minimum"
+	    end
+
+	    if principal_amt > maximum
+	    	errors << "Principal is greater than maximum"
+	    end
+
+	    if required_documents != submitted_documents
+	    	errors << "Incomplete submitted documents"
+	    end
+
+	    errors
+	    
+	    #(principal_amt >= minimum && principal_amt <= maximum) && required_documents == submitted_documents
 	end
 
 

@@ -316,10 +316,10 @@ class LoansController < ApplicationController
     authorize Loan
 
     # Evaluate validity of request
-    request_valid = @loan.evaluate_request
+    @request_errors = @loan.evaluate_request # This returns an array of error messages
 
     respond_to do | format |
-      if request_valid && @loan.update(loan_params_origin)
+      if @request_errors.count == 0 && @loan.update(loan_params_origin)
 
 
           # Record this in the Activity Log
