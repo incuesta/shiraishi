@@ -51,12 +51,16 @@
                   <td><%= loan.loan_type.name %></td>
                   <td><%= loan.client.full_name %></td>
                   <td><%= loan.application_date.to_date %></td>
-                  <td><%= loan.status %></td>
+                  <td><%= (loan.status unless loan.status == Loan.statuses[:draft]) || "For Review" %></td>
                   <td><%= number_to_currency(loan.principal_amount, unit: "Php ") %></td>
                   <td><%= truncate(loan.notes, length: 15) { link_to "continue", loan } %></td>
                   <td><%= link_to 'Show', loan %></td>
-                  <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-                  <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } if system_user? %></td>
+
+                  <% if system_user? %>
+                    <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
+                    <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% end %>
+                  
                 </tr>
               <% end %>
             </tbody>

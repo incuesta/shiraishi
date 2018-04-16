@@ -1,7 +1,34 @@
-<h3>Greetings <%= @email %>!</h3>
 
-<p>We're glad to inform you that your <%= @loan.loan_type.name %> request has been approved and disbursed!</p>
 
-<hr>
+<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
+	
+	.container 
+	{
+		font-family: 'Roboto', sans-serif;
+	}
+</style> 
 
-<p>ACGECCO</p>
+<div class="container">
+	<center>
+
+		<%= image_tag 'https://i.imgur.com/BYVQh9H.jpg', alt: "ACGECCO" %>
+
+		<h3>Greetings <%= @client.full_name %>!</h3>
+
+		<p>We're glad to inform you that your <%= @loan.loan_type.name %> request has been approved and disbursed!</p>
+		<p>Please bring the following required documents at our office.</p>
+		<ul>
+			<% @loan_docs.each do | loan_doc | %>
+				<li><%= loan_doc.name %></li>
+			<% end %>
+		</ul>
+
+		<hr>
+
+		<%= image_tag 'https://i.imgur.com/jdOHIp8.png', alt: "ACGECOO" %>
+
+	</center>
+</div>
+
+

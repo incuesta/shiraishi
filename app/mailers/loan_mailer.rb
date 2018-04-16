@@ -12,6 +12,15 @@ class LoanMailer < ApplicationMailer
 	  end
 
 
+	  def new_delinquent_notification(loan)
+	  		@loan = loan
+	  		@client = loan.client
+	  		@email = @client.email
+
+	  		mail to: @email
+	  end
+
+
 	  # Send this when loan is approved
 	  def new_approved_loan(loan)
 	  		@loan = loan
@@ -25,6 +34,7 @@ class LoanMailer < ApplicationMailer
 	  # Send this when loan is disbursed
 	  def new_disbursed_loan(loan)
 	  		@loan = loan
+	  		@loan_docs = @loan.loan_type.loan_docs
 	  		@client = loan.client
 	  		@email = @client.email
 

@@ -162,6 +162,13 @@ class LoansController < ApplicationController
   def red_listed_loans
     sort_and_search Loan.red_listed_loans
 
+
+    @loans.each do |loan|
+      # Send a notification
+      del_mail = LoanMailer.new_delinquent_notification loan
+      del_mail.deliver_now
+    end
+
     authorize Loan
 
     respond_to do |format|
@@ -221,11 +228,12 @@ class LoansController < ApplicationController
     authorize Loan
 
     respond_to do |format|
-      if @loan.save
+      if @loan.save && current_client.guarantors.present?
         format.html { redirect_to @loan, notice: 'Loan request was successfully submitted.' }
         format.json { render :show, status: :created, location: @loan }
       else
-        format.html { render :new }
+        msg = ('Please specify first your guarantor.' unless current_client.guarantors.present?) || 'An error occured. Unable to send your request'
+        format.html { redirect_to new_loan_path, notice: msg }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
     end

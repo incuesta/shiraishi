@@ -20,7 +20,7 @@ class LoanInstallmentPdf < Prawn::Document
 
 
 		# Mother grid
-		grid([0,0], [18,8]).bounding_box do
+		grid([0,0], [25,8]).bounding_box do
 
 				grid([0,0], [4,8]).bounding_box() do
 
@@ -60,7 +60,7 @@ class LoanInstallmentPdf < Prawn::Document
 
 				# installment_no
 				grid([y_pos,x_pos1], [y_pos,x_pos2]).bounding_box() do
-					text "Loan Installment no.", style: :bold
+					text "Monthly Installment No.", style: :bold
 				end
 
 				grid([y_pos,5], [y_pos,7]).bounding_box() do
@@ -165,10 +165,18 @@ class LoanInstallmentPdf < Prawn::Document
 				# Issued by
 				grid([y_pos,x_pos1], [y_pos,x_pos2]).bounding_box() do
 					text "Issued by", style: :bold
+
 				end
 
 				grid([y_pos,5], [y_pos,7]).bounding_box() do
 					text @issued_by
+				end
+
+
+				y_pos += 2
+
+				grid([ y_pos, x_pos1 ], [ y_pos + 5, 7 ]).bounding_box() do
+					image "#{Rails.root}/app/pdfs/charity_sig.png", height: 75, position: :center
 				end
 
 

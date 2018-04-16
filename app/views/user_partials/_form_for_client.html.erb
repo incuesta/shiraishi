@@ -75,7 +75,7 @@
 
       <div class="form-group">
         <%= form.label :employee_category %>
-        <%= form.select :employee_category, ["sites", "trainer", "employee", "consultant", "executive", "manager"], {}, id: "#{shiraishi.class.to_s.underscore}_employee_category", class: "form-control" %>
+        <%= form.select :employee_category, ["limited-appointee", "regular", "in-training", "on-call employee", "intern"], {}, id: "#{shiraishi.class.to_s.underscore}_employee_category", class: "form-control" %>
       </div>
 
       <div class="form-group">
@@ -84,7 +84,7 @@
       </div>
 
       <div class="form-group">
-        <%= form.label :manager %>
+        <%= form.label :manager, "Manager's name" %>
         <%= form.text_field :manager, id: "#{shiraishi.class.to_s.underscore}_manager", class: "form-control" %>
       </div>
 

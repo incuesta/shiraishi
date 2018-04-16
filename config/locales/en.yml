@@ -41,7 +41,7 @@ en:
       subject: "Loan Disbursed!"
 
     new_rejected_loan:
-      subject: "Loan Request Unable to Pass"
+      subject: "Your Loan Request has been Declined."
 
   pundit:
     default: "You're not authorized to perform this action! Please sign in and complete your profile."
