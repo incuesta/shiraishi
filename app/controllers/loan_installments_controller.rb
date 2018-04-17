@@ -106,6 +106,9 @@ class LoanInstallmentsController < ApplicationController
 
                 @loan_installment.update(loan_installment_params)
 
+                new_payment_email = LoanMailer.new_payment_notification @loan
+                new_payment_email.deliver_now
+
                 # Record this in the Activity Log
                 record(pundit_user, 'Accepted Payment')
 

@@ -43,6 +43,9 @@ en:
     new_rejected_loan:
       subject: "Your Loan Request has been Declined."
 
+    new_payment_notification:
+      subject: "Payment Has Been Made"
+
   pundit:
     default: "You're not authorized to perform this action! Please sign in and complete your profile."
     admin_profile_policy:
