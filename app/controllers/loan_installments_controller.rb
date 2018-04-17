@@ -106,8 +106,7 @@ class LoanInstallmentsController < ApplicationController
 
                 @loan_installment.update(loan_installment_params)
 
-                new_payment_email = LoanMailer.new_payment_notification @loan
-                new_payment_email.deliver_now
+                
 
                 # Record this in the Activity Log
                 record(pundit_user, 'Accepted Payment')
@@ -124,6 +123,11 @@ class LoanInstallmentsController < ApplicationController
                 ae.create_dr_entry description: "Cash", value: @loan_installment.principal_amount + @loan_installment.interest_amount
                 ae.create_cr_entry description: "Account receivable", value: @loan_installment.principal_amount
                 ae.create_cr_entry description: "Interest income", value: @loan_installment.interest_amount
+
+
+                amount = (@loan_installment.principal_amount + @loan_installment.interest_amount)
+                new_payment_email = LoanMailer.new_payment_notification(@loan, amount)
+                new_payment_email.deliver_now
                 
           
                 ab.overall_principal_balance = remaining_principal

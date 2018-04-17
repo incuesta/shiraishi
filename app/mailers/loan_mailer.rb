@@ -53,7 +53,8 @@ class LoanMailer < ApplicationMailer
 
 
 	  # Send this when loan is approved
-	  def new_payment_notification(loan)
+	  def new_payment_notification(loan, amount)
+	  		@amount = amount
 	  		@loan = loan
 	  		@client = loan.client
 	  		@email = @client.email
