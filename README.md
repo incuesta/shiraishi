@@ -1,24 +1,22 @@
-# README
+##2018-04-21##
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Title:**
+	Online Lending and Loan Management with Accounting and Decision Support System for Antipolo City Government Employees Credit Cooperative
 
-Things you may want to cover:
+**Course:**
+	IT-401, Capstone Thesis
 
-* Ruby version
+**Author:**
+	Leopoldo Deogenes P. Cuesta II
+	BS-IT Student
+	AMA Computer University, College of East Rizal
 
-* System dependencies
+**School Year:**
+	2017-2018
 
-* Configuration
+**Trimester:**
+	3rd Trimester
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* ruby '2.3.3'
